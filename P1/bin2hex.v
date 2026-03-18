@@ -1,10 +1,12 @@
 module bin2hex (
     input wire [3:0] BIN,  // Entrada: número de 0 a 15
+	 input wire SIG_EXIBIR,
     output wire [6:0] HEX  // Saída: 7 segmentos (cada bit controla um segmento)
 );
 
 // Lógica combinacional usando atribuições em cascata
-assign HEX = (BIN == 4'b0000) ? 7'b1000000 : // 0
+assign HEX = !SIG_EXIBIR ? 7'b1111111 :
+				 (BIN == 4'b0000) ? 7'b1000000 : // 0
              (BIN == 4'b0001) ? 7'b1111001 : // 1
              (BIN == 4'b0010) ? 7'b0100100 : // 2
              (BIN == 4'b0011) ? 7'b0110000 : // 3

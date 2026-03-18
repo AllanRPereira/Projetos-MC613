@@ -1,11 +1,14 @@
 module escolher_produto(
 
 	input wire [3:0] SW,
-	input wire [1:0] KEY,
+	input wire [0:0] KEY,
+	input wire CLK,
+	
 	output wire [6:0] HEX0,
 	output wire [10:0] PROD
 );
 
+reg REG_SALVAR = 1;	
 
 assign PROD = (SW == 4'b0000) ? 11'b0001111101 : // 
              (SW == 4'b0001) ? 11'b0100101100 : // 
@@ -26,14 +29,22 @@ assign PROD = (SW == 4'b0000) ? 11'b0001111101 : //
                                 11'bb00000000000;  // Default: Valor 0
 			  
 bin2hex DisplayProduto (
-	.BIN(PROD),
+	.BIN(SW),
+	.SIG_EXIBIR(REG_SALVAR),
 	.HEX(HEX0)
 );
 
-registrador RegistradorProduto (
-	.SALVAR(KEY[0]),
+registrador RegistradorValor (
+	.SALVAR(REG_SALVAR),
 	.VAL_SALVAR(PROD)
-
 );
+
+always @(posedge CLK) begin
+	if (KEY[0] && REG_SALVAR == 1)
+		REG_SALVAR <= 0;
+	else
+		if (KEY[1])
+			REG_SALVAR <= 1;
+end
 
 endmodule 	

@@ -7,11 +7,11 @@ module registrador(
 	output reg [10:0] VALOR
 );
 
-always @(posedge clk) begin
+always @(posedge CLK) begin
 	if (RESET)
 		VALOR <= 11'b00000000000;
 	else
-		if (SAVE)
+		if (SALVAR)
 			VALOR <= VAL_SALVAR;
 end
 
