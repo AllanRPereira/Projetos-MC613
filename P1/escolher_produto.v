@@ -1,14 +1,8 @@
 module escolher_produto(
 
-	input wire [3:0] SW,
-	input wire KEY,
-	input wire RESET,
-	input wire CLK,
-	
+	input wire [3:0] SW,	
 	output wire [6:0] HEX_DISPLAY,
-	output wire [10:0] PROD,
-	
-	output reg IS_SELECIONADO,
+	output wire [10:0] VALOR_PRODUTO
 
 );
 
