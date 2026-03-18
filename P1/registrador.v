@@ -10,7 +10,7 @@ always @(posedge CLK) begin
 	if (RESET)
 		VALOR <= 11'b00000000000;
 	else
-		if (SALVAR)
+		if (SIG_SALVAR)
 			VALOR <= VAL_SALVAR;
 end
 

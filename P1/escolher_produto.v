@@ -22,7 +22,7 @@ assign VALOR_PRODUTO = (SW == 4'b0000) ? 11'b0001111101 : //
              (SW == 4'b1101) ? 11'b0111011011 : // 
              (SW == 4'b1110) ? 11'b0111011011 : // 
              (SW == 4'b1111) ? 11'b1100100000 : // 
-                                11'bb00000000000;  // Default: Valor 0
+                                11'b00000000000;  // Default: Valor 0
 			  
 bin2hex DisplayProduto (
 	.BIN(SW),
