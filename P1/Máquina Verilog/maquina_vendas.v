@@ -32,7 +32,7 @@ clock Clock(
 
 maquina_controle MaquinaControle(
     .clk(CLOCK_50),
-    .reset(key_2),
+    .reset(keys[2]),
     .sinal_cancelamento(sinal_cancelamento),
     .sinal_liberacao(sinal_liberacao),
     .sinal_troco(sinal_troco),
@@ -44,9 +44,9 @@ maquina_controle MaquinaControle(
 maquina_estados MaquinaEstados(
     .clk(CLOCK_50),
     .clk_1s(clk_1s),
-    .reset(key_2),
-    .chave_cancelado(key_1),
-    .chave_avancar(key_0),
+    .reset(keys[2]),
+    .chave_cancelado(keys[1]),
+    .chave_avancar(keys[0]),
     .switch_valor(switchs[9:4]),
     .valor(valor_produto),
     .travar_selecao(travar_selecao),
@@ -60,7 +60,7 @@ maquina_estados MaquinaEstados(
 
 selecao_produto SelecaoProduto(
     .clk(CLOCK_50),
-    .reset(key_2),
+    .reset(keys[2]),
     .sw(switchs[3:0]),
     .travar_selecao(travar_selecao),
     .hex_display_5(HEX5),
@@ -69,7 +69,7 @@ selecao_produto SelecaoProduto(
 
 caixa_registradora CaixaRegistradora(
     .clk(CLOCK_50),
-    .reset(key_2),
+    .reset(keys[2]),
     .salvar_valor(salvar_valor),
     .valor_produto(preco_produto),
     .diminuir_valor(diminuir_valor),
@@ -80,7 +80,7 @@ caixa_registradora CaixaRegistradora(
 
 conversao_valor ConversaoValor(
     .clk(CLOCK_50),
-    .reset(key_2),
+    .reset(keys[2]),
     .bin(valor_produto[10:0]),
     .display_0(HEX0),
     .display_1(HEX1),

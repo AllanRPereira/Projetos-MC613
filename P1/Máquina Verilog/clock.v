@@ -1,7 +1,7 @@
 module clock(
     input wire clk,
     output wire clk_1s,
-    output wire clk_5ms,
+    output wire clk_5ms
 );
 
 reg [22:0] contador = 0;
