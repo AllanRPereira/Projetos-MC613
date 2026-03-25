@@ -1,4 +1,4 @@
-module escolher_produto(
+module selecao_produto(
     input wire clk,
     input wire reset,
 	input wire [3:0] sw,

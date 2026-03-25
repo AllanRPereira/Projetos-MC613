@@ -12,10 +12,16 @@ module maquina_controle(
 );
 
 always @(posedge clk) begin
-    if (sinal_liberacao) 
-        led_liberado <= 1;
-    if (sinal_troco || sinal_cancelamento)
-        led_cancelado_troco <= 1;
+    if (reset) begin
+        led_liberado <= 0;
+        led_cancelado_troco <= 0;
+    end
+    else begin
+        if (sinal_liberacao) 
+            led_liberado <= 1;
+        if (sinal_troco || sinal_cancelamento)
+            led_cancelado_troco <= 1;
+    end
     
 end
 

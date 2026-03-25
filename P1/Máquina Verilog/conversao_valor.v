@@ -1,19 +1,18 @@
 module conversao_valor (
     input wire clk,
     input wire reset,
-    input wire lock_valor,
     input wire [10:0] bin, // Entrada 0 a 2047
-    input wire [3:0] display_0, display_1, display_2, display_3,  
-    output reg  [15:0] bcd  // Milhar [15:12] | Centena [11:8] | Dezena [7:4] | Unidade [3:0]
+    output wire [6:0] display_0, display_1, display_2, display_3
 );
 
     integer i;
     reg [15:0] acc;
+    reg [15:0] bcd, // Milhar [15:12] | Centena [11:8] | Dezena [7:4] | Unidade [3:0]
 
     bin2hex DisplayUnidade (
         .clk(clk),
         .reset(reset),
-        .lock(lock_valor),
+        .lock(1'b0),
         .bin(bcd[3:0]),
         .hex(display_0)
     );
@@ -21,7 +20,7 @@ module conversao_valor (
     bin2hex DisplayDecimal (
         .clk(clk),
         .reset(reset),
-        .lock(lock_valor),
+        .lock(1'b0),
         .bin(bcd[7:4]),
         .hex(display_1)
     );
@@ -29,7 +28,7 @@ module conversao_valor (
     bin2hex DisplayCentena (
         .clk(clk),
         .reset(reset),
-        .lock(lock_valor),
+        .lock(1'b0),
         .bin(bcd[11:8]),
         .hex(display_2)
     );
@@ -37,7 +36,7 @@ module conversao_valor (
     bin2hex DisplayMilhar (
         .clk(clk),
         .reset(reset),
-        .lock(lock_valor),
+        .lock(1'b0),
         .bin(bcd[15:12]),
         .hex(display_3)
     );

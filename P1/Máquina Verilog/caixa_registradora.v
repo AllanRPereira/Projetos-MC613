@@ -4,8 +4,8 @@ module caixa_registradora(
 	input wire salvar_valor,				// Sinal para salvar o valor no registrador de saída
 	input wire [10:0] valor_produto,		// Valor do produto
 	input wire diminuir_valor,				// Sinal para subtrair o valor correspondente das chaves
+	input wire [5:0] valores,				// Sinal dos SW's
 
-	input wire [5:0] valores,
 	output reg signed [11:0] valor
 );
 
@@ -16,6 +16,7 @@ reg subtraido = 0;				// Verificador para que subtraía apenas uma vez
 // Lógica combinacional, ou seja, em qualquer mudança em valores, haverá atualização de auxiliar
 always @(*) begin 
 	lock_num_chave = (valores & (valores - 1)) != 0;		// Conta o Nº de bits ativos
+	auxiliar = 0;
 	if (valores[5]) auxiliar = auxiliar + 8'd200;
 	if (valores[4]) auxiliar = auxiliar + 7'd100;
 	if (valores[3]) auxiliar = auxiliar + 6'd50;

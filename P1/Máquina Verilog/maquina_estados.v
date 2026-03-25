@@ -6,10 +6,12 @@ module maquina_estados(
     input wire chave_avancar,
     input wire [5:0] switch_valor,
     input wire signed [11:0] valor,     // Um bit a mais para o sinal (Negativo/Positivo)
-    input wire sinal_valor_inserido,
 
     // MÓDULO: selecao_produto.v
     output reg travar_selecao,          // Trava a mudança do produto no display Hex5
+
+    // MÓDULO: conversao_valor.v
+    output reg travar_valor,
 
     // MÓDULO: caixa_registradora.v
     output reg salvar_valor,            // Sinal para indicar que o valor definido pela seleção das chaves deve ser salvo no registrador
@@ -60,7 +62,7 @@ always @(posedge clk) begin
             end
 
             3'b100: begin                   // Estado: Produto cancelado
-                if (clk_1)
+                if (clk_1s)
                     estado <= 2'b00;
             end
         endcase
