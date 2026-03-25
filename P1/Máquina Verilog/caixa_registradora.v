@@ -1,9 +1,9 @@
 module caixa_registradora(
 	input wire clk,
 	input wire reset,
-	input wire salvar_valor,
-	input wire [10:0] valor_produto,
-	input wire diminuir_valor,
+	input wire salvar_valor,				// Sinal para salvar o valor no registrador de saída
+	input wire [10:0] valor_produto,		// Valor do produto
+	input wire diminuir_valor,				// Sinal para subtrair o valor correspondente das chaves
 
 	input wire [5:0] valores,
 	output reg signed [11:0] valor
