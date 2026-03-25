@@ -17,7 +17,7 @@ module maquina_estados(
     // MÓDULO: maquina_controle.v
     output reg sinal_liberacao,         // Sinal para liberar o produto
     output reg sinal_troco,             // Sinal para apresentar o troco
-    output reg sinal_cancelamento       // Sinal de cancelamento
+    output reg sinal_cancelamento,       // Sinal de cancelamento
     output reg sinal_led_apagado        // Apagar os leds 
 );
 
@@ -108,7 +108,7 @@ always @(posedge clk) begin
             sinal_troco <= 1;
             sinal_liberacao <= 1;
             travar_selecao <= 1;
-            
+
             sinal_led_apagado <= 0;
             diminuir_valor <= 0;
             salvar_valor <= 0;
