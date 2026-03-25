@@ -5,6 +5,7 @@ module caixa_registradora(
 	input wire [10:0] valor_produto,		// Valor do produto
 	input wire diminuir_valor,				// Sinal para subtrair o valor correspondente das chaves
 	input wire [5:0] valores,				// Sinal dos SW's
+	input wire sinal_troco,					// Sinal para inverter os bits e exibir corretamente
 
 	output reg signed [11:0] valor
 );
@@ -23,7 +24,7 @@ always @(*) begin
 	if (valores[2]) auxiliar = auxiliar + 5'd25;
 	if (valores[1]) auxiliar = auxiliar + 4'd10;
 	if (valores[0]) auxiliar = auxiliar + 3'd5;
-	
+
 end
 
 always @(posedge clk) begin
@@ -41,6 +42,8 @@ always @(posedge clk) begin
 			valor <= valor - auxiliar;
 			subtraido <= 1;
 		end
+		else if (sinal_troco)
+			valor <= -valor;		// Passa o valor para positivo 
 
 end
 

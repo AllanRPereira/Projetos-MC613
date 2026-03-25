@@ -70,7 +70,7 @@ end
 always @(posedge clk) begin
     // Situação dos sinais para cada um dos estados da máquina
     case (estado)
-        2'b00: begin
+        2'b00: begin            // Seleção produto
             sinal_led_apagado <= 1;
 
             travar_selecao <= 0;
@@ -82,7 +82,7 @@ always @(posedge clk) begin
 
         end
 
-        2'b01: begin
+        2'b01: begin            // Produto escolhido
             travar_selecao <= 1;
             salvar_valor <= 1;
             sinal_led_apagado <= 1;
@@ -93,7 +93,7 @@ always @(posedge clk) begin
             sinal_cancelamento <= 0;
         end
 
-        2'b10: begin
+        2'b10: begin            // Dinheiro inserido
             travar_selecao <= 1;
             diminuir_valor <= 1;
             sinal_led_apagado <= 1;
@@ -104,18 +104,18 @@ always @(posedge clk) begin
             sinal_cancelamento <= 0;
         end
 
-        2'b11: begin
+        2'b11: begin            // Produto comprado
             sinal_troco <= 1;
             sinal_liberacao <= 1;
-
+            travar_selecao <= 1;
+            
             sinal_led_apagado <= 0;
-            travar_selecao <= 0;
             diminuir_valor <= 0;
             salvar_valor <= 0;
             sinal_cancelamento <= 0;
         end
 
-        3'b100: begin
+        3'b100: begin           // Compra cancelada
             sinal_cancelamento <= 1;
 
             sinal_troco <= 0;

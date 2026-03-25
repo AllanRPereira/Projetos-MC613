@@ -16,6 +16,7 @@ wire travar_selecao;
 wire salvar_valor;
 wire diminuir_valor;
 wire [11:0] valor_produto;
+wire sinal_led_apagado;
 
 maquina_controle MaquinaControle(
     .clk(CLOCK_50),
@@ -23,6 +24,7 @@ maquina_controle MaquinaControle(
     .sinal_cancelamento(sinal_cancelamento),
     .sinal_liberacao(sinal_liberacao),
     .sinal_troco(sinal_troco),
+    .sinal_led_apagado(sinal_led_apagado),
     .led_liberado(LEDR0),
     .led_cancelado_troco(LEDR1)
 );
@@ -40,7 +42,8 @@ maquina_estados MaquinaEstados(
     .diminuir_valor(diminuir_valor),
     .sinal_liberacao(sinal_liberacao),
     .sinal_troco(sinal_troco),
-    .sinal_cancelamento(sinal_cancelamento)
+    .sinal_cancelamento(sinal_cancelamento),
+    .sinal_led_apagado(sinal_led_apagado)
 );
 
 selecao_produto SelecaoProduto(
@@ -59,7 +62,8 @@ caixa_registradora CaixaRegistradora(
     .valor_produto(valor_produto),
     .diminuir_valor(diminuir_valor),
     .valores(SW[9:4]),
-    .valor(valor_produto)
+    .valor(valor_produto),
+    .sinal_troco(sinal_troco)
 );
 
 conversao_valor ConversaoValor(
