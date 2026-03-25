@@ -20,8 +20,18 @@ wire sinal_led_apagado;
 
 reg [2:0] keys = 0;
 reg [9:0] switchs = 0;
-reg clk_1s = 0;
-reg clk_5ms = 0;
+
+// São "ticks" a cada 1s e 5ms respectivamente!
+wire clk_1s;
+wire clk_5ms;
+
+reg [2:0] key_sync_0 = 0;
+reg [2:0] key_sync_1 = 0;
+reg [9:0] sw_sync_0 = 0;
+reg [9:0] sw_sync_1 = 0;
+
+reg [2:0] key_prev_sample = 0;
+reg [9:0] sw_prev_sample = 0;
 
 
 clock Clock(
@@ -88,9 +98,27 @@ conversao_valor ConversaoValor(
     .display_3(HEX3)
 );
 
-always @(posedge clk_5ms) begin
-    keys <= KEY[2:0];
-    switchs <= SW[9:0];
+always @(posedge CLOCK_50) begin
+    // Estados para sincronização - Fila de valores salvos
+
+    // Chaves
+    key_sync_0 <= KEY;
+    key_sync_1 <= key_sync_0;
+
+    // Switches
+    sw_sync_0 <= SW;
+    sw_sync_1 <= sw_sync_0;
+
+    // Debounce simples: aceita novo valor apenas se repetido em 2 amostras de 5ms.
+    if (clk_5ms) begin
+        if (key_sync_1 == key_prev_sample)
+            keys <= key_sync_1;
+        key_prev_sample <= key_sync_1;
+
+        if (sw_sync_1 == sw_prev_sample)
+            switchs <= sw_sync_1;
+        sw_prev_sample <= sw_sync_1;
+    end
 end
 
 endmodule

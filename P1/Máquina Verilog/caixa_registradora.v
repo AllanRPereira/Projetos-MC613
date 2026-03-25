@@ -13,6 +13,7 @@ module caixa_registradora(
 reg [7:0] auxiliar = 0;			// Armazenar o valor que irá ser subtraído
 reg lock_num_chave = 0;			// Trava para caso haja mais de uma chave acionada
 reg subtraido = 0;				// Verificador para que subtraía apenas uma vez
+reg troco_aplicado = 0;			// Garante aplicacao unica do troco
 
 // Lógica combinacional, ou seja, em qualquer mudança em valores, haverá atualização de auxiliar
 always @(*) begin 
@@ -33,6 +34,9 @@ always @(posedge clk) begin
 	if (!diminuir_valor)
 		subtraido <= 0;
 
+	if (!sinal_troco)
+		troco_aplicado <= 0;
+
 	if (reset)
 		valor <= 12'b00000000000;
 	else
@@ -42,8 +46,11 @@ always @(posedge clk) begin
 			valor <= valor - auxiliar;
 			subtraido <= 1;
 		end
-		else if (sinal_troco)
-			valor <= -valor;		// Passa o valor para positivo 
+		else if (sinal_troco && !troco_aplicado) begin
+			if (valor < 0)
+				valor <= -valor;		// Exibe valor positivo no troco
+			troco_aplicado <= 1;
+		end
 
 end
 
