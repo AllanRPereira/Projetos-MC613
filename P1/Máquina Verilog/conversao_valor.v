@@ -7,7 +7,7 @@ module conversao_valor (
 
     integer i;
     reg [15:0] acc;
-    reg [15:0] bcd, // Milhar [15:12] | Centena [11:8] | Dezena [7:4] | Unidade [3:0]
+    reg [15:0] bcd; // Milhar [15:12] | Centena [11:8] | Dezena [7:4] | Unidade [3:0]
 
     bin2hex DisplayUnidade (
         .clk(clk),

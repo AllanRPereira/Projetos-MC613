@@ -10,9 +10,6 @@ module maquina_estados(
     // MÓDULO: selecao_produto.v
     output reg travar_selecao,          // Trava a mudança do produto no display Hex5
 
-    // MÓDULO: conversao_valor.v
-    output reg travar_valor,
-
     // MÓDULO: caixa_registradora.v
     output reg salvar_valor,            // Sinal para indicar que o valor definido pela seleção das chaves deve ser salvo no registrador
     output reg diminuir_valor,          // Sinal para subtrair o valor das chaves do valor salva no registrador
@@ -21,6 +18,7 @@ module maquina_estados(
     output reg sinal_liberacao,         // Sinal para liberar o produto
     output reg sinal_troco,             // Sinal para apresentar o troco
     output reg sinal_cancelamento       // Sinal de cancelamento
+    output reg sinal_led_apagado        // Apagar os leds 
 );
 
 reg valor_removido = 0;
@@ -39,7 +37,7 @@ always @(posedge clk) begin
 
             2'b01: begin                    // Estado: produto selecionado
                 if (chave_cancelado)
-                    estado <= 2'b00;        // Selecao -> Escolha
+                    estado <= 3'b100;        // Selecao -> Escolha
                 else if (|switch_valor)     // Qualquer bit igual a 1 (Valor inserido)
                     estado <= 2'b10;        // Selecao -> Dinheiro inserido
             end
@@ -73,17 +71,21 @@ always @(posedge clk) begin
     // Situação dos sinais para cada um dos estados da máquina
     case (estado)
         2'b00: begin
+            sinal_led_apagado <= 1;
+
             travar_selecao <= 0;
             salvar_valor <= 0;
             sinal_troco <= 0;
             sinal_liberacao <= 0;
             diminuir_valor <= 0;
             sinal_cancelamento <= 0;
+
         end
 
         2'b01: begin
             travar_selecao <= 1;
             salvar_valor <= 1;
+            sinal_led_apagado <= 1;
             
             sinal_troco <= 0;
             sinal_liberacao <= 0;
@@ -94,6 +96,7 @@ always @(posedge clk) begin
         2'b10: begin
             travar_selecao <= 1;
             diminuir_valor <= 1;
+            sinal_led_apagado <= 1;
 
             salvar_valor <= 0;
             sinal_troco <= 0;
@@ -105,6 +108,7 @@ always @(posedge clk) begin
             sinal_troco <= 1;
             sinal_liberacao <= 1;
 
+            sinal_led_apagado <= 0;
             travar_selecao <= 0;
             diminuir_valor <= 0;
             salvar_valor <= 0;
@@ -119,6 +123,7 @@ always @(posedge clk) begin
             travar_selecao <= 0;
             diminuir_valor <= 0;
             salvar_valor <= 0;
+            sinal_led_apagado <= 0;
         end
 
         default: begin
@@ -128,6 +133,7 @@ always @(posedge clk) begin
             sinal_liberacao <= 0;
             diminuir_valor <= 0;
             sinal_cancelamento <= 0;
+            sinal_led_apagado <= 0;
         end
     endcase
 

@@ -13,7 +13,6 @@ wire sinal_cancelamento;
 wire sinal_liberacao;
 wire sinal_troco;
 wire travar_selecao;
-wire travar_valor;
 wire salvar_valor;
 wire diminuir_valor;
 wire [11:0] valor_produto;
@@ -50,7 +49,7 @@ selecao_produto SelecaoProduto(
     .sw(SW[3:0]),
     .travar_selecao(travar_selecao),
     .hex_display_5(HEX5),
-    .valor_produto(valor_produto)
+    .valor_produto(valor_produto[10:0])
 );
 
 caixa_registradora CaixaRegistradora(

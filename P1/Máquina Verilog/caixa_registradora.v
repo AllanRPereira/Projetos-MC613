@@ -23,15 +23,15 @@ always @(*) begin
 	if (valores[2]) auxiliar = auxiliar + 5'd25;
 	if (valores[1]) auxiliar = auxiliar + 4'd10;
 	if (valores[0]) auxiliar = auxiliar + 3'd5;
-
-	// Lógica para evitar subtrair mais de uma vez, ele desmarca o 
-	// subtraído apenas quando saí do estado de diminuir o valor
-	if (!diminuir_valor)
-		subtraido = 0;
-
+	
 end
 
 always @(posedge clk) begin
+	// Lógica para evitar subtrair mais de uma vez, ele desmarca o 
+	// subtraído apenas quando saí do estado de diminuir o valor
+	if (!diminuir_valor)
+		subtraido <= 0;
+
 	if (reset)
 		valor <= 12'b00000000000;
 	else

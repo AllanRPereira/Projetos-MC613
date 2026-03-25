@@ -5,6 +5,7 @@ module maquina_controle(
     input wire sinal_cancelamento,
     input wire sinal_liberacao,
     input wire sinal_troco,
+    input wire sinal_led_apagado,
 
     output reg led_liberado,
     output reg led_cancelado_troco
@@ -12,6 +13,11 @@ module maquina_controle(
 );
 
 always @(posedge clk) begin
+    if (sinal_led_apagado) begin
+        led_liberado <= 0;
+        led_cancelado_troco <= 0;
+    end
+
     if (reset) begin
         led_liberado <= 0;
         led_cancelado_troco <= 0;
