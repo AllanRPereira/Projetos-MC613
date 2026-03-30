@@ -1,104 +1,187 @@
 `timescale 1ns/1ps
 
-// Entradas
 module caixa_registradora_tb;
-reg test_clk = 0;
-reg test_reset;
-reg test_salvar_valor;
-reg test_diminuir_valor;
-reg [10:0] test_valor_produto;
-reg [5:0] test_valores;
-reg test_sinal_troco;
 
-// Saida
-wire signed [11:0] test_valor;
+reg clk;
+reg reset;
+reg salvar_valor;
+reg [10:0] valor_produto;
+reg diminuir_valor;
+reg [5:0] valores;
+reg sinal_troco;
 
-caixa_registradora uut(
-    .clk (test_clk),
-    .reset (test_reset),
-    .salvar_valor (test_salvar_valor),
-    .diminuir_valor (test_diminuir_valor),
-    .valor_produto (test_valor_produto),
-    .valores (test_valores),
-    .sinal_troco (test_sinal_troco),
-    .valor (test_valor)
+wire signed [11:0] valor;
+
+integer erros;
+
+caixa_registradora uut (
+    .clk(clk),
+    .reset(reset),
+    .salvar_valor(salvar_valor),
+    .valor_produto(valor_produto),
+    .diminuir_valor(diminuir_valor),
+    .valores(valores),
+    .sinal_troco(sinal_troco),
+    .valor(valor)
 );
 
-always #10 test_clk = ~test_clk;
+always #5 clk = ~clk;
 
 initial begin
-    $dumpfile("caixa_registradora_tb.vcd");
+    $dumpfile("caixa_registradora.vcd");
     $dumpvars(0, caixa_registradora_tb);
-    
-    // Testar os valores iniciais
-    test_salvar_valor = 0;
-    test_reset = 0;
-    test_diminuir_valor = 0;
-    test_valores = 6'b000000;
-    test_valor_produto = 11'b00000000000;
-    test_sinal_troco = 0;
 
-    // $display mostra texto no console do simulador
-    $display("Iniciando teste da Caixa Registradora");
-    $display("Tempo | Rst | Salva | Produto | Subtrai | Chaves | Troco |  VALOR (Saida) ");
-    $display("------|-----|-------|---------|---------|--------|-------|----------------");
+    clk = 0;
+    reset = 1;
+    salvar_valor = 0;
+    valor_produto = 11'd0;
+    diminuir_valor = 0;
+    valores = 6'b000000;
+    sinal_troco = 0;
+    erros = 0;
 
+    $display("=== Inicio do teste: caixa_registradora ===");
 
-    // Teste 1, testando o modulo reset
+    // Libera reset
+    @(posedge clk);
+    reset = 0;
 
-    test_reset = 1; #20;
-    $display("%5t |  %b  |   %b   |   %4d  |    %b    | %6b |   %b   | %4d (Reset)", 
-        $time, test_reset, test_salvar_valor, test_valor_produto, test_diminuir_valor, test_valores, test_sinal_troco, test_valor);
-    test_reset = 0; #20;
+    // Teste 1: salva valor do produto
+    valor_produto = 11'd150;
+    salvar_valor = 1;
+    @(posedge clk);
+    #1;
+    if (valor !== 12'sd150) begin
+        $display("[ERRO] Teste 1 falhou. Esperado=150, obtido=%0d", valor);
+        erros = erros + 1;
+    end else begin
+        $display("[OK] Teste 1: salvar valor");
+    end
+    salvar_valor = 0;
 
-    // Teste 2: salvar valor inicial de 500
-    test_valor_produto = 500; test_salvar_valor = 1; #20;
-    $display("%5t |  %b  |   %b   |   %4d  |    %b    | %6b |   %b   | %4d (salvar valor de 500)", 
-        $time, test_reset, test_salvar_valor, test_valor_produto, test_diminuir_valor, test_valores, test_sinal_troco, test_valor);
-    test_salvar_valor = 0; #20;
+    // Teste 2: subtrai uma vez com uma unica chave (50)
+    valores = 6'b001000;
+    diminuir_valor = 1;
+    @(posedge clk);
+    #1;
+    if (valor !== 12'sd100) begin
+        $display("[ERRO] Teste 2 falhou. Esperado=100, obtido=%0d", valor);
+        erros = erros + 1;
+    end else begin
+        $display("[OK] Teste 2: subtracao unica");
+    end
 
-    // Teste 3: diminuir valor de 5 centavos Sw[4]
-    test_valores = 6'b000001; test_diminuir_valor = 1; #20;
-    $display("%5t |  %b  |   %b   |   %4d  |    %b    | %6b |   %b   | %4d (diminuir valor de 5)", 
-        $time, test_reset, test_salvar_valor, test_valor_produto, test_diminuir_valor, test_valores, test_sinal_troco, test_valor);
-    test_valores = 6'b000000; test_diminuir_valor = 0; #20;
+    // Teste 3: com diminuir_valor ainda ativo, nao deve subtrair de novo
+    @(posedge clk);
+    #1;
+    if (valor !== 12'sd100) begin
+        $display("[ERRO] Teste 3 falhou. Esperado=100, obtido=%0d", valor);
+        erros = erros + 1;
+    end else begin
+        $display("[OK] Teste 3: trava de subtracao funcionou");
+    end
 
-// Teste 4: diminuir valor de 10 centavos Sw[5]
-    test_valores = 6'b000010; test_diminuir_valor = 1; #20;
-    $display("%5t |  %b  |   %b   |   %4d  |    %b    | %6b |   %b   | %4d (diminuir valor de 10)", 
-             $time, test_reset, test_salvar_valor, test_valor_produto, test_diminuir_valor, test_valores, test_sinal_troco, test_valor);
-    test_diminuir_valor = 0;  test_valores = 6'b000000; #20;
+    // Rearma a logica de subtracao
+    diminuir_valor = 0;
+    @(posedge clk);
+    valores = 6'b000000;
+    @(posedge clk);
 
-    // Teste 5: bloquear as chaves, apertando mais de uma Sw[4] e Sw[5]
-    test_valores = 6'b000011; test_diminuir_valor = 1; #20;
-    $display("%5t |  %b  |   %b   |   %4d  |    %b    | %6b |   %b   | %4d (bloquea os valores)", 
-             $time, test_reset, test_salvar_valor, test_valor_produto, test_diminuir_valor, test_valores, test_sinal_troco, test_valor);
-    test_diminuir_valor = 0;  test_valores = 6'b000000; #20;
+    // Teste 4: nova subtracao apos rearmar (5)
+    valores = 6'b000001;
+    diminuir_valor = 1;
+    @(posedge clk);
+    #1;
+    if (valor !== 12'sd95) begin
+        $display("[ERRO] Teste 4 falhou. Esperado=95, obtido=%0d", valor);
+        erros = erros + 1;
+    end else begin
+        $display("[OK] Teste 4: nova subtracao apos rearmar");
+    end
 
-    // Teste 6: salva novo valor de 100
-    test_valor_produto = 100; test_salvar_valor = 1; #20;
-    $display("%5t |  %b  |   %b   |   %4d  |    %b    | %6b |   %b   | %4d (salva 100)", 
-             $time, test_reset, test_salvar_valor, test_valor_produto, test_diminuir_valor, test_valores, test_sinal_troco, test_valor);
-    test_salvar_valor = 0; #20;
+    diminuir_valor = 0;
+    valores = 6'b000000;
+    @(posedge clk);
 
-    // Teste 7: subtrair 200 centavos
-    test_valores = 6'b100000; test_diminuir_valor = 1; #20;
-    $display("%5t |  %b  |   %b   |   %4d  |    %b    | %6b |   %b   | %4d (subtrai 200 pra fica negativo)", 
-             $time, test_reset, test_salvar_valor, test_valor_produto, test_diminuir_valor, test_valores, test_sinal_troco, test_valor);
-    test_diminuir_valor = 0;  test_valores = 6'b000000; #20;
+    // Teste 5: mais de uma chave ativa bloqueia subtracao
+    valores = 6'b000011;
+    diminuir_valor = 1;
+    @(posedge clk);
+    #1;
+    if (valor !== 12'sd95) begin
+        $display("[ERRO] Teste 5 falhou. Esperado=95, obtido=%0d", valor);
+        erros = erros + 1;
+    end else begin
+        $display("[OK] Teste 5: bloqueio por multiplas chaves");
+    end
 
-    // Teste 8: inverte sinal do troco
-    test_sinal_troco = 1; #20;
+    diminuir_valor = 0;
+    valores = 6'b000000;
+    @(posedge clk);
 
-    $display("%5t |  %b  |   %b   |   %4d  |    %b    | %6b |   %b   | %4d (inverte troco)", 
-             $time, test_reset, test_salvar_valor, test_valor_produto, test_diminuir_valor, test_valores, test_sinal_troco, test_valor);
-    test_sinal_troco = 0; #20;
+    // Teste 6: gera valor negativo e aplica troco
+    valor_produto = 11'd20;
+    salvar_valor = 1;
+    @(posedge clk);
+    #1;
+    salvar_valor = 0;
 
+    valores = 6'b001000;
+    diminuir_valor = 1;
+    @(posedge clk);
+    #1;
+    if (valor !== -12'sd30) begin
+        $display("[ERRO] Teste 6 falhou (negativo). Esperado=-30, obtido=%0d", valor);
+        erros = erros + 1;
+    end else begin
+        $display("[OK] Teste 6: valor negativo gerado");
+    end
 
-    $display("---------------------------------------");
-    $display("Teste concluído");
-    $finish;  // Termina a simulação
+    diminuir_valor = 0;
+    valores = 6'b000000;
+    @(posedge clk);
+
+    // Teste 7: aplica troco (valor absoluto) apenas uma vez por acionamento
+    sinal_troco = 1;
+    @(posedge clk);
+    #1;
+    if (valor !== 12'sd30) begin
+        $display("[ERRO] Teste 7 falhou (troco). Esperado=30, obtido=%0d", valor);
+        erros = erros + 1;
+    end else begin
+        $display("[OK] Teste 7: troco aplicado");
+    end
+
+    @(posedge clk);
+    #1;
+    if (valor !== 12'sd30) begin
+        $display("[ERRO] Teste 8 falhou. Esperado=30, obtido=%0d", valor);
+        erros = erros + 1;
+    end else begin
+        $display("[OK] Teste 8: troco nao reaplicado indevidamente");
+    end
+
+    sinal_troco = 0;
+    @(posedge clk);
+
+    // Teste 9: reset limpa saida
+    reset = 1;
+    @(posedge clk);
+    #1;
+    if (valor !== 12'sd0) begin
+        $display("[ERRO] Teste 9 falhou (reset). Esperado=0, obtido=%0d", valor);
+        erros = erros + 1;
+    end else begin
+        $display("[OK] Teste 9: reset");
+    end
+
+    $display("=== Fim do teste ===");
+    if (erros == 0)
+        $display("RESULTADO: TODOS OS TESTES PASSARAM");
+    else
+        $display("RESULTADO: %0d teste(s) falharam", erros);
+
+    $finish;
 end
-
 
 endmodule
