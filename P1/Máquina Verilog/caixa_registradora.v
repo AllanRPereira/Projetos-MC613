@@ -15,7 +15,7 @@ reg lock_num_chave = 0;			// Trava para caso haja mais de uma chave acionada
 reg subtraido = 0;				// Verificador para que subtraía apenas uma vez
 reg troco_aplicado = 0;			// Garante aplicacao unica do troco
 
-// Lógica combinacional, ou seja, em qualquer mudança em valores, haverá atualização de auxiliar
+// Lógica combinacional, ou seja, em qualquer mudança no sinais de entrada, haverá atualização de auxiliar
 always @(*) begin 
 	lock_num_chave = (valores & (valores - 1)) != 0;		// Conta o Nº de bits ativos
 	auxiliar = 0;
@@ -34,6 +34,7 @@ always @(posedge clk) begin
 	if (!diminuir_valor)
 		subtraido <= 0;
 
+	// Lógica análoga para o troco
 	if (!sinal_troco)
 		troco_aplicado <= 0;
 
