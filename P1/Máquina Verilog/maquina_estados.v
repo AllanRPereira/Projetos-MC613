@@ -22,11 +22,14 @@ module maquina_estados(
 );
 
 reg [2:0] estado = 3'b000;
+reg [2:0] prev_estado = 3'b000;
 
 always @(posedge clk) begin
-    if (reset) 
+    if (reset) begin
         estado <= 3'b000;
-    else begin
+        prev_estado <= 3'b000;
+    end else begin
+        prev_estado <= estado;
         case (estado)
             3'b000: begin                   // Estado: escolha do produto
                 if (chave_avancar)
@@ -67,75 +70,77 @@ always @(posedge clk) begin
 end
 
 always @(posedge clk) begin
-    // Situação dos sinais para cada um dos estados da máquina
-    case (estado)
-        3'b000: begin           // Seleção produto
-            sinal_led_apagado <= 1;
+    if (reset) begin
+        travar_selecao <= 0;
+        salvar_valor <= 0;
+        diminuir_valor <= 0;
+        sinal_troco <= 0;
+        sinal_liberacao <= 0;
+        sinal_cancelamento <= 0;
+        sinal_led_apagado <= 0;
+    end else begin
+        case (estado)
+            3'b000: begin           // Seleção produto
+                sinal_led_apagado <= 1;
+                travar_selecao <= 0;
+                salvar_valor <= 0;
+                sinal_troco <= 0;
+                sinal_liberacao <= 0;
+                diminuir_valor <= 0;
+                sinal_cancelamento <= 0;
+            end
 
-            travar_selecao <= 0;
-            salvar_valor <= 0;
-            sinal_troco <= 0;
-            sinal_liberacao <= 0;
-            diminuir_valor <= 0;
-            sinal_cancelamento <= 0;
+            3'b001: begin           // Produto escolhido
+                travar_selecao <= 1;
+                salvar_valor <= (prev_estado == 3'b000);
+                sinal_led_apagado <= 1;
+                sinal_troco <= 0;
+                sinal_liberacao <= 0;
+                diminuir_valor <= 0;
+                sinal_cancelamento <= 0;
+            end
 
-        end
+            3'b010: begin           // Dinheiro inserido
+                travar_selecao <= 1;
+                diminuir_valor <= 1;
+                sinal_led_apagado <= 1;
+                salvar_valor <= 0;
+                sinal_troco <= 0;
+                sinal_liberacao <= 0;
+                sinal_cancelamento <= 0;
+            end
 
-        3'b001: begin           // Produto escolhido
-            travar_selecao <= 1;
-            salvar_valor <= 1;
-            sinal_led_apagado <= 1;
-            
-            sinal_troco <= 0;
-            sinal_liberacao <= 0;
-            diminuir_valor <= 0;
-            sinal_cancelamento <= 0;
-        end
+            3'b011: begin           // Produto comprado
+                sinal_troco <= 1;
+                sinal_liberacao <= 1;
+                travar_selecao <= 1;
+                sinal_led_apagado <= 0;
+                diminuir_valor <= 0;
+                salvar_valor <= 0;
+                sinal_cancelamento <= 0;
+            end
 
-        3'b010: begin           // Dinheiro inserido
-            travar_selecao <= 1;
-            diminuir_valor <= 1;
-            sinal_led_apagado <= 1;
+            3'b100: begin           // Compra cancelada
+                sinal_cancelamento <= 1;
+                sinal_troco <= 0;
+                sinal_liberacao <= 0;
+                travar_selecao <= 0;
+                diminuir_valor <= 0;
+                salvar_valor <= 0;
+                sinal_led_apagado <= 0;
+            end
 
-            salvar_valor <= 0;
-            sinal_troco <= 0;
-            sinal_liberacao <= 0;
-            sinal_cancelamento <= 0;
-        end
-
-        3'b011: begin           // Produto comprado
-            sinal_troco <= 1;
-            sinal_liberacao <= 1;
-            travar_selecao <= 1;
-
-            sinal_led_apagado <= 0;
-            diminuir_valor <= 0;
-            salvar_valor <= 0;
-            sinal_cancelamento <= 0;
-        end
-
-        3'b100: begin           // Compra cancelada
-            sinal_cancelamento <= 1;
-
-            sinal_troco <= 0;
-            sinal_liberacao <= 0;
-            travar_selecao <= 0;
-            diminuir_valor <= 0;
-            salvar_valor <= 0;
-            sinal_led_apagado <= 0;
-        end
-
-        default: begin
-            travar_selecao <= 0;
-            salvar_valor <= 0;
-            sinal_troco <= 0;
-            sinal_liberacao <= 0;
-            diminuir_valor <= 0;
-            sinal_cancelamento <= 0;
-            sinal_led_apagado <= 0;
-        end
-    endcase
-
+            default: begin
+                travar_selecao <= 0;
+                salvar_valor <= 0;
+                sinal_troco <= 0;
+                sinal_liberacao <= 0;
+                diminuir_valor <= 0;
+                sinal_cancelamento <= 0;
+                sinal_led_apagado <= 0;
+            end
+        endcase
+    end
 end 
 
 endmodule
