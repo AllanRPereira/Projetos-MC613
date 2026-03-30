@@ -6,4 +6,5 @@ if [ $# -eq 0 ]; then
 fi
 
 nome=$1
-iverilog -o "$nome" "Máquina Verilog/$nome.v" "TestBenches/${nome}_tb.v"
+fontes=("Máquina Verilog"/*.v)
+iverilog -o "$nome" "${fontes[@]}" "TestBenches/${nome}_tb.v"
