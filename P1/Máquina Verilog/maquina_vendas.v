@@ -14,7 +14,8 @@ wire sinal_troco;
 wire travar_selecao;
 wire salvar_valor;
 wire diminuir_valor;
-wire [11:0] valor_produto;
+wire signed [11:0] valor_produto;
+wire [10:0] valor_display = valor_produto[11] ? (-valor_produto) : valor_produto;
 wire [10:0] preco_produto;
 wire sinal_led_apagado;
 
@@ -91,7 +92,7 @@ caixa_registradora CaixaRegistradora(
 conversao_valor ConversaoValor(
     .clk(CLOCK_50),
     .reset(~keys[2]),
-    .bin(valor_produto[10:0]),
+    .bin(valor_display),
     .display_0(HEX0),
     .display_1(HEX1),
     .display_2(HEX2),

@@ -47,12 +47,8 @@ always @(posedge clk) begin
             3'b010: begin                   // Estado: dinheiro inserido
                 if (chave_cancelado)        // Volta para o estado de escolha do produto
                     estado <= 3'b000;       // Dinheiro -> Escolha
-						  
-					  if (valor <= 0)          // Valor restante
-							estado <= 3'b011;   // Dinheiro -> Comprado
-					  else
-							estado <= 3'b001;   // Dinheiro inserido -> Produto selecionado
-                
+                else
+                    estado <= 3'b110;
             end
 
             3'b011: begin                   // Estado: produto comprado
@@ -65,10 +61,17 @@ always @(posedge clk) begin
                     estado <= 3'b000;
             end
 				
-				3'b101: begin						// Estado: Wait Confirmar Release
-					if (!chave_avancar)
-						estado <= 3'b010;			// Wait -> Dinheiro Inserido
-				end
+            3'b101: begin						// Estado: Wait Confirmar Release
+                if (!chave_avancar)
+                    estado <= 3'b010;			// Wait -> Dinheiro Inserido
+            end
+
+            3'b110: begin               // Estado Aval_Diminuicao: Avaliar o valor após a diminuição
+                if (valor <= 0)          // Valor restante
+                    estado <= 3'b011;   // Aval_Diminuicao -> Comprado
+                else
+                    estado <= 3'b001;   // Aval_Diminuicao -> Produto selecionado
+            end
 				
         endcase
     end
@@ -144,6 +147,18 @@ always @(posedge clk) begin
                 diminuir_valor <= 0;
                 sinal_cancelamento <= 0;
 				end
+
+            
+            3'b110: begin           // Aval_Diminuicao
+                travar_selecao <= 1;
+                sinal_led_apagado <= 1;
+
+                diminuir_valor <= 0;
+                salvar_valor <= 0;
+                sinal_troco <= 0;
+                sinal_liberacao <= 0;
+                sinal_cancelamento <= 0;
+            end
 
             default: begin
                 travar_selecao <= 0;
