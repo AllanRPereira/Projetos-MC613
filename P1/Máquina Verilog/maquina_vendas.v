@@ -15,6 +15,7 @@ wire travar_selecao;
 wire salvar_valor;
 wire diminuir_valor;
 wire signed [11:0] valor_produto;
+wire signed [11:0] valor_pos_sub;
 wire [10:0] valor_display = valor_produto[11] ? (-valor_produto) : valor_produto;
 wire [10:0] preco_produto;
 wire sinal_led_apagado;
@@ -59,7 +60,7 @@ maquina_estados MaquinaEstados(
     .chave_cancelado(~keys[1]),
     .chave_avancar(~keys[0]),
     .switch_valor(switchs[9:4]),
-    .valor(valor_produto),
+    .valor(valor_pos_sub),
     .travar_selecao(travar_selecao),
     .salvar_valor(salvar_valor),
     .diminuir_valor(diminuir_valor),
@@ -86,6 +87,7 @@ caixa_registradora CaixaRegistradora(
     .diminuir_valor(diminuir_valor),
     .valores(switchs[9:4]),
     .valor(valor_produto),
+    .valor_pos_sub(valor_pos_sub),
     .sinal_troco(sinal_troco)
 );
 

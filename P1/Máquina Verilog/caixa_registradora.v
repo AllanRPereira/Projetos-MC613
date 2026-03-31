@@ -8,6 +8,7 @@ module caixa_registradora(
 	input wire sinal_troco,					// Sinal para inverter os bits e exibir corretamente
 
 	output reg signed [11:0] valor
+	output wire signed [11:0] valor_pos_sub		// Valor prévio que será armazenado no FF após a subtração
 );
 
 reg [7:0] auxiliar = 0;			// Armazenar o valor que irá ser subtraído
@@ -27,6 +28,8 @@ always @(*) begin
 	if (valores[0]) auxiliar = auxiliar + 3'd5;
 
 end
+
+assign valor_pos_sub = valor - auxiliar;
 
 always @(posedge clk) begin
 	// Lógica para evitar subtrair mais de uma vez, ele desmarca o 
