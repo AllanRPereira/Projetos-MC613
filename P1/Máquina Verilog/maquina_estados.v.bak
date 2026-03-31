@@ -40,18 +40,19 @@ always @(posedge clk) begin
             3'b001: begin                   // Estado: produto selecionado
                 if (chave_cancelado)
                     estado <= 3'b100;       // Selecao -> Cancelado
-                else if (|switch_valor && chave_avancar)     // Qualquer bit igual a 1 (Valor inserido)
-                    estado <= 3'b101;       // Selecao -> Dinheiro inserido
+                else if (|switch_valor)     // Qualquer bit igual a 1 (Valor inserido)
+                    estado <= 3'b010;       // Selecao -> Dinheiro inserido
             end
 
             3'b010: begin                   // Estado: dinheiro inserido
                 if (chave_cancelado)        // Volta para o estado de escolha do produto
                     estado <= 3'b000;       // Dinheiro -> Escolha
-						  
-					  if (valor <= 0)          // Valor restante
-							estado <= 3'b011;   // Dinheiro -> Comprado
-					  else
-							estado <= 3'b001;   // Dinheiro inserido -> Produto selecionado
+                else if (chave_avancar) begin
+                    if (valor <= 0)          // Valor restante
+                        estado <= 3'b011;   // Dinheiro -> Comprado
+                    else
+                        estado <= 3'b001;   // Dinheiro inserido -> Produto selecionado
+                end 
                 
             end
 
@@ -64,12 +65,6 @@ always @(posedge clk) begin
                 if (clk_1s)
                     estado <= 3'b000;
             end
-				
-				3'b101: begin						// Estado de espera para o avanço (Escolhido -> Dinheiro)
-					if (!chave_avancar)
-						estado <= 3'b010;			// Wait -> Dinheiro Inserido
-				end
-				
         endcase
     end
 end
@@ -88,7 +83,7 @@ always @(posedge clk) begin
             3'b000: begin           // Seleção produto
                 sinal_led_apagado <= 1;
                 travar_selecao <= 0;
-                salvar_valor <= 1;
+                salvar_valor <= 0;
                 sinal_troco <= 0;
                 sinal_liberacao <= 0;
                 diminuir_valor <= 0;
@@ -97,7 +92,7 @@ always @(posedge clk) begin
 
             3'b001: begin           // Produto escolhido
                 travar_selecao <= 1;
-                salvar_valor <= 0;
+                salvar_valor <= (prev_estado == 3'b000);
                 sinal_led_apagado <= 1;
                 sinal_troco <= 0;
                 sinal_liberacao <= 0;
@@ -134,16 +129,6 @@ always @(posedge clk) begin
                 salvar_valor <= 0;
                 sinal_led_apagado <= 0;
             end
-				
-			3'b101: begin
-			    travar_selecao <= 1;
-                salvar_valor <= 0;
-                sinal_led_apagado <= 1;
-                sinal_troco <= 0;
-                sinal_liberacao <= 0;
-                diminuir_valor <= 0;
-                sinal_cancelamento <= 0;
-				end
 
             default: begin
                 travar_selecao <= 0;
