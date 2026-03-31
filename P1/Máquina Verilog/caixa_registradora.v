@@ -7,7 +7,7 @@ module caixa_registradora(
 	input wire [5:0] valores,				// Sinal dos SW's
 	input wire sinal_troco,					// Sinal para inverter os bits e exibir corretamente
 
-	output reg signed [11:0] valor
+	output reg signed [11:0] valor,
 	output wire signed [11:0] valor_pos_sub		// Valor prévio que será armazenado no FF após a subtração
 );
 

@@ -4,7 +4,7 @@ module clock(
     output reg clk_5ms = 1'b0
 );
 
-reg [25:0] contador_1s = 0;
+reg [26:0] contador_1s = 0; 	// Maior chance do tempo real ser de 1s
 reg [17:0] contador_5ms = 0;
 
 always @(posedge clk) begin
@@ -12,8 +12,8 @@ always @(posedge clk) begin
     clk_1s <= 1'b0;
     clk_5ms <= 1'b0;
 
-    if (contador_1s == 26'd49_999_999) begin
-        contador_1s <= 26'd0;
+    if (contador_1s == 27'd99_999_999) begin
+        contador_1s <= 27'd0;
         clk_1s <= 1'b1;
     end else begin
         contador_1s <= contador_1s + 1'b1;
