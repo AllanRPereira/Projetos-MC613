@@ -22,19 +22,15 @@ module maquina_estados(
 );
 
 reg [2:0] estado = 3'b000;
-reg [2:0] prev_estado = 3'b000;
 
 always @(posedge clk) begin
     if (reset) begin
         estado <= 3'b000;
-        prev_estado <= 3'b000;
     end else begin
-        prev_estado <= estado;
         case (estado)
             3'b000: begin                   // Estado: escolha do produto
                 if (chave_avancar)
                     estado <= 3'b001;       // Escolha -> Selecao
-                
             end
 
             3'b001: begin                   // Estado: produto selecionado
