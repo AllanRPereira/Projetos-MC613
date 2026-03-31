@@ -4,7 +4,7 @@ module maquina_vendas(
 	input wire CLOCK_50,
 	
 	output wire [6:0] HEX5, HEX3, HEX2, HEX1, HEX0,
-    output wire LEDR0, LEDR1
+    output wire [1:0] LEDR
 
 );
 
@@ -47,8 +47,8 @@ maquina_controle MaquinaControle(
     .sinal_liberacao(sinal_liberacao),
     .sinal_troco(sinal_troco),
     .sinal_led_apagado(sinal_led_apagado),
-    .led_liberado(LEDR0),
-    .led_cancelado_troco(LEDR1)
+    .led_liberado(LEDR[0]),
+    .led_cancelado_troco(LEDR[1])
 );
 
 maquina_estados MaquinaEstados(

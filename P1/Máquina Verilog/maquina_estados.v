@@ -41,7 +41,7 @@ always @(posedge clk) begin
                 if (chave_cancelado)
                     estado <= 3'b100;       // Selecao -> Cancelado
                 else if (|switch_valor && chave_avancar)     // Qualquer bit igual a 1 (Valor inserido)
-                    estado <= 3'b101;       // Selecao -> Dinheiro inserido
+                    estado <= 3'b101;       // Selecao -> Wait Confirmar Release
             end
 
             3'b010: begin                   // Estado: dinheiro inserido
@@ -65,7 +65,7 @@ always @(posedge clk) begin
                     estado <= 3'b000;
             end
 				
-				3'b101: begin						// Estado de espera para o avanço (Escolhido -> Dinheiro)
+				3'b101: begin						// Estado: Wait Confirmar Release
 					if (!chave_avancar)
 						estado <= 3'b010;			// Wait -> Dinheiro Inserido
 				end
