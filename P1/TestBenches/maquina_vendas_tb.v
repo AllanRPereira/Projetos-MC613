@@ -11,8 +11,7 @@ wire [6:0] HEX3;
 wire [6:0] HEX2;
 wire [6:0] HEX1;
 wire [6:0] HEX0;
-wire LEDR0;
-wire LEDR1;
+wire [1:0] LEDR;
 
 integer erros;
 
@@ -25,8 +24,7 @@ maquina_vendas uut (
     .HEX2(HEX2),
     .HEX1(HEX1),
     .HEX0(HEX0),
-    .LEDR0(LEDR0),
-    .LEDR1(LEDR1)
+    .LEDR(LEDR)
 );
 
 always #5 CLOCK_50 = ~CLOCK_50;
@@ -53,15 +51,15 @@ endtask
 initial begin
     CLOCK_50 = 0;
     SW = 10'b0;
-    KEY = 3'b000;
+    KEY = 3'b111;
     erros = 0;
 
-    $display("=== Teste: maquina_vendas (integracao basica) ===");
+    $display("=== Teste: maquina_vendas ===");
 
     // Debounce de KEY: aplica reset em KEY[2] e verifica entrada sincronizada.
-    KEY = 3'b100;
+    KEY = 3'b011;
     debounce_commit();
-    if (uut.keys !== 3'b100) begin
+    if (uut.keys !== 3'b011) begin
         $display("[ERRO] Debounce/sincronizacao de KEY falhou. keys=%b", uut.keys);
         erros = erros + 1;
     end else begin
@@ -69,9 +67,9 @@ initial begin
     end
 
     // Solta reset e confirma captura.
-    KEY = 3'b000;
+    KEY = 3'b111;
     debounce_commit();
-    if (uut.keys !== 3'b000) begin
+    if (uut.keys !== 3'b111) begin
         $display("[ERRO] Liberacao de KEY falhou. keys=%b", uut.keys);
         erros = erros + 1;
     end else begin
@@ -91,19 +89,102 @@ initial begin
     // Estado inicial deve manter LEDs apagados.
     @(posedge CLOCK_50);
     #1;
-    if (LEDR0 !== 1'b0 || LEDR1 !== 1'b0) begin
-        $display("[ERRO] LEDs deveriam iniciar apagados. LEDR0=%b LEDR1=%b", LEDR0, LEDR1);
+    if (LEDR[0] !== 1'b0 || LEDR[1] !== 1'b0) begin
+        $display("[ERRO] LEDs deveriam iniciar apagados. LEDR[0]=%b LEDR[1]=%b", LEDR[0], LEDR[1]);
         erros = erros + 1;
     end else begin
         $display("[OK] LEDs iniciais apagados");
     end
 
-    // Com selecao destravada no estado inicial, HEX5 deve representar SW[3:0]=3.
+    // HEX5 deve refletir o produto selecionado.
+    #1;
     if (HEX5 !== 7'b0110000) begin
         $display("[ERRO] HEX5 inesperado para produto 3. HEX5=%b", HEX5);
         erros = erros + 1;
     end else begin
-        $display("[OK] HEX5 reflete selecao de produto");
+        $display("[OK] HEX5 reflete selecao de produto 3");
+    end
+
+    // Caso extra: produto 0.
+    SW = 10'b0000000000;
+    debounce_commit();
+    if (uut.switchs !== 10'b0000000000) begin
+        $display("[ERRO] SW=0 nao foi sincronizado corretamente. switchs=%b", uut.switchs);
+        erros = erros + 1;
+    end else begin
+        $display("[OK] Debounce de SW=0");
+    end
+
+    #1;
+    if (HEX5 !== 7'b1000000) begin
+        $display("[ERRO] HEX5 inesperado para produto 0. HEX5=%b", HEX5);
+        erros = erros + 1;
+    end else begin
+        $display("[OK] HEX5 reflete selecao de produto 0");
+    end
+
+    // Caso extra: produto 1.
+    SW = 10'b0000000001;
+    debounce_commit();
+    if (uut.switchs !== 10'b0000000001) begin
+        $display("[ERRO] SW=1 nao foi sincronizado corretamente. switchs=%b", uut.switchs);
+        erros = erros + 1;
+    end else begin
+        $display("[OK] Debounce de SW=1");
+    end
+
+    #1;
+    if (HEX5 !== 7'b1111001) begin
+        $display("[ERRO] HEX5 inesperado para produto 1. HEX5=%b", HEX5);
+        erros = erros + 1;
+    end else begin
+        $display("[OK] HEX5 reflete selecao de produto 1");
+    end
+
+    // Caso extra: produto 8.
+    SW = 10'b0000001000;
+    debounce_commit();
+    if (uut.switchs !== 10'b0000001000) begin
+        $display("[ERRO] SW=8 nao foi sincronizado corretamente. switchs=%b", uut.switchs);
+        erros = erros + 1;
+    end else begin
+        $display("[OK] Debounce de SW=8");
+    end
+
+    #1;
+    if (HEX5 !== 7'b0000000) begin
+        $display("[ERRO] HEX5 inesperado para produto 8. HEX5=%b", HEX5);
+        erros = erros + 1;
+    end else begin
+        $display("[OK] HEX5 reflete selecao de produto 8");
+    end
+
+    // Caso extra: produto 9.
+    SW = 10'b0000001001;
+    debounce_commit();
+    if (uut.switchs !== 10'b0000001001) begin
+        $display("[ERRO] SW=9 nao foi sincronizado corretamente. switchs=%b", uut.switchs);
+        erros = erros + 1;
+    end else begin
+        $display("[OK] Debounce de SW=9");
+    end
+
+    #1;
+    if (HEX5 !== 7'b0010000) begin
+        $display("[ERRO] HEX5 inesperado para produto 9. HEX5=%b", HEX5);
+        erros = erros + 1;
+    end else begin
+        $display("[OK] HEX5 reflete selecao de produto 9");
+    end
+
+    // Reaplica reset para validar retorno ao estado sincronizado.
+    KEY = 3'b011;
+    debounce_commit();
+    if (uut.keys !== 3'b011) begin
+        $display("[ERRO] Segundo reset falhou. keys=%b", uut.keys);
+        erros = erros + 1;
+    end else begin
+        $display("[OK] Segundo reset sincronizado");
     end
 
     if (erros == 0)
