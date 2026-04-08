@@ -1,7 +1,7 @@
 module rom (
     input  wire [9:0] x,        // 0–639
     input  wire [8:0] y,        // 0–479
-    output reg  [7:0] data_out
+    output wire  [7:0] data_out
 );
 
 reg [7:0] storage [0:299];
@@ -111,9 +111,7 @@ initial begin
     storage[290]=8'h02; storage[291]=8'h02; storage[292]=8'h02; storage[293]=8'h02; storage[294]=8'h02;
     storage[295]=8'h02; storage[296]=8'h02; storage[297]=8'h02; storage[298]=8'h02; storage[299]=8'h02;
 end
-
-always @(*) begin
-    data_out = storage[addr];
-end
-
+    
+   assign data_out = storage[addr];
+    
 endmodule
