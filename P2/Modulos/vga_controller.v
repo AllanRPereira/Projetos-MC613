@@ -1,11 +1,7 @@
 module vga_controller(
-	input  wire CLOCK_50,        // clock de referência para o PLL
+	input  wire CLOCK_50,               // clock de referência para o PLL
 	input  wire [1:0] KEY,             // reset (ativo em nível alto)
-    input  wire [2:0] SW,
-
-	output wire [9:0] pixel_x,
-	output wire [9:0] pixel_y,
-	output wire video_active,
+    input  wire [3:0] SW,
 
 	output wire [7:0]  VGA_R,
 	output wire [7:0]  VGA_G,
@@ -20,6 +16,12 @@ module vga_controller(
 );
 
 wire pll_clk;
+wire [7:0] color;
+
+wire [9:0] pixel_x;
+wire [9:0] pixel_y;
+wire video_active;
+
 
 reg [7:0] red = 8'b10001001;
 reg [7:0] green = 8'b11110011;
@@ -33,6 +35,12 @@ pll pll_inst (
 	.locked(LEDR[0])
 );
 
+
+rom RomBackground(
+    .x(pixel_x),
+    .y(pixel_y),
+    .data_out(color)
+);
 
 // Instância do módulo VGA
 VGA vga_inst (
@@ -55,7 +63,11 @@ VGA vga_inst (
 );
 
 always @(posedge pll_clk) begin
-    if (SW[0]) begin
+    if (SW[3]) begin
+        red <= color;
+        green <= color;
+        blue <= color;
+    end else if (SW[0]) begin
         red <= 8'b10001001;
         green <= 8'b11110011;
         blue <= 8'b00110110;
