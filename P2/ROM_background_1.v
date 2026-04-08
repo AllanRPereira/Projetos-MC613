@@ -1,13 +1,8 @@
 //Background listrado
 module rom_background_1 (
     input  wire [9:0] x,        // 0–639
-<<<<<<< HEAD
     input  wire [9:0] y,        // 0–479
     output wire [7:0] data_out
-=======
-    input  wire [8:0] y,        // 0–479
-    output wire  [7:0] data_out
->>>>>>> 0371d272a976c5d63e1ca4fcae20c2802a636e20
 );
 
 reg [7:0] storage [0:299];
@@ -117,15 +112,8 @@ initial begin
     storage[290]=8'hFF; storage[291]=8'hFF; storage[292]=8'hFF; storage[293]=8'hFF; storage[294]=8'hFF;
     storage[295]=8'hFF; storage[296]=8'hFF; storage[297]=8'hFF; storage[298]=8'hFF; storage[299]=8'hFF;
 end
-<<<<<<< HEAD
 
 
 assign data_out = storage[addr];
 
 endmodule
-=======
-    
-   assign data_out = storage[addr];
-    
-endmodule
->>>>>>> 0371d272a976c5d63e1ca4fcae20c2802a636e20
