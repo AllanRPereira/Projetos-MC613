@@ -1,7 +1,7 @@
 module ram1_rom1_top (
     input  wire        clk,
     input  wire [9:0]  x,
-    input  wire [8:0]  y,
+    input  wire [9:0]  y,
     output wire [7:0]  pixel
 );
 
@@ -9,12 +9,12 @@ wire [7:0] bg_data;
 
 // Simple sprite position (fixed for now)
 wire [9:0] sprite_x = 200;
-wire [8:0] sprite_y = 150;
+wire [9:0] sprite_y = 150;
 
 wire transparency_en = 0;
 
 // Background ROM
-rom_background_1 bg_rom (
+rom bg_rom (
     .x(x),
     .y(y),
     .data_out(bg_data)

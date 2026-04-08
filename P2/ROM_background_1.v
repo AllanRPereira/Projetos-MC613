@@ -1,5 +1,5 @@
 //Background listrado
-module rom_background_1 (
+module rom (
     input  wire [9:0] x,        // 0–639
     input  wire [9:0] y,        // 0–479
     output wire [7:0] data_out

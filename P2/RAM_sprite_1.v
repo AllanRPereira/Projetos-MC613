@@ -4,11 +4,11 @@ module ram_sprite_1 (
 
     // Screen coordinates
     input  wire [9:0]  x,
-    input  wire [8:0]  y,
+    input  wire [9:0]  y,
 
     // Sprite position
     input  wire [9:0]  sprite_x,
-    input  wire [8:0]  sprite_y,
+    input  wire [9:0]  sprite_y,
 
     // Background pixel
     input  wire [7:0]  bg_data,
@@ -25,14 +25,14 @@ module ram_sprite_1 (
     output reg  [7:0]  pixel_out
 );
 
+// SPRITE RAM (3x3)
+reg [7:0] sprite_mem [0:8];
+
 integer i;
 initial begin
     for (i = 0; i < 9; i = i + 1)
         sprite_mem[i] = 8'h00;
 end
-
-// SPRITE RAM (3x3)
-reg [7:0] sprite_mem [0:8];
 
 always @(posedge clk) begin
     if (we)
@@ -48,7 +48,7 @@ assign in_sprite =
     (y >= sprite_y) && (y < sprite_y + 96);
 
 wire [9:0] local_x = x - sprite_x;
-wire [8:0] local_y = y - sprite_y;
+wire [9:0] local_y = y - sprite_y;
 
 wire [1:0] tile_x = local_x >> 5;
 wire [1:0] tile_y = local_y >> 5;
