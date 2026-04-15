@@ -14,7 +14,6 @@ initial begin
     $readmemh("rom_background.mem", storage);
 end
 
-
 assign bg_color_palette = storage[addr];
 
 endmodule
