@@ -1,4 +1,4 @@
-module ppu_palette (
+module color_selector (
 	input wire [3:0] sprite_color_idx,
 	input wire [3:0] bg_color_idx,
 	output wire [7:0] red,
