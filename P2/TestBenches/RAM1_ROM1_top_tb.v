@@ -5,7 +5,7 @@ always #5 clk = ~clk;
 
 // Screen coordinates
 reg [9:0] x;
-reg [9:0] y;
+reg [8:0] y;
 
 wire [7:0] pixel;
 
@@ -25,9 +25,9 @@ function [23:0] map_color;
     begin
         case (val)
             8'h00: map_color = 24'h000000; // black
-            8'h0F: map_color = 24'h7F7F7F; // gray
-            8'hFF: map_color = 24'hFFFFFF; // white
-            default: map_color = 24'h000000; // default
+            8'h01: map_color = 24'hFF0000; // red
+            8'h02: map_color = 24'h00FF00; // green
+            default: map_color = 24'hFFFFFF; // white
         endcase
     end
 endfunction
@@ -36,7 +36,7 @@ integer r, g, b;
 reg [23:0] rgb;
 
 initial begin
-    file = $fopen("frame_top.ppm", "w");
+    file = $fopen("frame.ppm", "w");
 
     // PPM header
     $fwrite(file, "P3\n");

@@ -8,10 +8,10 @@ reg [2:0] storage [0:299];
 
 // Endereço na tela (0–299)
 wire [8:0] addr;
-assign addr = tile_y << 4 + tile_y << 2 + tile_x;
+assign addr = y_tile << 4 + y_tile << 2 + x_tile;
 
 initial begin
-    $readmemh("rom_background.mem", storage);
+    $readmemh("Modulos/rom_background.mem", storage);
 end
 
 assign bg_color_palette = storage[addr];
