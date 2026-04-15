@@ -1,0 +1,8 @@
+89ABCD // indice 0 - alguma cor teste
+000000 // indice 1 - preto
+FFFFFF // indice 2 - branco
+0000FF // indice 3 - azul
+FF0000 // indice 4 - vermelho
+8BAC0F // indice 5 - verde
+00FF00 // indice 6 - verde
+FFFF00 // indice 7 - amarelo
