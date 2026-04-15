@@ -1,20 +1,16 @@
-module ram1_rom1_top_tb;
-
-reg clk = 0;
-always #5 clk = ~clk;
+module rom_background_1_tb;
 
 // Screen coordinates
 reg [9:0] x;
 reg [9:0] y;
 
-wire [7:0] pixel;
+wire [7:0] data_out;
 
 // Instantiate top module
-ram1_rom1_top uut (
-    .clk(clk),
+rom uut (
     .x(x),
     .y(y),
-    .pixel(pixel)
+    .data_out(data_out)
 );
 
 integer file;
@@ -36,7 +32,7 @@ integer r, g, b;
 reg [23:0] rgb;
 
 initial begin
-    file = $fopen("frame_top.ppm", "w");
+    file = $fopen("rom_background.ppm", "w");
 
     // PPM header
     $fwrite(file, "P3\n");
@@ -47,7 +43,7 @@ initial begin
         for (x = 0; x < 640; x = x + 1) begin
             #10;
 
-            rgb = map_color(pixel);
+            rgb = map_color(data_out);
 
             r = (rgb >> 16) & 8'hFF;
             g = (rgb >> 8)  & 8'hFF;
