@@ -8,7 +8,7 @@ reg [2:0] storage [0:299];
 
 // Endereço na tela (0–299)
 wire [8:0] addr;
-assign addr = y_tile << 4 + y_tile << 2 + x_tile;
+assign addr = (y_tile << 4) + (y_tile << 2) + x_tile;
 
 initial begin
     $readmemh("Modulos/rom_background.mem", storage);

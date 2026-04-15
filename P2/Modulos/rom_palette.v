@@ -1,13 +1,13 @@
 module rom_palette (
-    input wire [4:0] id_palette,        // ID da cor desejada
-    output wire [7:0] color             // 8 bits de cor
+    input wire [2:0] id_palette,        // ID da cor desejada (8 opções)
+    output wire [23:0] color            // 24 bits de cor (RGB)
 );
 
 // 8 Possíveis cores na tabela de paletas
-reg [7:0] storage [0:7];
+reg [23:0] storage [0:7];
 
 initial begin
-    $readmemh("pallete.mem", storage);
+    $readmemh("palette.mem", storage);
 end
 
 assign color = storage[id_palette];
