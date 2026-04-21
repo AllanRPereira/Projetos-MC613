@@ -13,7 +13,7 @@ reg [23:0] storage [0:7];
 assign disp_color_idx = (sprite_color_idx > 0) ? sprite_color_idx : bg_color_idx;
 
 initial begin
-	$readmemh("palette.mem", storage);
+	$readmemh("RawData/palette.mem", storage);
 end
 
 assign rgb = storage[disp_color_idx];

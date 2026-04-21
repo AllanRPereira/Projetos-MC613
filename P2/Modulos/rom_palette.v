@@ -7,7 +7,7 @@ module rom_palette (
 reg [23:0] storage [0:7];
 
 initial begin
-    $readmemh("palette.mem", storage);
+    $readmemh("RawData/palette.mem", storage);
 end
 
 assign color = storage[id_palette];

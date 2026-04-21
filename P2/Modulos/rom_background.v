@@ -11,7 +11,7 @@ wire [8:0] addr;
 assign addr = (y_tile << 4) + (y_tile << 2) + x_tile;
 
 initial begin
-    $readmemh("Modulos/rom_background.mem", storage);
+    $readmemh("R/rom_background.mem", storage);
 end
 
 assign bg_color_palette = storage[addr];

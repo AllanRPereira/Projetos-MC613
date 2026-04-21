@@ -12,7 +12,7 @@ module rom_sprite (
 reg [11:0] storage [0:31];
 
 initial begin
-    $readmemh("Modulos/sprites.mem", storage);
+    $readmemh("RawData/sprites.mem", storage);
 end
 
 assign bitmap_sprite_palette = storage[id_sprite];

@@ -13,7 +13,7 @@ module display_to_screen (
 wire [9:0] x_screen;
 wire [9:0] y_screen;
 wire [4:0] x_tile;
-wire [4:0} y_tile;
+wire [4:0] y_tile;
 wire [3:0] sprite_color;
 wire [3:0] bg_color;
 
