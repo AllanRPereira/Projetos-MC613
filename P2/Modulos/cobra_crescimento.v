@@ -1,6 +1,7 @@
 module cobra_crescimento #(
     parameter integer MAX_SEGMENTOS = 300,
-    parameter [4:0] SPRITE_COBRA = 5'd1,
+    parameter [4:0] SPRITE_CABECA = 5'd3,
+    parameter [4:0] SPRITE_CORPO = 5'd1,
     parameter [4:0] SPRITE_VAZIO = 5'd0,
     parameter [4:0] X_INICIAL = 5'd0,
     parameter [4:0] Y_INICIAL = 5'd0,
@@ -48,8 +49,10 @@ module cobra_crescimento #(
     reg [9:0] corpo [0:MAX_SEGMENTOS-1];
     reg [1:0] fase_escrita;
     reg [8:0] novo_endereco_cabeca;
+    reg [8:0] endereco_cabeca_antiga;
     reg [8:0] endereco_cauda_antiga;
     reg crescimento_ativo;
+    reg escreve_corpo_antigo;
     reg [9:0] proxima_posicao_calculada;
     reg crescimento_evento;
     reg colide_com_corpo;
@@ -243,7 +246,11 @@ module cobra_crescimento #(
                             proxima_posicao_calculada[4:0]
                         );
 
+                        endereco_cabeca_antiga <= calcula_endereco(corpo[0][9:5], corpo[0][4:0]);
+
                         endereco_cauda_antiga <= calcula_endereco(corpo[comprimento-1][9:5], corpo[comprimento-1][4:0]);
+
+                        escreve_corpo_antigo <= (comprimento > 9'd1) || crescimento_evento;
                         
                         // Dá para fazer esse bloco de uma forma mais otimizada 
 
@@ -280,12 +287,23 @@ module cobra_crescimento #(
                     // Primeira escrita ne memória com a nova posição da cabeça
                     sig_write_ram <= 1'b1;
                     ram_addr <= novo_endereco_cabeca;
-                    sprite_in <= SPRITE_COBRA;
-                    // Se o crescimento foi ativo, ou seja, comendo uma fruta, não será
-                    // necessário remover a cauda antiga, desse modo a fase_escrita irá para
-                    // 0
-                    fase_escrita <= crescimento_ativo ? 2'd0 : 2'd2;
+                    sprite_in <= SPRITE_CABECA;
+                    fase_escrita <= 2'd2;
                 end else if (fase_escrita == 2'd2) begin
+                    // Segunda etapa de escrita, alteração do corpo antigo, ou remoção 
+                    // de um sprite ativo da tela.
+                    if (escreve_corpo_antigo) begin
+                        sig_write_ram <= 1'b1;
+                        ram_addr <= endereco_cabeca_antiga;
+                        sprite_in <= SPRITE_CORPO;
+                        fase_escrita <= crescimento_ativo ? 2'd0 : 2'd3;
+                    end else begin
+                        sig_write_ram <= 1'b1;
+                        ram_addr <= endereco_cauda_antiga;
+                        sprite_in <= SPRITE_VAZIO;
+                        fase_escrita <= 2'd0;
+                    end
+                end else if (fase_escrita == 2'd3) begin
                     // Em caso de movimentação normal, o endereço da cauda antiga é preenchida com
                     // um sprite vazio
                     sig_write_ram <= 1'b1;

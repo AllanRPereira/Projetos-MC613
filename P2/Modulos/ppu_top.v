@@ -118,6 +118,10 @@ module ppu_top (
     wire [7:0] green;
     wire [7:0] blue;
 
+    localparam [4:0] SPRITE_CABECA = 5'd1;
+    localparam [4:0] SPRITE_CORPO = 5'd3;
+    localparam [4:0] SPRITE_FRUTA = 5'd2;
+
     // Lógica combinacional para as conexões
     assign bg_color_selected = bg_color_palette + bg_override + bg_estado_offset;
     assign LEDR[1] = estado_atual[0];
@@ -275,7 +279,11 @@ module ppu_top (
         .sprite_in(fruta_sprite_in)
     );
 
-    cobra_crescimento COBRA (
+    cobra_crescimento #(
+        .SPRITE_CABECA(SPRITE_CABECA),
+        .SPRITE_CORPO(SPRITE_CORPO),
+        .SPRITE_VAZIO(5'd0)
+    ) COBRA (
         .clk(pixel_clk),
         .reset(reset),
         .estado_atual(estado_atual),
