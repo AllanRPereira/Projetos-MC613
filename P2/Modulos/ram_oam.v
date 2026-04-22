@@ -6,7 +6,7 @@ module ram_oam (
     input wire [4:0] y_tile,
 
     // Inputs para escrita
-    input wire sig_write_ram,   // Write enable
+    input wire sig_write_ram,           // Write enable
     input wire [8:0] ram_addr,          // Posição na memória para escrita
     input wire [4:0] sprite_in,         // ID do Novo Sprite
 
@@ -15,9 +15,9 @@ module ram_oam (
 );
 
 // OAM Memory
-// [ID_SPRITE] [X Ori] [Y Ori] 
-//    5b         5b       5b
-reg [14:0] sprite_mem [0:299];       // Possíveis 300 Sprites na tela
+// [ID_SPRITE]
+//    5b
+reg [4:0] sprite_mem [0:299];       // Possíveis 300 Sprites na tela
 
 // Inicialização da Memória
 integer i;
@@ -32,11 +32,11 @@ assign sprite_addr = (y_tile << 4) + (y_tile << 2) + x_tile; // y_tile * 20 + x_
 
 always @(posedge clk) begin
     if (sig_write_ram) begin
-        sprite_mem[ram_addr] <= {sprite_mem[ram_addr][14:5], sprite_in};
+        sprite_mem[ram_addr] <= sprite_in;
     end
 end
 
 // Aqui apenas fornecemos os 5 últimos bits para o id_sprite:
-assign id_sprite = sprite_mem[sprite_addr][4:0];
+assign id_sprite = sprite_mem[sprite_addr];
 
 endmodule
