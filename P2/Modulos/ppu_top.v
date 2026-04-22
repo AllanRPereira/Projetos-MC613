@@ -96,6 +96,7 @@ module ppu_top (
     wire [8:0] ram_addr;
     wire [4:0] sprite_in;
     wire sig_write_ram;
+    wire limpa_total_oam;
 
     // Registradores para contadores de tempo específicos
     reg [18:0] contador_5ms;
@@ -109,6 +110,8 @@ module ppu_top (
     reg pulso_100ms;
     reg pulso_2s;
     reg pulso_movimento;
+    reg [3:0] estado_atual_anterior;
+    reg limpa_total_oam_pulse;
 
     reg [2:0] bg_override;
     reg [2:0] bg_estado_offset;
@@ -165,16 +168,19 @@ module ppu_top (
             contador_2s <= 27'd0;
             contador_movimento <= 5'd0;
             nivel_velocidade_anterior <= 3'd0;
+            estado_atual_anterior <= 4'd0;
             pulso_5ms <= 1'b0;
             pulso_100ms <= 1'b0;
             pulso_2s <= 1'b0;
             pulso_movimento <= 1'b0;
+            limpa_total_oam_pulse <= 1'b0;
         end else begin
             // Contadores, responsáveis por frações de tempo diferentes de 50Mhz
             pulso_5ms <= 1'b0;
             pulso_100ms <= 1'b0;
             pulso_2s <= 1'b0;
             pulso_movimento <= 1'b0;
+            limpa_total_oam_pulse <= 1'b0;
 
             if (contador_5ms >= 19'd249999) begin
                 contador_5ms <= 19'd0;
@@ -214,6 +220,13 @@ module ppu_top (
                     contador_movimento <= contador_movimento + 5'd1;
                 end
             end
+
+            if ((estado_atual != estado_atual_anterior) &&
+                ((estado_atual == 4'd5) || (estado_atual == 4'd6) || (estado_atual == 4'd8))) begin
+                limpa_total_oam_pulse <= 1'b1;
+            end
+
+            estado_atual_anterior <= estado_atual;
         end
     end
 
@@ -312,6 +325,7 @@ module ppu_top (
         .sig_write_ram(sig_write_ram),
         .ram_addr(ram_addr),
         .sprite_in(sprite_in),
+        .limpa_total(limpa_total_oam_pulse),
         .id_sprite(id_sprite),
         .probe_id_sprite(probe_id_sprite)
     );

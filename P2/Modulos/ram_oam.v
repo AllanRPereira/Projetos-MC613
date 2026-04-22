@@ -13,6 +13,7 @@ module ram_oam (
     input wire sig_write_ram,           // Write enable
     input wire [8:0] ram_addr,          // Posição na memória para escrita
     input wire [4:0] sprite_in,         // ID do Novo Sprite
+    input wire limpa_total,
 
     output wire [4:0] id_sprite,        // Conexão com a ROM para obtenção do Sprite
     output wire [4:0] probe_id_sprite   // Leitura combinacional na posição probe_addr
@@ -45,6 +46,9 @@ always @(posedge clk) begin
         clear_index <= 9'd0;
         clearing_oam <= 1'b1;
         sprite_mem[0] <= 5'b00000;
+    end else if (limpa_total) begin
+        clear_index <= 9'd0;
+        clearing_oam <= 1'b1;
     end else if (clearing_oam) begin
         sprite_mem[clear_index] <= 5'b00000;
         if (clear_index == 9'd299) begin
