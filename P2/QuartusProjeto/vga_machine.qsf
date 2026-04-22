@@ -897,4 +897,11 @@ set_global_assignment -name VERILOG_FILE ../Modulos/ram_oam.v
 set_global_assignment -name VERILOG_FILE ../Modulos/interceptor.v
 set_global_assignment -name QIP_FILE pll/pll.qip
 set_global_assignment -name SIP_FILE pll/pll.sip
+set_global_assignment -name EDA_TEST_BENCH_ENABLE_STATUS TEST_BENCH_MODE -section_id eda_simulation
+set_global_assignment -name EDA_NATIVELINK_SIMULATION_TEST_BENCH rom_sprite_tb -section_id eda_simulation
+set_global_assignment -name EDA_TEST_BENCH_NAME rom_sprite_tb -section_id eda_simulation
+set_global_assignment -name EDA_DESIGN_INSTANCE_NAME NA -section_id rom_sprite_tb
+set_global_assignment -name EDA_TEST_BENCH_MODULE_NAME rom_sprite_tb -section_id rom_sprite_tb
+set_global_assignment -name EDA_TEST_BENCH_FILE ../Modulos/rom_sprite.v -section_id rom_sprite_tb
+set_global_assignment -name EDA_TEST_BENCH_FILE ../TestBenches/v2/rom_sprite_tb.v -section_id rom_sprite_tb
 set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top

@@ -59,11 +59,16 @@ module cobra_crescimento #(
     reg [8:0] endereco_cabeca_antiga;
     reg [8:0] endereco_cauda_atual;
 
+    reg [8:0] endereco_proxima_cabeca_latched;
+    reg [8:0] endereco_cabeca_antiga_latched;
+    reg [8:0] endereco_cauda_atual_latched;
+
     reg [8:0] indice_cabeca_proximo;
     reg [8:0] indice_cauda_proximo;
 
     reg crescimento_evento;
     reg crescimento_ativo;
+    reg crescimento_ativo_latched;
     reg colide_com_corpo;
     reg colide_com_parede;
 
@@ -216,6 +221,10 @@ module cobra_crescimento #(
 
             fase_escrita <= 2'd0;
             crescimento_ativo <= 1'b0;
+            crescimento_ativo_latched <= 1'b0;
+            endereco_proxima_cabeca_latched <= 9'd0;
+            endereco_cabeca_antiga_latched <= 9'd0;
+            endereco_cauda_atual_latched <= 9'd0;
         end else begin
             comeu_fruta <= 1'b0;
             bateu_corpo <= 1'b0;
@@ -280,33 +289,39 @@ module cobra_crescimento #(
                             cobra_cheia <= 1'b1;
                         end
 
+                        endereco_proxima_cabeca_latched <= endereco_proxima_cabeca;
+                        endereco_cabeca_antiga_latched <= endereco_cabeca_antiga;
+                        endereco_cauda_atual_latched <= endereco_cauda_atual;
+                        crescimento_ativo_latched <= crescimento_evento;
+
                         fase_escrita <= 2'd1;
                     end
                 end else if (fase_escrita == 2'd1) begin
-                    // Fases de Escrita: Adição do sprite da cabeça
-
-                    sig_write_ram <= 1'b1;
-                    ram_addr <= endereco_proxima_cabeca;
-                    sprite_in <= SPRITE_CABECA;
-                    fase_escrita <= 2'd2;
-                end else if (fase_escrita == 2'd2) begin
-                    // Adição do sprite do corpo se for necessário (Comeu a fruta)
-                    if (crescimento_ativo || (comprimento > 9'd1)) begin
+                    // Fases de Escrita: primeiro atualiza o tile antigo da cabeça
+                    if (crescimento_ativo_latched || (comprimento > 9'd1)) begin
                         sig_write_ram <= 1'b1;
-                        ram_addr <= endereco_cabeca_antiga;
+                        ram_addr <= endereco_cabeca_antiga_latched;
                         sprite_in <= SPRITE_CORPO;
-                        fase_escrita <= crescimento_ativo ? 2'd0 : 2'd3;
                     end else begin
                         sig_write_ram <= 1'b1;
-                        ram_addr <= endereco_cabeca_antiga;
+                        ram_addr <= endereco_cabeca_antiga_latched;
                         sprite_in <= SPRITE_VAZIO;
-                        fase_escrita <= 2'd0;
                     end
+                    fase_escrita <= 2'd2;
+                end else if (fase_escrita == 2'd2) begin
+                    // Se não houve crescimento, limpa também a cauda antiga.
+                    if (!crescimento_ativo_latched && (comprimento > 9'd1)) begin
+                        sig_write_ram <= 1'b1;
+                        ram_addr <= endereco_cauda_atual_latched;
+                        sprite_in <= SPRITE_VAZIO;
+                    end
+                    fase_escrita <= 2'd3;
                 end else if (fase_escrita == 2'd3) begin
-                    // Adição do sprite vazio no caso em que comeu uma fruta ao final
+                    // Por último escreve a nova cabeça.
+
                     sig_write_ram <= 1'b1;
-                    ram_addr <= endereco_cauda_atual;
-                    sprite_in <= SPRITE_VAZIO;
+                    ram_addr <= endereco_proxima_cabeca_latched;
+                    sprite_in <= SPRITE_CABECA;
                     fase_escrita <= 2'd0;
                 end
             end else if (estado_atual == FIM_JOGO ||

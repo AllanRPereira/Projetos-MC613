@@ -24,8 +24,8 @@ module ppu_top (
     wire botao_direita;
 
     assign botao_confirmar = ~KEY[1];
-    assign botao_esquerda = ~KEY[2];
-    assign botao_direita = ~KEY[3];
+    assign botao_esquerda = ~KEY[3];
+    assign botao_direita = ~KEY[2];
 
     // Fios para conexão interna
 	wire [9:0] pixel_x;
@@ -198,23 +198,20 @@ module ppu_top (
             end
 
             // Lógica para lidar com a velocidade personalizada
-            // Sem afetar as demais lógicas do sistema
-            if (estado_atual != 4'd1) begin
+            // Mantém o contador contínuo para evitar salto perceptível ao mudar de estado.
+            if (nivel_velocidade != nivel_velocidade_anterior) begin
                 contador_movimento <= 5'd0;
                 nivel_velocidade_anterior <= nivel_velocidade;
-            end else begin
-                if (nivel_velocidade != nivel_velocidade_anterior) begin
-                    contador_movimento <= 5'd0;
-                    nivel_velocidade_anterior <= nivel_velocidade;
-                end
+            end
 
-                if (pulso_5ms) begin
-                    if (contador_movimento >= intervalo_movimento(nivel_velocidade)) begin
-                        contador_movimento <= 5'd0;
+            if (pulso_5ms) begin
+                if (contador_movimento >= intervalo_movimento(nivel_velocidade)) begin
+                    contador_movimento <= 5'd0;
+                    if (estado_atual == 4'd1) begin
                         pulso_movimento <= 1'b1;
-                    end else begin
-                        contador_movimento <= contador_movimento + 5'd1;
                     end
+                end else begin
+                    contador_movimento <= contador_movimento + 5'd1;
                 end
             end
         end

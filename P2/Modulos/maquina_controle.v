@@ -69,9 +69,9 @@ module maquina_controle (
     wire mudar_dir_pulse;
 
     // Link com os valores dos registrador para mudar apenas quando necessário
-    assign confirmar_pulse = clk_100ms & botao_confirmar & ~botao_confirmar_d;
-    assign botao_esq_pulse = clk_100ms & botao_1 & ~botao_1_d;
-    assign botao_dir_pulse = clk_100ms & botao_2 & ~botao_2_d;
+    assign confirmar_pulse = clk_5ms & botao_confirmar & ~botao_confirmar_d;
+    assign botao_esq_pulse = clk_5ms & botao_1 & ~botao_1_d;
+    assign botao_dir_pulse = clk_5ms & botao_2 & ~botao_2_d;
     assign mudar_dir_pulse = botao_esq_pulse | botao_dir_pulse;
 
     assign sig_confirmar = confirmar_pulse;
@@ -132,8 +132,8 @@ module maquina_controle (
 
             sig_vel_r <= 1'b0;
 
-            // Avaliar apenas a cada 100ms em subidas específicas
-            if (clk_100ms) begin
+            // Avaliar em uma janela menor para reduzir o atraso da troca de direção
+            if (clk_5ms) begin
                 botao_confirmar_d <= botao_confirmar;
                 botao_1_d <= botao_1;
                 botao_2_d <= botao_2;
