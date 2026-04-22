@@ -9,7 +9,7 @@ module cobra_crescimento #(
     input wire clk,
     input wire reset,
     input wire [3:0] estado_atual,
-    input wire sig_5ms,
+    input wire passo_movimento,
     input wire [1:0] direcao_atual,
 
     // Informações da fruta
@@ -147,7 +147,7 @@ module cobra_crescimento #(
         // corpo[0] é a posição da cabeça :D
         proxima_posicao_calculada = proxima_posicao(corpo[0], direcao_atual);
 
-        if (estado_atual == MOVIMENTO && sig_5ms && fase_escrita == 2'd0) begin
+        if (estado_atual == MOVIMENTO && passo_movimento && fase_escrita == 2'd0) begin
             // Verifica se na próxima movimentação haverá um crescimento ativo da cobra
             crescimento_evento = fruta_ativa &&
                                   proxima_posicao_calculada[9:5] == fruta_x_tile &&
@@ -227,7 +227,7 @@ module cobra_crescimento #(
 
             end else if (estado_atual == MOVIMENTO) begin
                 // Avalie nesse bloco a situação da adição do novo script e o endereço dele
-                if (fase_escrita == 2'd0 && sig_5ms) begin
+                if (fase_escrita == 2'd0 && passo_movimento) begin
                     if (colide_com_parede) begin
                         bateu_parede <= 1'b1;
                     end else if (colide_com_corpo) begin
