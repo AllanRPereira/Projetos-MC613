@@ -150,7 +150,8 @@ module cobra_crescimento #(
 
     always @(*) begin
         // Informações sobre a posição da cabeça e da cauda
-        // Sistema circular com bitmap para as posições
+        // O corpo é armazenado em buffer circular para evitar deslocar toda a fila.
+        // O bitmap permite consultar ocupação em tempo constante.
         posicao_cabeca_atual = corpo[indice_cabeca];
         posicao_cauda_atual = corpo[indice_cauda];
         proxima_posicao_calculada = proxima_posicao(posicao_cabeca_atual, direcao_atual);
@@ -254,6 +255,7 @@ module cobra_crescimento #(
                 crescimento_ativo <= 1'b0;
             end else if (estado_atual == MOVIMENTO) begin
                 if (fase_escrita == 2'd0 && passo_movimento) begin
+                    // Neste ponto a nova posição já é calculada, mas ainda não foi escrita.
                     if (colide_com_parede) begin
                         bateu_parede <= 1'b1;
                     end else if (colide_com_corpo) begin
@@ -297,7 +299,7 @@ module cobra_crescimento #(
                         fase_escrita <= 2'd1;
                     end
                 end else if (fase_escrita == 2'd1) begin
-                    // Fases de Escrita: primeiro atualiza o tile antigo da cabeça
+                    // Fase 1: converte o tile antigo da cabeça em corpo/vazio.
                     if (crescimento_ativo_latched || (comprimento > 9'd1)) begin
                         sig_write_ram <= 1'b1;
                         ram_addr <= endereco_cabeca_antiga_latched;
@@ -309,7 +311,7 @@ module cobra_crescimento #(
                     end
                     fase_escrita <= 2'd2;
                 end else if (fase_escrita == 2'd2) begin
-                    // Se não houve crescimento, limpa também a cauda antiga.
+                    // Fase 2: quando não há crescimento, a cauda antiga também precisa sair da tela.
                     if (!crescimento_ativo_latched && (comprimento > 9'd1)) begin
                         sig_write_ram <= 1'b1;
                         ram_addr <= endereco_cauda_atual_latched;
@@ -317,7 +319,7 @@ module cobra_crescimento #(
                     end
                     fase_escrita <= 2'd3;
                 end else if (fase_escrita == 2'd3) begin
-                    // Por último escreve a nova cabeça.
+                    // Fase 3: a nova cabeça é gravada por último para evitar rastro visual.
 
                     sig_write_ram <= 1'b1;
                     ram_addr <= endereco_proxima_cabeca_latched;

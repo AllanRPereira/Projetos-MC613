@@ -31,8 +31,8 @@ module fruta_controlador #(
     localparam VITORIA     = 4'd7;
     localparam FIM_JOGO    = 4'd8;
 
-    // Endereços calculados de forma combinacional para adicionar uma nova fruta 
-    // no pulso de clock (Sementes virando fruta!! :)
+    // A fruta percorre a tela por uma sequência de sementes.
+    // Isso evita escolher posições aleatórias com laço longo demais no hardware.
     reg [4:0] x_semente;
     reg [4:0] y_semente;
     reg busca_ativa;
@@ -53,6 +53,7 @@ module fruta_controlador #(
         end
     endfunction
 
+    // Garante que o evento de comer fruta gere apenas uma transição.
     assign nova_fruta_pulse = nova_fruta & ~nova_fruta_d;
 
     // Muda a semente em um padrão de +3 para o X até girar na tela
@@ -104,6 +105,7 @@ module fruta_controlador #(
             sig_write_ram <= 1'b0;
 
             if (estado_atual == INICIAR || estado_atual == FIM_JOGO) begin
+                // Ao iniciar ou terminar, a fruta é desativada e a busca recomeça.
                 fruta_ativa <= 1'b0;
                 busca_ativa <= 1'b0;
                 limpar_fruta_pendente <= 1'b0;
@@ -121,6 +123,7 @@ module fruta_controlador #(
             end
 
             if (limpar_fruta_pendente) begin
+                // Apaga a posição antiga antes de escrever a nova fruta.
                 sig_write_ram <= 1'b1;
                 ram_addr <= fruta_addr_atual;
                 sprite_in <= 5'd0;

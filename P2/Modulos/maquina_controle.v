@@ -68,7 +68,8 @@ module maquina_controle (
     wire botao_dir_pulse;
     wire mudar_dir_pulse;
 
-    // Link com os valores dos registrador para mudar apenas quando necessário
+    // Pulsos de botão: a captura é feita em 5 ms para reduzir latência,
+    // mas ainda evitando múltiplas leituras do mesmo clique.
     assign confirmar_pulse = clk_5ms & botao_confirmar & ~botao_confirmar_d;
     assign botao_esq_pulse = clk_5ms & botao_1 & ~botao_1_d;
     assign botao_dir_pulse = clk_5ms & botao_2 & ~botao_2_d;
@@ -154,14 +155,15 @@ module maquina_controle (
                         nivel_velocidade <= 3'd1;
                     end
 
-                    // Giro da cobrinha
+                    // A direção é atualizada aqui e não na FSM para manter o jogo responsivo.
                     if (botao_esq_pulse) begin
                         direcao_atual <= gira_esquerda(direcao_atual);
                     end else if (botao_dir_pulse) begin
                         direcao_atual <= gira_direita(direcao_atual);
                     end
 
-                    // Comer fruta e aumentar tamanho
+                    // Comer fruta também atualiza pontuação e, periodicamente,
+                    // aumenta a velocidade do movimento.
                     if (comeu_fruta) begin
                         frutas_comidas <= frutas_comidas + 8'd1;
                         pontos <= pontos + 10'd2;

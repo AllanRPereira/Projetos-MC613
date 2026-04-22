@@ -98,7 +98,9 @@ module ppu_top (
     wire sig_write_ram;
     wire limpa_total_oam;
 
-    // Registradores para contadores de tempo específicos
+    // Os contadores abaixo desacoplam o clock de vídeo da lógica do jogo.
+    // Assim, a cobra anda em passos perceptíveis e os botões são amostrados
+    // em uma janela menor sem depender do VGA.
     reg [18:0] contador_5ms;
     reg [22:0] contador_100ms;
     reg [26:0] contador_2s;
@@ -129,7 +131,9 @@ module ppu_top (
     assign bg_color_selected = bg_color_palette + bg_override + bg_estado_offset;
     assign LEDR[1] = estado_atual[0];
 
-    // Cobra e fruta compartilham a RAM
+    // A OAM é compartilhada entre cobra e fruta.
+    // Em caso de escrita simultânea, a cobra recebe prioridade para manter
+    // a geometria do movimento estável.
     assign sig_write_ram = cobra_sig_write_ram | fruta_sig_write_ram;
     assign ram_addr = cobra_sig_write_ram ? cobra_ram_addr : fruta_ram_addr;
     assign sprite_in = cobra_sig_write_ram ? cobra_sprite_in : fruta_sprite_in;
@@ -221,6 +225,8 @@ module ppu_top (
                 end
             end
 
+            // Gera um pulso único quando o jogo entra em colisão/fim,
+            // pedindo à OAM que apague todos os sprites restantes.
             if ((estado_atual != estado_atual_anterior) &&
                 ((estado_atual == 4'd5) || (estado_atual == 4'd6) || (estado_atual == 4'd8))) begin
                 limpa_total_oam_pulse <= 1'b1;

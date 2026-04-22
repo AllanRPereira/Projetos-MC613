@@ -20,7 +20,7 @@ module ram_oam (
 
 );
 
-// OAM Memory
+// OAM: cada posição da grade guarda o ID do sprite daquele tile.
 // [ID_SPRITE]
 //    5b
 (* ramstyle = "logic" *)
@@ -28,7 +28,7 @@ reg [4:0] sprite_mem [0:299];       // Possíveis 300 Sprites na tela
 reg [8:0] clear_index;
 reg clearing_oam;
 
-// Inicialização da Memória
+// Inicialização da memória para simulação e síntese.
 integer i;
 initial begin
     for (i = 0; i < 300; i = i + 1)
@@ -47,6 +47,7 @@ always @(posedge clk) begin
         clearing_oam <= 1'b1;
         sprite_mem[0] <= 5'b00000;
     end else if (limpa_total) begin
+        // Quando o jogo entra em fim/colisão, a OAM é rearmada para limpeza completa.
         clear_index <= 9'd0;
         clearing_oam <= 1'b1;
     end else if (clearing_oam) begin
