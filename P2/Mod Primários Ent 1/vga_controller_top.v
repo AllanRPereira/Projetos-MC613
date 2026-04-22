@@ -1,0 +1,89 @@
+module vga_controller(
+	input  wire CLOCK_50,               // clock de referência para o PLL
+	input  wire [1:0] KEY,             // reset (ativo em nível alto)
+    input  wire [3:0] SW,
+
+	output wire [7:0]  VGA_R,
+	output wire [7:0]  VGA_G,
+	output wire [7:0]  VGA_B,
+	output wire        VGA_HS,
+	output wire        VGA_VS,
+	output wire        VGA_BLANK_N,
+	output wire        VGA_SYNC_N,
+	output wire        VGA_CLK,
+
+	output wire [1:0]  LEDR
+);
+
+wire pll_clk;
+wire [7:0] color;
+
+wire [9:0] pixel_x;
+wire [9:0] pixel_y;
+wire video_active;
+
+
+reg [7:0] red = 8'b10001001;
+reg [7:0] green = 8'b11110011;
+reg [7:0] blue  = 8'b00110110;
+
+// Instância do PLL (gera o pixel clock)
+pll pll_inst (
+	.refclk(CLOCK_50),
+	.rst(~KEY[0]),
+	.outclk_0(pll_clk),
+	.locked(LEDR[0])
+);
+
+
+rom RomBackground(
+    .x(pixel_x),
+    .y(pixel_y),
+    .data_out(color)
+);
+
+// Instância do módulo VGA
+VGA vga_inst (
+	.pixel_clk(pll_clk),
+	.reset(~KEY[0]),
+	.r_in(red),
+	.g_in(green),
+	.b_in(blue),
+	.pixel_x(pixel_x),
+	.pixel_y(pixel_y),
+	.video_active(video_active),
+	.VGA_R(VGA_R),
+	.VGA_G(VGA_G),
+	.VGA_B(VGA_B),
+	.VGA_HS(VGA_HS),
+	.VGA_VS(VGA_VS),
+	.VGA_BLANK_N(VGA_BLANK_N),
+	.VGA_SYNC_N(VGA_SYNC_N),
+	.VGA_CLK(VGA_CLK)
+);
+
+always @(posedge pll_clk) begin
+    if (SW[3]) begin
+        red <= color;
+        green <= color;
+        blue <= color;
+    end else if (SW[0]) begin
+        red <= 8'b10001001;
+        green <= 8'b11110011;
+        blue <= 8'b00110110;
+    end else if (SW[1]) begin
+        red <= 8'b11110000;
+        green <= 8'b00001111;
+        blue <= 8'b11000011;
+    end else if (SW[2]) begin
+        red <= 8'b00011111;
+        green <= 8'b11100000;
+        blue <= 8'b10101010;
+    end else begin
+        red <= 8'b01010101;
+        green <= 8'b00110011;
+        blue <= 8'b11101110;
+    end
+end
+
+endmodule
