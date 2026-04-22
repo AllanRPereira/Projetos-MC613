@@ -9,10 +9,15 @@ module rom_sprite (
 // | 3 | 4 |
 //  Nessa ordem na memória!
 
+`ifndef SYNTHESIS
 reg [11:0] storage [0:31];
+`else
+(* ram_init_file = "../Modulos/RawData/sprites.mif" *)
+reg [11:0] storage [0:31];
+`endif
 
 initial begin
-    $readmemh("RawData/sprites.mem", storage);
+    $readmemh("../Modulos/RawData/sprites.mem", storage);
 end
 
 assign bitmap_sprite_palette = storage[id_sprite];

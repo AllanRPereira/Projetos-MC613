@@ -4,10 +4,15 @@ module rom_palette (
 );
 
 // 8 Possíveis cores na tabela de paletas
+`ifndef SYNTHESIS
 reg [23:0] storage [0:7];
+`else
+(* ram_init_file = "../Modulos/RawData/palette.mif" *)
+reg [23:0] storage [0:7];
+`endif
 
 initial begin
-    $readmemh("RawData/palette.mem", storage);
+    $readmemh("../Modulos/RawData/palette.mem", storage);
 end
 
 assign color = storage[id_palette];

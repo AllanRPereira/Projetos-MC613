@@ -4,14 +4,19 @@ module rom_background (
     output wire [2:0] bg_color_palette
 );
 
+`ifndef SYNTHESIS
 reg [2:0] storage [0:299];
+`else
+(* ram_init_file = "../Modulos/RawData/rom_background.mif" *)
+reg [2:0] storage [0:299];
+`endif
 
 // Endereço na tela (0–299)
 wire [8:0] addr;
 assign addr = (y_tile << 4) + (y_tile << 2) + x_tile;
 
 initial begin
-    $readmemh("RawData/rom_background.mem", storage);
+    $readmemh("../Modulos/RawData/rom_background.mem", storage);
 end
 
 assign bg_color_palette = storage[addr];

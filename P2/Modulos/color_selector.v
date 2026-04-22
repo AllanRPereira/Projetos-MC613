@@ -8,15 +8,13 @@ module color_selector (
 	
 wire [2:0] disp_color_idx;
 wire [23:0] rgb;
-reg [23:0] storage [0:7];
 
 assign disp_color_idx = (sprite_color_idx > 0) ? sprite_color_idx : bg_color_idx;
 
-initial begin
-	$readmemh("RawData/palette.mem", storage);
-end
-
-assign rgb = storage[disp_color_idx];
+rom_palette PaletteROM (
+	.id_palette(disp_color_idx),
+	.color(rgb)
+);
 
 assign red = rgb[23:16];
 assign green = rgb[15:8];

@@ -1,0 +1,16 @@
+WIDTH=24;
+DEPTH=8;
+
+ADDRESS_RADIX=UNS;
+DATA_RADIX=HEX;
+
+CONTENT BEGIN
+    0  : 000000;
+    1  : 33FF57;
+    2  : EA2027;
+    3  : EE5A24;
+    4  : 1B1464;
+    5  : 5758BB;
+    6  : 34495E;
+    7  : ECF0F1;
+END;
