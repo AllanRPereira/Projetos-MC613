@@ -238,6 +238,9 @@ module cobra_crescimento #(
                 cabeca_y <= Y_INICIAL;
                 cauda_x <= X_INICIAL;
                 cauda_y <= Y_INICIAL;
+                sig_write_ram <= 1'b1;
+                ram_addr <= calcula_endereco(X_INICIAL, Y_INICIAL);
+                sprite_in <= SPRITE_CABECA;
                 fase_escrita <= 2'd0;
                 crescimento_ativo <= 1'b0;
             end else if (estado_atual == MOVIMENTO) begin

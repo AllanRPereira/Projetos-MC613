@@ -1,5 +1,6 @@
 module ram_oam (
     input wire clk,
+    input wire reset,
 
     // Coordenada do Tile na tela (Tiles: 32x32)
     input wire [4:0] x_tile,
@@ -35,7 +36,10 @@ assign sprite_addr = (y_tile << 4) + (y_tile << 2) + x_tile; // y_tile * 20 + x_
 
 
 always @(posedge clk) begin
-    if (sig_write_ram) begin
+    if (reset) begin
+        for (i = 0; i < 300; i = i + 1)
+            sprite_mem[i] <= 5'b00000;
+    end else if (sig_write_ram) begin
         sprite_mem[ram_addr] <= sprite_in;
     end
 end

@@ -308,6 +308,7 @@ module ppu_top (
 
     ram_oam RAM_OAM (
         .clk(pixel_clk),
+        .reset(reset),
         .x_tile(x_tile),
         .y_tile(y_tile),
         .probe_addr(probe_addr),
@@ -369,14 +370,6 @@ module ppu_top (
             bg_estado_offset <= 3'd0;
         end else begin
             bg_override <= SW[3:1];
-
-            case (estado_atual)
-                4'd5,
-                4'd6,
-                4'd8: bg_estado_offset <= 3'd4;
-                4'd7: bg_estado_offset <= 3'd2;
-                default: bg_estado_offset <= 3'd0;
-            endcase
         end
     end
 

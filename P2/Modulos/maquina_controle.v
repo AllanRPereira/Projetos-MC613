@@ -122,7 +122,7 @@ module maquina_controle (
             botao_confirmar_d <= 1'b0;
             botao_1_d <= 1'b0;
             botao_2_d <= 1'b0;
-            direcao_atual <= ESQ;
+            direcao_atual <= DIR;
             frutas_comidas <= 8'd0;
             nivel_velocidade <= 3'd0;
             pontos <= 10'd0;
@@ -142,7 +142,7 @@ module maquina_controle (
             case (estado_atual)
                 INICIAR: begin
                     // Estado inicial da cobrinha
-                    direcao_atual <= ESQ;
+                    direcao_atual <= DIR;
                     frutas_comidas <= 8'd0;
                     nivel_velocidade <= 3'd0;
                     pontos <= 10'd0;
