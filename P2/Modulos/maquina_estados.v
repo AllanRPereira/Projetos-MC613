@@ -49,7 +49,7 @@ module maquina_estados (
             end
 
             MOVIMENTO: begin
-                // Pode variar dependendo da prioridade entre os estados
+                // Prioridade de transição: vit. / parede / corpo / fruta / velocidade.
                 if (sig_vit)
                     prox_estado = VITORIA;
                 else if (sig_batida)
@@ -60,8 +60,6 @@ module maquina_estados (
                     prox_estado = COME_FRUTA;
                 else if (sig_vel)
                     prox_estado = AUMENTAR_VEL;
-                else if (sig_dir)
-                    prox_estado = MUDAR_DIR;
             end
 
             AUMENTAR_VEL: begin
@@ -70,11 +68,6 @@ module maquina_estados (
             end
 
             COME_FRUTA: begin
-                if (sig_5ms) 
-                    prox_estado = MOVIMENTO;
-            end
-
-            MUDAR_DIR: begin
                 if (sig_5ms) 
                     prox_estado = MOVIMENTO;
             end
