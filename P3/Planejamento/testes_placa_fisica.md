@@ -48,7 +48,7 @@ Resultados esperados:
 
 Critério de aprovação: não deve haver divergência entre o histórico de escrita e as leituras observadas.
 
-1. **Teste de reset durante a execução (robustez)**
+1. **Teste de reset durante a execução**
 
 - Repetir os testes acima pressionando **reset** em diferentes momentos (por exemplo: durante escrita, entre escrita/leitura e durante leitura).
 
