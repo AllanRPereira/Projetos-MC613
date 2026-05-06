@@ -4,9 +4,9 @@ module dram_iface (
     input wire [9:0] SW,
     input wire [3:0] KEY,
     input wire ready,
-    input wire [7:0] data,
+    inout wire [7:0] data,
 
-    output wire [6:0] HEX0, HEX1, HEX4, HEX5,
+    output wire [3:0] HEX0, HEX1, HEX4, HEX5,       // 4 Bits para converter para 7 segmentos
 
     output reg [25:0] address,
     output reg req,
@@ -25,12 +25,16 @@ module dram_iface (
 
     reg [3:0] dado_exibir = 4'b0000;
     reg [3:0] dado_escrito = 4'b0000;
+    reg [7:0] data_out = 8'b00000000;
 
-    assign HEX1 = {3'b000, dado_exibir};
-    assign HEX0 = {3'b000, dado_escrito};
+    // Controle de direção DATA BUS
+    assign data = (wEn) ? data_out : 8'bzzzzzzzz;
 
-    assign HEX4 = {3'b000, address[22:21], address[1:0]};       // Parte baixa da área endereçável
-    assign HEX5 = {5'b00000, address[25], address[23]};         // Parte alta da área endereçável
+    assign HEX1 = dado_exibir;
+    assign HEX0 = dado_escrito;
+
+    assign HEX4 = {address[22:21], address[1:0]};       // Parte baixa da área endereçável
+    assign HEX5 = {2'b00, address[25], address[23]};         // Parte alta da área endereçável
 
     always @(posedge clk) begin 
         if (rst) begin
@@ -49,21 +53,9 @@ module dram_iface (
 
                 end
 
-                REQ_WRITE: begin
-                    if (!ready) 
-                        estado <= WAIT_WRITE;
-                end
-
                 REQ_READ: begin
                     if (!ready) 
                         estado <= WAIT_READ;
-                end
-
-                WAIT_WRITE: begin
-                    if (ready) begin
-                        dado_escrito <= data[3:0];
-                        estado <= REQ_READ;
-                    end
                 end
 
                 WAIT_READ: begin
@@ -71,6 +63,18 @@ module dram_iface (
                         dado_exibir <= data[3:0];
                         estado <= READY;
                     end
+                end
+
+                REQ_WRITE: begin
+                    if (!ready) begin
+                        estado <= WAIT_WRITE;
+                        dado_escrito <= SW[3:0];
+                    end
+                end
+
+                WAIT_WRITE: begin
+                    if (ready) 
+                        estado <= REQ_READ;
                 end
 
                 default: begin 
@@ -86,14 +90,14 @@ module dram_iface (
         if (rst) begin
             address <= 26'b00000000000000000000000000;
             endereco_ultima_leitura <= 6'b000000;
-            data <= 8'b00000000;
+            data_out <= 8'b00000000;
             wEn <= 1'b0;
             req <= 1'b0;
         end else begin 
             case (estado)
                 READY: begin
                     address <= 26'b00000000000000000000000000;
-                    data <= 8'b00000000;
+                    data_out <= 8'b00000000;
                     wEn <= 1'b0;
                     req <= 1'b0;
                 end
@@ -104,7 +108,7 @@ module dram_iface (
                     address[23:21] <= SW[8:6];
                     address[1:0] <= SW[5:4];
                     endereco_ultima_leitura <= SW[9:4];
-                    data <= 8'b00000000;
+                    data_out <= 8'b00000000;
                     wEn <= 1'b0;
                     req <= 1'b1;
                 end
@@ -113,28 +117,27 @@ module dram_iface (
                     wEn <= 1'b0;
                     req <= 1'b0;
                 end
-
+                // Quando saiu de REQ_WRITE significa que recebeu as informações
+                // Já é possível liberar a bus de dados.
                 REQ_WRITE: begin
                     address <= 26'b00000000000000000000000000;
                     address[25] <= SW[9];
                     address[23:21] <= SW[8:6];
                     address[1:0] <= SW[5:4];
-                    data[7:4] <= 4'b0000;
-                    data[3:0] <= SW[3:0];
+                    data_out <= {4'b0000, SW[3:0]};
                     wEn <= 1'b1;
                     req <= 1'b1;
 
                 end
 
                 WAIT_WRITE: begin
-                    wEn <= 1'b0;
+                    wEn <= 1'b0;    // Libera o BUS de dados.
                     req <= 1'b0;
                 end
 
                 default: begin
                     address <= 26'b00000000000000000000000000;
-                    endereco_ultima_leitura <= SW[9:4];
-                    data <= 8'b00000000;
+                    data_out <= 8'b00000000;
                     wEn <= 1'b0;
                     req <= 1'b0;
                 end
