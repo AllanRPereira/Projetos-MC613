@@ -20,6 +20,18 @@
 					"strict" : false
 				},
 				{
+					"name" : "HEX0[4]",
+					"strict" : false
+				},
+				{
+					"name" : "HEX0[5]",
+					"strict" : false
+				},
+				{
+					"name" : "HEX0[6]",
+					"strict" : false
+				},
+				{
 					"name" : "HEX1[0]",
 					"strict" : false
 				},
@@ -33,6 +45,18 @@
 				},
 				{
 					"name" : "HEX1[3]",
+					"strict" : false
+				},
+				{
+					"name" : "HEX1[4]",
+					"strict" : false
+				},
+				{
+					"name" : "HEX1[5]",
+					"strict" : false
+				},
+				{
+					"name" : "HEX1[6]",
 					"strict" : false
 				},
 				{
@@ -52,103 +76,55 @@
 					"strict" : false
 				},
 				{
+					"name" : "HEX4[4]",
+					"strict" : false
+				},
+				{
+					"name" : "HEX4[5]",
+					"strict" : false
+				},
+				{
+					"name" : "HEX4[6]",
+					"strict" : false
+				},
+				{
 					"name" : "HEX5[0]",
 					"strict" : false
 				},
 				{
-					"name" : "HEX5[1]",
+					"name" : "HEX5[2]",
 					"strict" : false
 				},
 				{
-					"name" : "address[0]",
+					"name" : "HEX5[3]",
 					"strict" : false
 				},
 				{
-					"name" : "address[1]",
+					"name" : "HEX5[4]",
 					"strict" : false
 				},
 				{
-					"name" : "address[21]",
+					"name" : "HEX5[5]",
 					"strict" : false
 				},
 				{
-					"name" : "address[22]",
+					"name" : "HEX5[6]",
 					"strict" : false
 				},
 				{
-					"name" : "address[23]",
+					"name" : "LEDR[0]",
 					"strict" : false
 				},
 				{
-					"name" : "address[25]",
+					"name" : "LEDR[1]",
 					"strict" : false
 				},
 				{
-					"name" : "req",
+					"name" : "CLOCK_50",
 					"strict" : false
 				},
 				{
-					"name" : "wEn",
-					"strict" : false
-				},
-				{
-					"name" : "data[0]",
-					"strict" : false
-				},
-				{
-					"name" : "data[1]",
-					"strict" : false
-				},
-				{
-					"name" : "data[2]",
-					"strict" : false
-				},
-				{
-					"name" : "data[3]",
-					"strict" : false
-				},
-				{
-					"name" : "data[4]",
-					"strict" : false
-				},
-				{
-					"name" : "data[5]",
-					"strict" : false
-				},
-				{
-					"name" : "data[6]",
-					"strict" : false
-				},
-				{
-					"name" : "data[7]",
-					"strict" : false
-				},
-				{
-					"name" : "rst",
-					"strict" : false
-				},
-				{
-					"name" : "SW[0]",
-					"strict" : false
-				},
-				{
-					"name" : "clk",
-					"strict" : false
-				},
-				{
-					"name" : "ready",
-					"strict" : false
-				},
-				{
-					"name" : "SW[1]",
-					"strict" : false
-				},
-				{
-					"name" : "SW[2]",
-					"strict" : false
-				},
-				{
-					"name" : "SW[3]",
+					"name" : "KEY[0]",
 					"strict" : false
 				},
 				{
@@ -168,11 +144,31 @@
 					"strict" : false
 				},
 				{
+					"name" : "SW[9]",
+					"strict" : false
+				},
+				{
 					"name" : "SW[8]",
 					"strict" : false
 				},
 				{
-					"name" : "SW[9]",
+					"name" : "SW[0]",
+					"strict" : false
+				},
+				{
+					"name" : "KEY[1]",
+					"strict" : false
+				},
+				{
+					"name" : "SW[1]",
+					"strict" : false
+				},
+				{
+					"name" : "SW[2]",
+					"strict" : false
+				},
+				{
+					"name" : "SW[3]",
 					"strict" : false
 				},
 				{

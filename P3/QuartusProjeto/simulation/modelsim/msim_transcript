@@ -76,3 +76,5 @@
 #    Time: 85 ns  Iteration: 1  Instance: /dram_iface_tb
 # 1
 # Break in Module dram_iface_tb at /home/c-ec2024/ra252694/Documents/MC613/Projetos/Projetos-MC613/P3/QuartusProjeto/../TestBenchs/dram_iface_tb.v line 132
+# End time: 16:26:41 on May 06,2026, Elapsed time: 0:25:24
+# Errors: 0, Warnings: 1
