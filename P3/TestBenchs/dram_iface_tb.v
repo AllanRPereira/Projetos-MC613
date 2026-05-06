@@ -4,7 +4,7 @@ module dram_iface_tb;
 	reg clk;
 	reg rst;
 	reg [9:0] SW;
-	reg [3:0] KEY;
+	reg KEY;
 	reg ready;
 	wire [7:0] data;
 
@@ -52,7 +52,7 @@ module dram_iface_tb;
 		// ciclo 0: define tudo explicitamente
 		rst = 1'b1;
 		SW = 10'b0000000000;
-		KEY = 4'b0000;
+		KEY = 1'b0;
 		ready = 1'b0;
 		tb_data = 8'h00;
 		tb_drive = 1'b0;
@@ -61,7 +61,7 @@ module dram_iface_tb;
 		// ciclo 1: libera reset
 		rst = 1'b0;
 		SW = 10'b0000000000;
-		KEY = 4'b0000;
+		KEY = 1'b0;
 		ready = 1'b1;
 		tb_data = 8'h00;
 		tb_drive = 1'b0;
@@ -70,7 +70,7 @@ module dram_iface_tb;
 		// ciclo 2: muda endereço para forçar leitura
 		rst = 1'b0;
 		SW = 10'b0000010000;
-		KEY = 4'b0000;
+		KEY = 1'b0;
 		ready = 1'b1;
 		tb_data = 8'h00;
 		tb_drive = 1'b0;
@@ -79,7 +79,7 @@ module dram_iface_tb;
 		// ciclo 3: simula controller ocupado
 		rst = 1'b0;
 		SW = 10'b0000010000;
-		KEY = 4'b0000;
+		KEY = 1'b0;
 		ready = 1'b0;
 		tb_data = 8'h00;
 		tb_drive = 1'b0;
@@ -88,7 +88,7 @@ module dram_iface_tb;
 		// ciclo 4: controller pronto e fornece dado de leitura
 		rst = 1'b0;
 		SW = 10'b0000010000;
-		KEY = 4'b0000;
+		KEY = 1'b0;
 		ready = 1'b1;
 		tb_data = 8'h3C;
 		tb_drive = 1'b1;
@@ -97,7 +97,7 @@ module dram_iface_tb;
 		// ciclo 5: libera barramento
 		rst = 1'b0;
 		SW = 10'b0000010000;
-		KEY = 4'b0000;
+		KEY = 1'b0;
 		ready = 1'b1;
 		tb_data = 8'h00;
 		tb_drive = 1'b0;
@@ -106,7 +106,7 @@ module dram_iface_tb;
 		// ciclo 6: prepara escrita (KEY[3]=1) com dado em SW[3:0]
 		rst = 1'b0;
 		SW = 10'b0000010101; // endereço + dado 0x5
-		KEY = 4'b1000;
+		KEY = 1'b1;
 		ready = 1'b1;
 		tb_data = 8'h00;
 		tb_drive = 1'b0;
@@ -115,7 +115,7 @@ module dram_iface_tb;
 		// ciclo 7: controller ocupado na escrita
 		rst = 1'b0;
 		SW = 10'b0000010101;
-		KEY = 4'b0000;
+		KEY = 1'b0;
 		ready = 1'b0;
 		tb_data = 8'h00;
 		tb_drive = 1'b0;
@@ -124,7 +124,7 @@ module dram_iface_tb;
 		// ciclo 8: controller pronto novamente
 		rst = 1'b0;
 		SW = 10'b0000010101;
-		KEY = 4'b0000;
+		KEY = 1'b0;
 		ready = 1'b1;
 		tb_data = 8'h00;
 		tb_drive = 1'b0;

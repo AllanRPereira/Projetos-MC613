@@ -2,7 +2,7 @@ module dram_iface (
     input wire clk,
     input wire rst,
     input wire [9:0] SW,
-    input wire [3:0] KEY,
+    input wire KEY,
     input wire ready,
     inout wire [7:0] data,
 
