@@ -9,46 +9,46 @@ z2
 cModel Technology
 Z0 d/home/c-ec2024/ra252694/Documents/MC613/Projetos/Projetos-MC613/P3/QuartusProjeto/simulation/modelsim
 vdram_iface
-!s110 1778090616
+Z1 !s110 1778094077
 !i10b 1
 !s100 Z1SJNg=>6l`Y9FV3GF`Mo0
 IXkHO0f6?D_SME0X5_fNln3
-Z1 VDg1SIo80bB@j0V0VzS_@n1
+Z2 VDg1SIo80bB@j0V0VzS_@n1
 R0
 w1778089474
 8/home/c-ec2024/ra252694/Documents/MC613/Projetos/Projetos-MC613/P3/QuartusProjeto/../Modulos/dram_iface.v
 F/home/c-ec2024/ra252694/Documents/MC613/Projetos/Projetos-MC613/P3/QuartusProjeto/../Modulos/dram_iface.v
 L0 1
-Z2 OV;L;10.5b;63
+Z3 OV;L;10.5b;63
 r1
 !s85 0
 31
-!s108 1778090616.000000
+Z4 !s108 1778094077.000000
 !s107 /home/c-ec2024/ra252694/Documents/MC613/Projetos/Projetos-MC613/P3/QuartusProjeto/../Modulos/dram_iface.v|
 !s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+/home/c-ec2024/ra252694/Documents/MC613/Projetos/Projetos-MC613/P3/QuartusProjeto/../Modulos|/home/c-ec2024/ra252694/Documents/MC613/Projetos/Projetos-MC613/P3/QuartusProjeto/../Modulos/dram_iface.v|
 !i113 1
-Z3 o-vlog01compat -work work
+Z5 o-vlog01compat -work work
 !s92 -vlog01compat -work work +incdir+/home/c-ec2024/ra252694/Documents/MC613/Projetos/Projetos-MC613/P3/QuartusProjeto/../Modulos
-Z4 tCvgOpt 0
+Z6 tCvgOpt 0
 vdram_iface_tb
-!s110 1778090617
-!i10b 1
-!s100 FGD6SbW@^T8Rg[EYmI2cH2
-I??hHj_CSmH5AJ7A^kCP_G1
 R1
+!i10b 1
+!s100 [QzX=72LCBb@jlCOLSBRV1
+IMZG>nUOfo^DiIR7Hb3R^Z0
+R2
 R0
-w1778090579
+w1778094067
 8/home/c-ec2024/ra252694/Documents/MC613/Projetos/Projetos-MC613/P3/QuartusProjeto/../TestBenchs/dram_iface_tb.v
 F/home/c-ec2024/ra252694/Documents/MC613/Projetos/Projetos-MC613/P3/QuartusProjeto/../TestBenchs/dram_iface_tb.v
 L0 3
-R2
+R3
 r1
 !s85 0
 31
-!s108 1778090617.000000
+R4
 !s107 /home/c-ec2024/ra252694/Documents/MC613/Projetos/Projetos-MC613/P3/QuartusProjeto/../TestBenchs/dram_iface_tb.v|
 !s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+/home/c-ec2024/ra252694/Documents/MC613/Projetos/Projetos-MC613/P3/QuartusProjeto/../TestBenchs|/home/c-ec2024/ra252694/Documents/MC613/Projetos/Projetos-MC613/P3/QuartusProjeto/../TestBenchs/dram_iface_tb.v|
 !i113 1
-R3
+R5
 !s92 -vlog01compat -work work +incdir+/home/c-ec2024/ra252694/Documents/MC613/Projetos/Projetos-MC613/P3/QuartusProjeto/../TestBenchs
-R4
+R6

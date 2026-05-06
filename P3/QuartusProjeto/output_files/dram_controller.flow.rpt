@@ -1,5 +1,5 @@
 Flow report for dram_controller
-Wed May  6 14:54:41 2026
+Wed May  6 15:36:30 2026
 Quartus Prime Version 17.1.0 Build 590 10/25/2017 SJ Lite Edition
 
 
@@ -40,7 +40,7 @@ refer to the applicable agreement for further details.
 +---------------------------------------------------------------------------+
 ; Flow Summary                                                              ;
 +-----------------------------+---------------------------------------------+
-; Flow Status                 ; Successful - Wed May  6 14:54:41 2026       ;
+; Flow Status                 ; Successful - Wed May  6 15:36:30 2026       ;
 ; Quartus Prime Version       ; 17.1.0 Build 590 10/25/2017 SJ Lite Edition ;
 ; Revision Name               ; dram_controller                             ;
 ; Top-level Entity Name       ; dram_iface                                  ;
@@ -62,7 +62,7 @@ refer to the applicable agreement for further details.
 +-------------------+---------------------+
 ; Option            ; Setting             ;
 +-------------------+---------------------+
-; Start date & time ; 05/06/2026 14:54:36 ;
+; Start date & time ; 05/06/2026 15:36:26 ;
 ; Main task         ; Compilation         ;
 ; Revision Name     ; dram_controller     ;
 +-------------------+---------------------+
@@ -73,7 +73,7 @@ refer to the applicable agreement for further details.
 +--------------------------------------+----------------------------------------+-----------------+-------------+----------------+
 ; Assignment Name                      ; Value                                  ; Default Value   ; Entity Name ; Section Id     ;
 +--------------------------------------+----------------------------------------+-----------------+-------------+----------------+
-; COMPILER_SIGNATURE_ID                ; 251776451539220.177809007654868        ; --              ; --          ; --             ;
+; COMPILER_SIGNATURE_ID                ; 251776451539220.177809258608523        ; --              ; --          ; --             ;
 ; EDA_DESIGN_INSTANCE_NAME             ; NA                                     ; --              ; --          ; dram_iface_tb  ;
 ; EDA_NATIVELINK_SIMULATION_TEST_BENCH ; dram_iface_tb                          ; --              ; --          ; eda_simulation ;
 ; EDA_OUTPUT_DATA_FORMAT               ; Verilog Hdl                            ; --              ; --          ; eda_simulation ;
@@ -101,8 +101,8 @@ refer to the applicable agreement for further details.
 +------------------------+--------------+-------------------------+---------------------+------------------------------------+
 ; Module Name            ; Elapsed Time ; Average Processors Used ; Peak Virtual Memory ; Total CPU Time (on all processors) ;
 +------------------------+--------------+-------------------------+---------------------+------------------------------------+
-; Analysis & Elaboration ; 00:00:05     ; 1.0                     ; 1465 MB             ; 00:00:13                           ;
-; Total                  ; 00:00:05     ; --                      ; --                  ; 00:00:13                           ;
+; Analysis & Elaboration ; 00:00:04     ; 1.0                     ; 1465 MB             ; 00:00:13                           ;
+; Total                  ; 00:00:04     ; --                      ; --                  ; 00:00:13                           ;
 +------------------------+--------------+-------------------------+---------------------+------------------------------------+
 
 
