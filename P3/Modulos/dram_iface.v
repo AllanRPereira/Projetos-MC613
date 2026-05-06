@@ -33,8 +33,8 @@ module dram_iface (
     assign HEX1 = dado_exibir;
     assign HEX0 = dado_escrito;
 
-    assign HEX4 = {address[22:21], address[1:0]};       // Parte baixa da área endereçável
-    assign HEX5 = {2'b00, address[25], address[23]};         // Parte alta da área endereçável
+    assign HEX4 = SW[7:4];                  // Parte baixa da área endereçável
+    assign HEX5 = {2'b00, SW[9:8]};         // Parte alta da área endereçável
 
     always @(posedge clk) begin 
         if (rst) begin
@@ -47,7 +47,7 @@ module dram_iface (
                     if (ready) begin
                         if (SW[9:4] != endereco_ultima_leitura)
                             estado <= REQ_READ;
-                        else if (KEY[3])
+                        else if (KEY)
                             estado <= REQ_WRITE;
                     end
 
@@ -96,7 +96,6 @@ module dram_iface (
         end else begin 
             case (estado)
                 READY: begin
-                    address <= 26'b00000000000000000000000000;
                     data_out <= 8'b00000000;
                     wEn <= 1'b0;
                     req <= 1'b0;

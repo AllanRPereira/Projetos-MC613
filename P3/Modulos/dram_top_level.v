@@ -3,23 +3,23 @@ module dram_top_level (
     input wire [4:0] KEY,       // Normal Ativo
     input wire [9:0] SW,
     output wire [6:0] HEX0, HEX1, HEX4, HEX5,       // 4 Bits para converter para 7 segmentos
-    output wire LEDR0, LEDR1                        // Usar para exibir os sinais de req e wEn
+    output wire [1:0] LEDR                        // Usar para exibir os sinais de req e wEn
 );
 
     // KEY[0] -> reset
     // KEY[1] -> ready do controller
     // Clock reduzido para facilitar a visualização
 
-    reg [25:0] div_cnt = 26'd0;
-    reg clk_slow = 1'b0;
+    // reg [25:0] div_cnt = 26'd0;
+    // reg clk_slow = 1'b0;
 
-    always @(posedge CLOCK_50) begin
-        div_cnt <= div_cnt + 1'b1;
-        if (div_cnt == 26'd25_000_000) begin
-            div_cnt <= 26'd0;
-            clk_slow <= ~clk_slow;
-        end
-    end
+    // always @(posedge CLOCK_50) begin
+    //     div_cnt <= div_cnt + 1'b1;
+    //     if (div_cnt == 26'd25_000_000) begin
+    //         div_cnt <= 26'd0;
+    //         clk_slow <= ~clk_slow;
+    //     end
+    // end
 
     // Normal ativo
     wire rst = ~KEY[0];
@@ -43,7 +43,7 @@ module dram_top_level (
     wire wEn;
 
     dram_iface u_dram_iface (
-        .clk(clk_slow),
+        .clk(CLOCK_50),
         .rst(rst),
         .SW(SW),
         .KEY(~KEY[3]),          // Normal Ativo
@@ -59,7 +59,7 @@ module dram_top_level (
     );
 
     // Modelo simples de controller
-    always @(posedge clk_slow) begin
+    always @(posedge CLOCK_50) begin
         if (rst) begin
             ctrl_data <= 8'h00;
             ctrl_drive <= 1'b0;
@@ -76,12 +76,12 @@ module dram_top_level (
     end
 
     // Conversores para 7 segmentos
-    bin2hex u_hex0 (.clk(clk_slow), .lock(1'b0), .reset(rst), .bin(hex0_n), .hex(HEX0[6:0]));
-    bin2hex u_hex1 (.clk(clk_slow), .lock(1'b0), .reset(rst), .bin(hex1_n), .hex(HEX1[6:0]));
-    bin2hex u_hex4 (.clk(clk_slow), .lock(1'b0), .reset(rst), .bin(hex4_n), .hex(HEX4[6:0]));
-    bin2hex u_hex5 (.clk(clk_slow), .lock(1'b0), .reset(rst), .bin(hex5_n), .hex(HEX5[6:0]));
+    bin2hex u_hex0 (.clk(CLOCK_50), .lock(1'b0), .reset(rst), .bin(hex0_n), .hex(HEX0[6:0]));
+    bin2hex u_hex1 (.clk(CLOCK_50), .lock(1'b0), .reset(rst), .bin(hex1_n), .hex(HEX1[6:0]));
+    bin2hex u_hex4 (.clk(CLOCK_50), .lock(1'b0), .reset(rst), .bin(hex4_n), .hex(HEX4[6:0]));
+    bin2hex u_hex5 (.clk(CLOCK_50), .lock(1'b0), .reset(rst), .bin(hex5_n), .hex(HEX5[6:0]));
 
-    assign LEDR0 = req;
-    assign LEDR1 = wEn;
+    assign LEDR[0] = req;
+    assign LEDR[1] = wEn;
 
 endmodule
