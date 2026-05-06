@@ -13,15 +13,10 @@ module dram_iface_tb;
 	wire req;
 	wire wEn;
 
-	// Modelo simples de DRAM Controller
-	reg [7:0] mem [0:63];
-	reg [7:0] data_drv;
-	reg data_drv_en;
+	// Barramento de dados controlado pelo TB
+	reg [7:0] tb_data;
+	reg tb_drive;
 
-	reg busy;
-	reg [1:0] busy_cnt;
-
-	// DUT
 	dram_iface dut (
 		.clk(clk),
 		.rst(rst),
@@ -38,115 +33,103 @@ module dram_iface_tb;
 		.wEn(wEn)
 	);
 
-	assign data = data_drv_en ? data_drv : 8'bzzzzzzzz;
+    // Alta impedância para controlar corretamente o IO 
+	assign data = tb_drive ? tb_data : 8'bzzzzzzzz;
 
 	// Clock
 	initial clk = 1'b0;
 	always #5 clk = ~clk;
 
-	integer i;
-	initial begin
-		for (i = 0; i < 64; i = i + 1) begin
-			mem[i] = {4'hB, i[3:0]};
-		end
-	end
-
-	function [5:0] addr_index;
-		input [25:0] addr;
-		begin
-			addr_index = {addr[25], addr[23:21], addr[1:0]};
-		end
-	endfunction
-
-	// Modelo de resposta do controller:
-	// - ready=1 quando o controller está livre
-	// - quando req sobe: ready vai a 0 por 2 ciclos
-	// - em escrita: captura data
-	// - em leitura: devolve data no barramento quando ready volta a 1
-	always @(posedge clk) begin
-		if (rst) begin
-			ready <= 1'b1;
-			busy <= 1'b0;
-			busy_cnt <= 2'b00;
-			data_drv_en <= 1'b0;
-			data_drv <= 8'h00;
-		end else begin
-			data_drv_en <= 1'b0;
-
-			if (!busy && req) begin
-				busy <= 1'b1;
-				busy_cnt <= 2'b10;
-				ready <= 1'b0;
-
-				if (wEn) begin
-					mem[addr_index(address)] <= data;
-				end else begin
-					data_drv <= mem[addr_index(address)];
-				end
-			end else if (busy) begin
-				if (busy_cnt == 0) begin
-					busy <= 1'b0;
-					ready <= 1'b1;
-					if (!wEn) begin
-						data_drv_en <= 1'b1;
-					end
-				end else begin
-					busy_cnt <= busy_cnt - 1'b1;
-					ready <= 1'b0;
-				end
-			end else begin
-				ready <= 1'b1;
-			end
-		end
-	end
-
 	// Monitoramento
 	initial begin
-		$display("Time  clk rst ready req wEn  SW      KEY  addr              data  HEX5 HEX4 HEX1 HEX0");
-		$monitor("%4t  %b   %b   %b     %b   %b  %10b %4b %026b %8b  %4b  %4b  %4b  %4b",
-				 $time, clk, rst, ready, req, wEn, SW, KEY, address, data, HEX5, HEX4, HEX1, HEX0);
+		$display("Time  clk rst ready req wEn  SW      KEY  addr              data");
+		$monitor("%4t  %b   %b   %b     %b   %b  %10b %4b %026b %8b",
+				 $time, clk, rst, ready, req, wEn, SW, KEY, address, data);
 	end
 
-	// Sequência de estímulos simples
+	// Estímulos com controle variável a variável, a cada ciclo
 	initial begin
+		// ciclo 0: define tudo explicitamente
 		rst = 1'b1;
-		SW = 10'b0;
-		KEY = 4'b0;
-		data_drv = 8'b0;
-		data_drv_en = 1'b0;
-		busy = 1'b0;
-		busy_cnt = 2'b00;
+		SW = 10'b0000000000;
+		KEY = 4'b0000;
+		ready = 1'b0;
+		tb_data = 8'h00;
+		tb_drive = 1'b0;
 
 		@(posedge clk);
+		// ciclo 1: libera reset
 		rst = 1'b0;
+		SW = 10'b0000000000;
+		KEY = 4'b0000;
+		ready = 1'b1;
+		tb_data = 8'h00;
+		tb_drive = 1'b0;
 
-		// Leitura por mudança de endereço
+		@(posedge clk);
+		// ciclo 2: muda endereço para forçar leitura
+		rst = 1'b0;
 		SW = 10'b0000010000;
-		@(posedge clk);
-		@(posedge clk);
-
-		// Escrita no mesmo endereço (KEY[3])
-		SW = 10'b0000010011;
-		KEY = 4'b1000;
-		@(posedge clk);
 		KEY = 4'b0000;
-		@(posedge clk);
+		ready = 1'b1;
+		tb_data = 8'h00;
+		tb_drive = 1'b0;
 
-		// Força nova leitura
-		SW = 10'b0100000000;
 		@(posedge clk);
-		@(posedge clk);
-
-		SW = 10'b0100001110;
-		KEY = 4'b1000;
-		@(posedge clk);
+		// ciclo 3: simula controller ocupado
+		rst = 1'b0;
+		SW = 10'b0000010000;
 		KEY = 4'b0000;
-		@(posedge clk);
+		ready = 1'b0;
+		tb_data = 8'h00;
+		tb_drive = 1'b0;
 
-		SW = 10'b0100000000;
 		@(posedge clk);
-		@(posedge clk);
+		// ciclo 4: controller pronto e fornece dado de leitura
+		rst = 1'b0;
+		SW = 10'b0000010000;
+		KEY = 4'b0000;
+		ready = 1'b1;
+		tb_data = 8'h3C;
+		tb_drive = 1'b1;
 
+		@(posedge clk);
+		// ciclo 5: libera barramento
+		rst = 1'b0;
+		SW = 10'b0000010000;
+		KEY = 4'b0000;
+		ready = 1'b1;
+		tb_data = 8'h00;
+		tb_drive = 1'b0;
+
+		@(posedge clk);
+		// ciclo 6: prepara escrita (KEY[3]=1) com dado em SW[3:0]
+		rst = 1'b0;
+		SW = 10'b0000010101; // endereço + dado 0x5
+		KEY = 4'b1000;
+		ready = 1'b1;
+		tb_data = 8'h00;
+		tb_drive = 1'b0;
+
+		@(posedge clk);
+		// ciclo 7: controller ocupado na escrita
+		rst = 1'b0;
+		SW = 10'b0000010101;
+		KEY = 4'b0000;
+		ready = 1'b0;
+		tb_data = 8'h00;
+		tb_drive = 1'b0;
+
+		@(posedge clk);
+		// ciclo 8: controller pronto novamente
+		rst = 1'b0;
+		SW = 10'b0000010101;
+		KEY = 4'b0000;
+		ready = 1'b1;
+		tb_data = 8'h00;
+		tb_drive = 1'b0;
+
+		@(posedge clk);
 		$finish;
 	end
 
