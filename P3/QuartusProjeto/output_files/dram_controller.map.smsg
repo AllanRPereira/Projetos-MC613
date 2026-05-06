@@ -1,0 +1,1 @@
+Info (10281): Verilog HDL Declaration information at dram_iface.v(6): object "ready" differs only in case from object "READY" in the same scope File: /home/c-ec2024/ra252694/Documents/MC613/Projetos/Projetos-MC613/P3/Modulos/dram_iface.v Line: 6
