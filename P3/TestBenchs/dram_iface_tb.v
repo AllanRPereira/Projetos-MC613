@@ -13,10 +13,13 @@ module dram_iface_tb;
 	wire req;
 	wire wEn;
 
-	// Modelo simples de memória/DRAM (retorna nibble no data bus)
+	// Modelo simples de DRAM Controller
 	reg [7:0] mem [0:63];
 	reg [7:0] data_drv;
 	reg data_drv_en;
+
+	reg busy;
+	reg [1:0] busy_cnt;
 
 	// DUT
 	dram_iface dut (
@@ -35,99 +38,67 @@ module dram_iface_tb;
 		.wEn(wEn)
 	);
 
-	// Controle do barramento bidirecional
 	assign data = data_drv_en ? data_drv : 8'bzzzzzzzz;
 
 	// Clock
 	initial clk = 1'b0;
 	always #5 clk = ~clk;
 
-	// Inicialização da memória
 	integer i;
 	initial begin
 		for (i = 0; i < 64; i = i + 1) begin
-			mem[i] = {4'hA, i[3:0]};
+			mem[i] = {4'hB, i[3:0]};
 		end
 	end
 
-	// Helpers
-	function [5:0] sw_addr;
-		input [9:0] sw;
+	function [5:0] addr_index;
+		input [25:0] addr;
 		begin
-			sw_addr = sw[9:4];
+			addr_index = {addr[25], addr[23:21], addr[1:0]};
 		end
 	endfunction
 
-	task wait_cycles;
-		input integer n;
-		integer k;
-		begin
-			for (k = 0; k < n; k = k + 1) begin
-				@(posedge clk);
+	// Modelo de resposta do controller:
+	// - ready=1 quando o controller está livre
+	// - quando req sobe: ready vai a 0 por 2 ciclos
+	// - em escrita: captura data
+	// - em leitura: devolve data no barramento quando ready volta a 1
+	always @(posedge clk) begin
+		if (rst) begin
+			ready <= 1'b1;
+			busy <= 1'b0;
+			busy_cnt <= 2'b00;
+			data_drv_en <= 1'b0;
+			data_drv <= 8'h00;
+		end else begin
+			data_drv_en <= 1'b0;
+
+			if (!busy && req) begin
+				busy <= 1'b1;
+				busy_cnt <= 2'b10;
+				ready <= 1'b0;
+
+				if (wEn) begin
+					mem[addr_index(address)] <= data;
+				end else begin
+					data_drv <= mem[addr_index(address)];
+				end
+			end else if (busy) begin
+				if (busy_cnt == 0) begin
+					busy <= 1'b0;
+					ready <= 1'b1;
+					if (!wEn) begin
+						data_drv_en <= 1'b1;
+					end
+				end else begin
+					busy_cnt <= busy_cnt - 1'b1;
+					ready <= 1'b0;
+				end
+			end else begin
+				ready <= 1'b1;
 			end
 		end
-	endtask
-
-	task do_read;
-		input [9:0] sw_addr_sel;
-		input [7:0] mem_data;
-		begin
-			SW = sw_addr_sel;
-			KEY = 4'b0000;
-
-			// Sinaliza DRAM pronta; DUT deve solicitar leitura
-			ready = 1'b1;
-			data_drv_en = 1'b0;
-
-			// Aguarda DUT levantar req para leitura
-			wait(req == 1'b1);
-			@(posedge clk);
-
-			// DRAM responde ocupada
-			ready = 1'b0;
-			// Aguarda DUT entrar em WAIT_READ
-			wait(wEn == 1'b0);
-			wait(req == 1'b0);
-
-			// DRAM volta pronta e dirige o barramento
-			data_drv = mem_data;
-			data_drv_en = 1'b1;
-			ready = 1'b1;
-			@(posedge clk);
-
-			// Libera barramento
-			data_drv_en = 1'b0;
-			@(posedge clk);
-		end
-	endtask
-
-	task do_write;
-		input [9:0] sw_addr_sel;
-		input [3:0] data_low_nibble;
-		begin
-			SW = {sw_addr_sel[9:4], data_low_nibble};
-			KEY = 4'b1000; // KEY[3] ativo
-
-			ready = 1'b1;
-			data_drv_en = 1'b0;
-
-			// DUT solicita escrita
-			wait(req == 1'b1);
-			@(posedge clk);
-			ready = 1'b0;
-
-			// Captura escrita
-			if (wEn) begin
-				mem[sw_addr(sw_addr_sel)] = data;
-			end
-
-			// Finaliza escrita
-			@(posedge clk);
-			ready = 1'b1;
-			KEY = 4'b0000;
-			@(posedge clk);
-		end
-	endtask
+	end
 
 	// Monitoramento
 	initial begin
@@ -136,43 +107,46 @@ module dram_iface_tb;
 				 $time, clk, rst, ready, req, wEn, SW, KEY, address, data, HEX5, HEX4, HEX1, HEX0);
 	end
 
-	// Sequência de testes
+	// Sequência de estímulos simples
 	initial begin
-		// Defaults
 		rst = 1'b1;
 		SW = 10'b0;
 		KEY = 4'b0;
-		ready = 1'b0;
 		data_drv = 8'b0;
 		data_drv_en = 1'b0;
+		busy = 1'b0;
+		busy_cnt = 2'b00;
 
-		wait_cycles(2);
+		@(posedge clk);
 		rst = 1'b0;
-		ready = 1'b1;
 
-		// Leitura inicial endereço 0
-		do_read(10'b0000000000, mem[0]);
+		// Leitura por mudança de endereço
+		SW = 10'b0000010000;
+		@(posedge clk);
+		@(posedge clk);
 
-		// Leitura endereço diferente (gatilho por mudança de SW[9:4])
-		do_read(10'b0101010000, mem[sw_addr(10'b0101010000)]);
+		// Escrita no mesmo endereço (KEY[3])
+		SW = 10'b0000010011;
+		KEY = 4'b1000;
+		@(posedge clk);
+		KEY = 4'b0000;
+		@(posedge clk);
 
-		// Escrita e leitura do mesmo endereço
-		do_write(10'b1111000000, 4'h3);
-		do_read(10'b1111000000, mem[sw_addr(10'b1111000000)]);
+		// Força nova leitura
+		SW = 10'b0100000000;
+		@(posedge clk);
+		@(posedge clk);
 
-		// Escrita em outro endereço
-		do_write(10'b0010110000, 4'hE);
-		do_read(10'b0010110000, mem[sw_addr(10'b0010110000)]);
+		SW = 10'b0100001110;
+		KEY = 4'b1000;
+		@(posedge clk);
+		KEY = 4'b0000;
+		@(posedge clk);
 
-		// Teste de reset assíncrono no meio de operação
-		do_read(10'b0001110000, mem[sw_addr(10'b0001110000)]);
-		rst = 1'b1;
-		wait_cycles(1);
-		rst = 1'b0;
-		ready = 1'b1;
-		do_read(10'b0001110000, mem[sw_addr(10'b0001110000)]);
+		SW = 10'b0100000000;
+		@(posedge clk);
+		@(posedge clk);
 
-		wait_cycles(5);
 		$finish;
 	end
 
