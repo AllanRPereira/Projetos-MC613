@@ -47,7 +47,7 @@ module dram_controller #(
 	reg [DATA_WIDTH-1:0] read_data_reg;
 	reg read_data_hold_valid;
 
-    // VERIFICAR ESSA CONEXÕES
+    // Conexões para liberar e obter o barramento para envio de dados.
 	wire [DATA_WIDTH-1:0] host_data_in = data;
 	wire host_data_oe = (state == S_IDLE) && read_data_hold_valid && !req && !wEn;
 
@@ -253,6 +253,7 @@ module dram_controller #(
 
 	// Mux de sinais SDRAM
 	always @(*) begin
+        // Estado default
 		cke = 1'b1;
 		{cs_n, ras_n, cas_n, we_n} = CMD_NOP;
 		ba = 2'b00;
@@ -267,8 +268,7 @@ module dram_controller #(
 				ba = init_ba;
 				a = init_a;
 			end
-			S_READ_START,
-			S_READ_WAIT: begin
+			S_READ_START, S_READ_WAIT: begin
 				cs_n = read_cs_n;
 				ras_n = read_ras_n;
 				cas_n = read_cas_n;
@@ -276,8 +276,7 @@ module dram_controller #(
 				ba = read_ba;
 				a = read_a;
 			end
-			S_WRITE_START,
-			S_WRITE_WAIT: begin
+			S_WRITE_START, S_WRITE_WAIT: begin
 				cs_n = write_cs_n;
 				ras_n = write_ras_n;
 				cas_n = write_cas_n;
@@ -285,8 +284,7 @@ module dram_controller #(
 				ba = write_ba;
 				a = write_a;
 			end
-			S_REFRESH_GRANT,
-			S_REFRESH_WAIT: begin
+			S_REFRESH_GRANT, S_REFRESH_WAIT: begin
 				cs_n = refresh_cs_n;
 				ras_n = refresh_ras_n;
 				cas_n = refresh_cas_n;
