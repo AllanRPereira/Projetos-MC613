@@ -1,4 +1,5 @@
 module autorefresh #(
+    // TEMPO DO DATASHEET ENTRE REFRESH NECESSÁRIOS
 	parameter integer TREFI_CYCLES = 1116,
 	parameter integer TRFC_CYCLES = 10
 ) (

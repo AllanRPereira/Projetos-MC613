@@ -29,7 +29,8 @@ module read #(
 );
 
 	localparam integer ADDR_WIDTH = BANK_BITS + ROW_BITS + COL_BITS;
-
+    // COMANDOS VALIDADOS!!
+    
     // COMANDOS PARA A LEITURA
 	localparam [3:0] CMD_NOP       = 4'b0111;
 	localparam [3:0] CMD_ACTIVE    = 4'b0011;

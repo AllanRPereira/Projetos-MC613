@@ -1,4 +1,4 @@
-module dram_write (
+module write (
     input  wire        clk,
     input  wire        rst,
 
