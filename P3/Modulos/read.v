@@ -1,8 +1,9 @@
 module read #(
+    // PARÂMETROS AVALIADOS!
 	parameter integer DATA_WIDTH = 8,
 	parameter integer BANK_BITS = 2,
 	parameter integer ROW_BITS = 13,
-	parameter integer COL_BITS = 9,
+	parameter integer COL_BITS = 11,
 	parameter integer TRCD_CYCLES = 3,
 	parameter integer TCAS_CYCLES = 3,
 	parameter integer TRP_CYCLES = 4,
@@ -29,11 +30,13 @@ module read #(
 
 	localparam integer ADDR_WIDTH = BANK_BITS + ROW_BITS + COL_BITS;
 
+    // COMANDOS PARA A LEITURA
 	localparam [3:0] CMD_NOP       = 4'b0111;
 	localparam [3:0] CMD_ACTIVE    = 4'b0011;
 	localparam [3:0] CMD_READ      = 4'b0101;
 	localparam [3:0] CMD_PRECHARGE = 4'b0010;
 
+    // ESTADOS DA FSM DE LEITURA
 	localparam [3:0] S_IDLE       = 4'd0;
 	localparam [3:0] S_ACTIVATE   = 4'd1;
 	localparam [3:0] S_WAIT_RCD   = 4'd2;
@@ -47,9 +50,9 @@ module read #(
 	reg [7:0] timer;
 	reg [ADDR_WIDTH-1:0] addr_reg;
 
-	wire [BANK_BITS-1:0] addr_bank = addr_reg[ADDR_WIDTH-1 -: BANK_BITS];
-	wire [ROW_BITS-1:0]  addr_row  = addr_reg[COL_BITS +: ROW_BITS];
-	wire [COL_BITS-1:0]  addr_col  = addr_reg[COL_BITS-1:0];
+	wire [BANK_BITS-1:0] addr_bank = addr_reg[ADDR_WIDTH - 1: ADDR_WIDTH - BANK_BITS];
+	wire [ROW_BITS-1:0]  addr_row  = addr_reg[ROW_BITS - 1 + COL_BITS: COL_BITS];
+	wire [COL_BITS-1:0]  addr_col  = addr_reg[COL_BITS - 1:0];
 
 	always @(posedge clk) begin
 		if (rst) begin
@@ -100,7 +103,8 @@ module read #(
 				S_READ: begin
 					{cs_n, ras_n, cas_n, we_n} <= CMD_READ;
 					ba <= addr_bank;
-					a <= {4'b0000, addr_col};
+                    // Desabilita o Auto Pre Charger em A10
+					a <= {1'b0, addr_col[10], 1'b0, addr_col[9:0]};
 					timer <= 8'd0;
 					state <= S_WAIT_CAS;
 				end
