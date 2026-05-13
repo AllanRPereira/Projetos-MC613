@@ -14,6 +14,8 @@ module init (
     output reg         ready
 );
 
+    // MODOS REGISTRO CORRETO!
+
     // Parâmetros do Mode Register
     // M9 = 1 (Single Location Access)
     // M8:7 = 00 (Standard Operation)
@@ -23,16 +25,22 @@ module init (
     // Valor final: 13'b0_0010_0011_0000 = 13'h0230
     localparam MODE_REG = 13'h0230;
 
+
+    // TEMPOS VALIDADOS (TUDO BEM SER UM POUCO MAIOR!)
+    // NÃO PODE SER MAIOR NA LEITURA E ESCRITA (MÁQUINA DE ESTADOS INTERNA)
+
     // Tempos baseados em 143 MHz (T ~ 7 ns)
-    // Espera inicial de 100 us ~ 15000 ciclos
+    // Espera inicial de 200 us ~ 30000 ciclos (Margem superior)
     localparam TRP  = 4;   // tRP  (20ns)  -> ~3 ciclos, margem 4
     localparam TRC  = 10;  // tRC  (60ns)  -> ~9 ciclos, margem 10
     localparam TMRD = 3;   // tMRD (2 clk) -> margem 3
 
+    // COMANDOS CORRETOS!
+
     // Comandos SDRAM {cs_n, ras_n, cas_n, we_n}
     localparam CMD_NOP     = 4'b0111;
     localparam CMD_PALL    = 4'b0010;
-    localparam CMD_AREF    = 4'b0001;
+    localparam CMD_AREF    = 4'b0001;       // Auto Refresh
     localparam CMD_MRS     = 4'b0000;
 
     // Estados de Inicialização
@@ -63,7 +71,7 @@ module init (
             case (state)
                 S_WAIT: begin
                     timer <= timer + 1'b1;
-                    if (timer == 15'd15000) begin
+                    if (timer == 15'd30000) begin
                         state <= S_PRECH;
                         timer <= 15'd0;
                         
@@ -84,6 +92,8 @@ module init (
                     end
                 end
                 
+                // ADICIONAR MAIS AUTO-REFRESHS
+
                 S_REF1: begin
                     timer <= timer + 1'b1;
                     if (timer == TRC) begin
@@ -122,6 +132,8 @@ module init (
                     {cs_n, ras_n, cas_n, we_n} <= CMD_NOP;
                 end
                 
+                // REAVALIAR COMANDO ACTIVE NO FINAL!!
+
                 default: begin
                     state <= S_WAIT;
                     timer <= 15'd0;
