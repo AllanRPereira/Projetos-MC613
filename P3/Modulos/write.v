@@ -65,7 +65,7 @@ module dram_write (
 
     assign bank = address[25:24];
     assign row  = address[23:11];
-    assign col  = address[10:2];
+    assign col  = address[10:0];
 
     // ------------------------------------------------------------
     // Controle do barramento de dados
@@ -156,7 +156,7 @@ module dram_write (
                     ba <= bank;
 
                     // A10 = 0 -> sem auto-precharge
-                    a <= {3'b000, 1'b0, col};
+                    a <= {1'b0, col[10], 1'b0, col[9:0]};
 
                     dq_out <= data_in;
                     dq_oe  <= 1'b1;
