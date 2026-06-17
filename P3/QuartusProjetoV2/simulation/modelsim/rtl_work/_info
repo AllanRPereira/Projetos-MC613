@@ -1,0 +1,208 @@
+m255
+K4
+z2
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z0 d/home/c-ec2024/ra252694/Documents/MC613/PosGreve/Projetos-MC613/P3/QuartusProjetoV2/simulation/modelsim
+vautorefresh
+Z1 !s110 1781726540
+!i10b 1
+!s100 dS_g8eBh55_h<Xz:?:5g20
+IR9JOZ8[`_jo<oV@[0MTIL0
+Z2 VDg1SIo80bB@j0V0VzS_@n1
+R0
+w1781718149
+8/home/c-ec2024/ra252694/Documents/MC613/PosGreve/Projetos-MC613/P3/Modulos/autorefresh.v
+F/home/c-ec2024/ra252694/Documents/MC613/PosGreve/Projetos-MC613/P3/Modulos/autorefresh.v
+L0 1
+Z3 OV;L;10.5b;63
+r1
+!s85 0
+31
+Z4 !s108 1781726540.000000
+!s107 /home/c-ec2024/ra252694/Documents/MC613/PosGreve/Projetos-MC613/P3/Modulos/autorefresh.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+/home/c-ec2024/ra252694/Documents/MC613/PosGreve/Projetos-MC613/P3/Modulos|/home/c-ec2024/ra252694/Documents/MC613/PosGreve/Projetos-MC613/P3/Modulos/autorefresh.v|
+!i113 1
+Z5 o-vlog01compat -work work
+Z6 !s92 -vlog01compat -work work +incdir+/home/c-ec2024/ra252694/Documents/MC613/PosGreve/Projetos-MC613/P3/Modulos
+Z7 tCvgOpt 0
+vbin2hex
+R1
+!i10b 1
+!s100 00^zbRKGz=3EzfJ=^CAbi1
+IXOXT<Z]biT4b6UV_A=aoR1
+R2
+R0
+Z8 w1781714303
+8/home/c-ec2024/ra252694/Documents/MC613/PosGreve/Projetos-MC613/P3/Modulos/bin2hex.v
+F/home/c-ec2024/ra252694/Documents/MC613/PosGreve/Projetos-MC613/P3/Modulos/bin2hex.v
+L0 1
+R3
+r1
+!s85 0
+31
+R4
+!s107 /home/c-ec2024/ra252694/Documents/MC613/PosGreve/Projetos-MC613/P3/Modulos/bin2hex.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+/home/c-ec2024/ra252694/Documents/MC613/PosGreve/Projetos-MC613/P3/Modulos|/home/c-ec2024/ra252694/Documents/MC613/PosGreve/Projetos-MC613/P3/Modulos/bin2hex.v|
+!i113 1
+R5
+R6
+R7
+vdram_controller
+R1
+!i10b 1
+!s100 >MT@kce[OQKOJg8W8Nfh^0
+I:=nHNA7e<GkE:L;66j1PW2
+R2
+R0
+w1781723791
+8/home/c-ec2024/ra252694/Documents/MC613/PosGreve/Projetos-MC613/P3/Modulos/dram_controller.v
+F/home/c-ec2024/ra252694/Documents/MC613/PosGreve/Projetos-MC613/P3/Modulos/dram_controller.v
+L0 1
+R3
+r1
+!s85 0
+31
+R4
+!s107 /home/c-ec2024/ra252694/Documents/MC613/PosGreve/Projetos-MC613/P3/Modulos/dram_controller.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+/home/c-ec2024/ra252694/Documents/MC613/PosGreve/Projetos-MC613/P3/Modulos|/home/c-ec2024/ra252694/Documents/MC613/PosGreve/Projetos-MC613/P3/Modulos/dram_controller.v|
+!i113 1
+R5
+R6
+R7
+vdram_iface
+R1
+!i10b 1
+!s100 dMFPiCjAA^OK?2di:4RF^3
+IH1<GR5<W`YaRf1Ce=AgU`0
+R2
+R0
+w1781725191
+8/home/c-ec2024/ra252694/Documents/MC613/PosGreve/Projetos-MC613/P3/Modulos/dram_iface.v
+F/home/c-ec2024/ra252694/Documents/MC613/PosGreve/Projetos-MC613/P3/Modulos/dram_iface.v
+L0 1
+R3
+r1
+!s85 0
+31
+R4
+!s107 /home/c-ec2024/ra252694/Documents/MC613/PosGreve/Projetos-MC613/P3/Modulos/dram_iface.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+/home/c-ec2024/ra252694/Documents/MC613/PosGreve/Projetos-MC613/P3/Modulos|/home/c-ec2024/ra252694/Documents/MC613/PosGreve/Projetos-MC613/P3/Modulos/dram_iface.v|
+!i113 1
+R5
+R6
+R7
+vdram_top_level
+R1
+!i10b 1
+!s100 ^fQ_h@5^VTC7U1^lSmjP<0
+I46dQ7FWnd=3jcGg;bnTGe3
+R2
+R0
+w1781724489
+8/home/c-ec2024/ra252694/Documents/MC613/PosGreve/Projetos-MC613/P3/Modulos/dram_top_level.v
+F/home/c-ec2024/ra252694/Documents/MC613/PosGreve/Projetos-MC613/P3/Modulos/dram_top_level.v
+L0 1
+R3
+r1
+!s85 0
+31
+!s108 1781726539.000000
+!s107 /home/c-ec2024/ra252694/Documents/MC613/PosGreve/Projetos-MC613/P3/Modulos/dram_top_level.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+/home/c-ec2024/ra252694/Documents/MC613/PosGreve/Projetos-MC613/P3/Modulos|/home/c-ec2024/ra252694/Documents/MC613/PosGreve/Projetos-MC613/P3/Modulos/dram_top_level.v|
+!i113 1
+R5
+R6
+R7
+vinit
+R1
+!i10b 1
+!s100 iQ2j7c]60>4QTn3aN@VZB1
+I^K3hDJe<m;@Xk4bk]m41c3
+R2
+R0
+w1781721614
+8/home/c-ec2024/ra252694/Documents/MC613/PosGreve/Projetos-MC613/P3/QuartusProjetoV2/../Modulos/init.v
+F/home/c-ec2024/ra252694/Documents/MC613/PosGreve/Projetos-MC613/P3/QuartusProjetoV2/../Modulos/init.v
+L0 1
+R3
+r1
+!s85 0
+31
+R4
+!s107 /home/c-ec2024/ra252694/Documents/MC613/PosGreve/Projetos-MC613/P3/QuartusProjetoV2/../Modulos/init.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+/home/c-ec2024/ra252694/Documents/MC613/PosGreve/Projetos-MC613/P3/QuartusProjetoV2/../Modulos|/home/c-ec2024/ra252694/Documents/MC613/PosGreve/Projetos-MC613/P3/QuartusProjetoV2/../Modulos/init.v|
+!i113 1
+R5
+!s92 -vlog01compat -work work +incdir+/home/c-ec2024/ra252694/Documents/MC613/PosGreve/Projetos-MC613/P3/QuartusProjetoV2/../Modulos
+R7
+vinit_tb
+R1
+!i10b 1
+!s100 kmYhCNY4H<ZmPQSn=YY8e1
+I@2aMW<D44UKF2W9A2Yon61
+R2
+R0
+w1781726510
+8/home/c-ec2024/ra252694/Documents/MC613/PosGreve/Projetos-MC613/P3/QuartusProjetoV2/../TestBenchs/init_tb.v
+F/home/c-ec2024/ra252694/Documents/MC613/PosGreve/Projetos-MC613/P3/QuartusProjetoV2/../TestBenchs/init_tb.v
+L0 3
+R3
+r1
+!s85 0
+31
+R4
+!s107 /home/c-ec2024/ra252694/Documents/MC613/PosGreve/Projetos-MC613/P3/QuartusProjetoV2/../TestBenchs/init_tb.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+/home/c-ec2024/ra252694/Documents/MC613/PosGreve/Projetos-MC613/P3/QuartusProjetoV2/../TestBenchs|/home/c-ec2024/ra252694/Documents/MC613/PosGreve/Projetos-MC613/P3/QuartusProjetoV2/../TestBenchs/init_tb.v|
+!i113 1
+R5
+!s92 -vlog01compat -work work +incdir+/home/c-ec2024/ra252694/Documents/MC613/PosGreve/Projetos-MC613/P3/QuartusProjetoV2/../TestBenchs
+R7
+vread
+R1
+!i10b 1
+!s100 A:=JCf6oR`j]KTfAKdE553
+I4zM_VGAXKmDR==FloM7m<0
+R2
+R0
+R8
+8/home/c-ec2024/ra252694/Documents/MC613/PosGreve/Projetos-MC613/P3/Modulos/read.v
+F/home/c-ec2024/ra252694/Documents/MC613/PosGreve/Projetos-MC613/P3/Modulos/read.v
+L0 1
+R3
+r1
+!s85 0
+31
+R4
+!s107 /home/c-ec2024/ra252694/Documents/MC613/PosGreve/Projetos-MC613/P3/Modulos/read.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+/home/c-ec2024/ra252694/Documents/MC613/PosGreve/Projetos-MC613/P3/Modulos|/home/c-ec2024/ra252694/Documents/MC613/PosGreve/Projetos-MC613/P3/Modulos/read.v|
+!i113 1
+R5
+R6
+R7
+vwrite
+R1
+!i10b 1
+!s100 j5SgX[`;FgRSGl:dh?`@^0
+I:H3kd39WN2D:>k7?e[_a;3
+R2
+R0
+w1781718883
+8/home/c-ec2024/ra252694/Documents/MC613/PosGreve/Projetos-MC613/P3/Modulos/write.v
+F/home/c-ec2024/ra252694/Documents/MC613/PosGreve/Projetos-MC613/P3/Modulos/write.v
+L0 1
+R3
+r1
+!s85 0
+31
+R4
+!s107 /home/c-ec2024/ra252694/Documents/MC613/PosGreve/Projetos-MC613/P3/Modulos/write.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+/home/c-ec2024/ra252694/Documents/MC613/PosGreve/Projetos-MC613/P3/Modulos|/home/c-ec2024/ra252694/Documents/MC613/PosGreve/Projetos-MC613/P3/Modulos/write.v|
+!i113 1
+R5
+R6
+R7

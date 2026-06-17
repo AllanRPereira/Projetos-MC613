@@ -1,5 +1,5 @@
-Analysis & Synthesis report for dram_controller
-Wed Jun 17 14:33:53 2026
+Analysis & Elaboration report for dram_controller
+Wed Jun 17 17:01:16 2026
 Quartus Prime Version 17.1.0 Build 590 10/25/2017 SJ Lite Edition
 
 
@@ -7,20 +7,23 @@ Quartus Prime Version 17.1.0 Build 590 10/25/2017 SJ Lite Edition
 ; Table of Contents ;
 ---------------------
   1. Legal Notice
-  2. Analysis & Synthesis Summary
-  3. Analysis & Synthesis Settings
-  4. Parallel Compilation
-  5. Analysis & Synthesis Source Files Read
-  6. Analysis & Synthesis Resource Usage Summary
-  7. Analysis & Synthesis Resource Utilization by Entity
-  8. State Machine - |dram_iface|estado
-  9. Registers Removed During Synthesis
- 10. General Register Statistics
- 11. Multiplexer Restructuring Statistics (Restructuring Performed)
- 12. Post-Synthesis Netlist Statistics for Top Partition
- 13. Elapsed Time Per Partition
- 14. Analysis & Synthesis Messages
- 15. Analysis & Synthesis Suppressed Messages
+  2. Analysis & Elaboration Summary
+  3. Parallel Compilation
+  4. Parameter Settings for User Entity Instance: dram_controller:u_dram_controller
+  5. Parameter Settings for User Entity Instance: dram_controller:u_dram_controller|read:u_read
+  6. Parameter Settings for User Entity Instance: dram_controller:u_dram_controller|autorefresh:u_refresh
+  7. Analysis & Elaboration Settings
+  8. Port Connectivity Checks: "bin2hex:u_hex5"
+  9. Port Connectivity Checks: "bin2hex:u_hex4"
+ 10. Port Connectivity Checks: "bin2hex:u_hex1"
+ 11. Port Connectivity Checks: "bin2hex:u_hex0"
+ 12. Port Connectivity Checks: "dram_controller:u_dram_controller|autorefresh:u_refresh"
+ 13. Port Connectivity Checks: "dram_controller:u_dram_controller|write:u_write"
+ 14. Port Connectivity Checks: "dram_controller:u_dram_controller|read:u_read"
+ 15. Port Connectivity Checks: "dram_controller:u_dram_controller|init:u_init"
+ 16. Port Connectivity Checks: "dram_controller:u_dram_controller"
+ 17. Analysis & Elaboration Messages
+ 18. Analysis & Elaboration Suppressed Messages
 
 
 
@@ -43,36 +46,91 @@ refer to the applicable agreement for further details.
 
 
 
-+-------------------------------------------------------------------------------+
-; Analysis & Synthesis Summary                                                  ;
-+---------------------------------+---------------------------------------------+
-; Analysis & Synthesis Status     ; Successful - Wed Jun 17 14:33:53 2026       ;
-; Quartus Prime Version           ; 17.1.0 Build 590 10/25/2017 SJ Lite Edition ;
-; Revision Name                   ; dram_controller                             ;
-; Top-level Entity Name           ; dram_iface                                  ;
-; Family                          ; Cyclone V                                   ;
-; Logic utilization (in ALMs)     ; N/A                                         ;
-; Total registers                 ; 31                                          ;
-; Total pins                      ; 66                                          ;
-; Total virtual pins              ; 0                                           ;
-; Total block memory bits         ; 0                                           ;
-; Total DSP Blocks                ; 0                                           ;
-; Total HSSI RX PCSs              ; 0                                           ;
-; Total HSSI PMA RX Deserializers ; 0                                           ;
-; Total HSSI TX PCSs              ; 0                                           ;
-; Total HSSI PMA TX Serializers   ; 0                                           ;
-; Total PLLs                      ; 0                                           ;
-; Total DLLs                      ; 0                                           ;
-+---------------------------------+---------------------------------------------+
++-----------------------------------------------------------------------------+
+; Analysis & Elaboration Summary                                              ;
++-------------------------------+---------------------------------------------+
+; Analysis & Elaboration Status ; Successful - Wed Jun 17 17:01:16 2026       ;
+; Quartus Prime Version         ; 17.1.0 Build 590 10/25/2017 SJ Lite Edition ;
+; Revision Name                 ; dram_controller                             ;
+; Top-level Entity Name         ; dram_top_level                              ;
+; Family                        ; Cyclone V                                   ;
+; Logic utilization (in ALMs)   ; N/A until Partition Merge                   ;
+; Total registers               ; N/A until Partition Merge                   ;
+; Total pins                    ; N/A until Partition Merge                   ;
+; Total virtual pins            ; N/A until Partition Merge                   ;
+; Total block memory bits       ; N/A until Partition Merge                   ;
+; Total PLLs                    ; N/A until Partition Merge                   ;
+; Total DLLs                    ; N/A until Partition Merge                   ;
++-------------------------------+---------------------------------------------+
+
+
++------------------------------------------+
+; Parallel Compilation                     ;
++----------------------------+-------------+
+; Processors                 ; Number      ;
++----------------------------+-------------+
+; Number detected on machine ; 20          ;
+; Maximum allowed            ; 12          ;
+;                            ;             ;
+; Average used               ; 1.00        ;
+; Maximum used               ; 1           ;
+;                            ;             ;
+; Usage by Processor         ; % Time Used ;
+;     Processor 1            ; 100.0%      ;
++----------------------------+-------------+
+
+
++--------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: dram_controller:u_dram_controller ;
++----------------+-------+-------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                  ;
++----------------+-------+-------------------------------------------------------+
+; DATA_WIDTH     ; 8     ; Signed Integer                                        ;
+; ADDR_WIDTH     ; 26    ; Signed Integer                                        ;
+; BANK_BITS      ; 2     ; Signed Integer                                        ;
+; ROW_BITS       ; 13    ; Signed Integer                                        ;
+; COL_BITS       ; 11    ; Signed Integer                                        ;
+; TREFI_CYCLES   ; 1116  ; Signed Integer                                        ;
+; TRFC_CYCLES    ; 10    ; Signed Integer                                        ;
++----------------+-------+-------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++--------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: dram_controller:u_dram_controller|read:u_read ;
++----------------+-------+-------------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                              ;
++----------------+-------+-------------------------------------------------------------------+
+; DATA_WIDTH     ; 8     ; Signed Integer                                                    ;
+; BANK_BITS      ; 2     ; Signed Integer                                                    ;
+; ROW_BITS       ; 13    ; Signed Integer                                                    ;
+; COL_BITS       ; 11    ; Signed Integer                                                    ;
+; TRCD_CYCLES    ; 3     ; Signed Integer                                                    ;
+; TCAS_CYCLES    ; 3     ; Signed Integer                                                    ;
+; TRP_CYCLES     ; 4     ; Signed Integer                                                    ;
+; PRECHARGE_ALL  ; 0     ; Unsigned Binary                                                   ;
++----------------+-------+-------------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++------------------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: dram_controller:u_dram_controller|autorefresh:u_refresh ;
++----------------+-------+-----------------------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                                        ;
++----------------+-------+-----------------------------------------------------------------------------+
+; TREFI_CYCLES   ; 1116  ; Signed Integer                                                              ;
+; TRFC_CYCLES    ; 10    ; Signed Integer                                                              ;
++----------------+-------+-----------------------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
 
 
 +---------------------------------------------------------------------------------------------------------------------------+
-; Analysis & Synthesis Settings                                                                                             ;
+; Analysis & Elaboration Settings                                                                                           ;
 +---------------------------------------------------------------------------------+--------------------+--------------------+
 ; Option                                                                          ; Setting            ; Default Value      ;
 +---------------------------------------------------------------------------------+--------------------+--------------------+
 ; Device                                                                          ; 5CSEMA5F31C6       ;                    ;
-; Top-level entity name                                                           ; dram_iface         ; dram_controller    ;
+; Top-level entity name                                                           ; dram_top_level     ; dram_controller    ;
 ; Family name                                                                     ; Cyclone V          ; Cyclone V          ;
 ; Use smart compilation                                                           ; Off                ; Off                ;
 ; Enable parallel Assembler and TimeQuest Timing Analyzer during compilation      ; On                 ; On                 ;
@@ -153,234 +211,129 @@ refer to the applicable agreement for further details.
 +---------------------------------------------------------------------------------+--------------------+--------------------+
 
 
-+------------------------------------------+
-; Parallel Compilation                     ;
-+----------------------------+-------------+
-; Processors                 ; Number      ;
-+----------------------------+-------------+
-; Number detected on machine ; 20          ;
-; Maximum allowed            ; 12          ;
-;                            ;             ;
-; Average used               ; 1.00        ;
-; Maximum used               ; 12          ;
-;                            ;             ;
-; Usage by Processor         ; % Time Used ;
-;     Processor 1            ; 100.0%      ;
-;     Processor 2            ;   0.0%      ;
-;     Processors 3-12        ;   0.0%      ;
-+----------------------------+-------------+
++--------------------------------------------+
+; Port Connectivity Checks: "bin2hex:u_hex5" ;
++------+-------+----------+------------------+
+; Port ; Type  ; Severity ; Details          ;
++------+-------+----------+------------------+
+; lock ; Input ; Info     ; Stuck at GND     ;
++------+-------+----------+------------------+
 
 
-+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Analysis & Synthesis Source Files Read                                                                                                                                            ;
-+----------------------------------+-----------------+------------------------+-------------------------------------------------------------------------------------------+---------+
-; File Name with User-Entered Path ; Used in Netlist ; File Type              ; File Name with Absolute Path                                                              ; Library ;
-+----------------------------------+-----------------+------------------------+-------------------------------------------------------------------------------------------+---------+
-; ../Modulos/dram_iface.v          ; yes             ; User Verilog HDL File  ; /home/c-ec2024/ra252694/Documents/MC613/Pós Greve/Projetos-MC613/P3/Modulos/dram_iface.v ;         ;
-+----------------------------------+-----------------+------------------------+-------------------------------------------------------------------------------------------+---------+
++--------------------------------------------+
+; Port Connectivity Checks: "bin2hex:u_hex4" ;
++------+-------+----------+------------------+
+; Port ; Type  ; Severity ; Details          ;
++------+-------+----------+------------------+
+; lock ; Input ; Info     ; Stuck at GND     ;
++------+-------+----------+------------------+
 
 
-+---------------------------------------------------------+
-; Analysis & Synthesis Resource Usage Summary             ;
-+---------------------------------------------+-----------+
-; Resource                                    ; Usage     ;
-+---------------------------------------------+-----------+
-; Estimate of Logic utilization (ALMs needed) ; 20        ;
-;                                             ;           ;
-; Combinational ALUT usage for logic          ; 35        ;
-;     -- 7 input functions                    ; 0         ;
-;     -- 6 input functions                    ; 2         ;
-;     -- 5 input functions                    ; 8         ;
-;     -- 4 input functions                    ; 5         ;
-;     -- <=3 input functions                  ; 20        ;
-;                                             ;           ;
-; Dedicated logic registers                   ; 31        ;
-;                                             ;           ;
-; I/O pins                                    ; 66        ;
-;                                             ;           ;
-; Total DSP Blocks                            ; 0         ;
-;                                             ;           ;
-; Maximum fan-out node                        ; clk~input ;
-; Maximum fan-out                             ; 31        ;
-; Total fan-out                               ; 311       ;
-; Average fan-out                             ; 1.51      ;
-+---------------------------------------------+-----------+
++--------------------------------------------+
+; Port Connectivity Checks: "bin2hex:u_hex1" ;
++------+-------+----------+------------------+
+; Port ; Type  ; Severity ; Details          ;
++------+-------+----------+------------------+
+; lock ; Input ; Info     ; Stuck at GND     ;
++------+-------+----------+------------------+
 
 
-+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Analysis & Synthesis Resource Utilization by Entity                                                                                                                                    ;
-+----------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+---------------------+-------------+--------------+
-; Compilation Hierarchy Node ; Combinational ALUTs ; Dedicated Logic Registers ; Block Memory Bits ; DSP Blocks ; Pins ; Virtual Pins ; Full Hierarchy Name ; Entity Name ; Library Name ;
-+----------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+---------------------+-------------+--------------+
-; |dram_iface                ; 35 (35)             ; 31 (31)                   ; 0                 ; 0          ; 66   ; 0            ; |dram_iface         ; dram_iface  ; work         ;
-+----------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+---------------------+-------------+--------------+
-Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
++--------------------------------------------+
+; Port Connectivity Checks: "bin2hex:u_hex0" ;
++------+-------+----------+------------------+
+; Port ; Type  ; Severity ; Details          ;
++------+-------+----------+------------------+
+; lock ; Input ; Info     ; Stuck at GND     ;
++------+-------+----------+------------------+
 
 
-Encoding Type:  One-Hot
-+------------------------------------------------------------------------------------------------------------+
-; State Machine - |dram_iface|estado                                                                         ;
-+-------------------+-------------------+-----------------+------------------+------------+------------------+
-; Name              ; estado.WAIT_WRITE ; estado.REQ_READ ; estado.REQ_WRITE ; estado.000 ; estado.WAIT_READ ;
-+-------------------+-------------------+-----------------+------------------+------------+------------------+
-; estado.000        ; 0                 ; 0               ; 0                ; 0          ; 0                ;
-; estado.REQ_WRITE  ; 0                 ; 0               ; 1                ; 1          ; 0                ;
-; estado.REQ_READ   ; 0                 ; 1               ; 0                ; 1          ; 0                ;
-; estado.WAIT_WRITE ; 1                 ; 0               ; 0                ; 1          ; 0                ;
-; estado.WAIT_READ  ; 0                 ; 0               ; 0                ; 1          ; 1                ;
-+-------------------+-------------------+-----------------+------------------+------------+------------------+
++-------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "dram_controller:u_dram_controller|autorefresh:u_refresh" ;
++------+--------+----------+----------------------------------------------------------+
+; Port ; Type   ; Severity ; Details                                                  ;
++------+--------+----------+----------------------------------------------------------+
+; cke  ; Output ; Info     ; Explicitly unconnected                                   ;
+; busy ; Output ; Info     ; Explicitly unconnected                                   ;
++------+--------+----------+----------------------------------------------------------+
 
 
-+---------------------------------------------------------------------------------+
-; Registers Removed During Synthesis                                              ;
-+----------------------------------------+----------------------------------------+
-; Register name                          ; Reason for Removal                     ;
-+----------------------------------------+----------------------------------------+
-; address[11]~reg0                       ; Merged with address[10]~reg0           ;
-; address[12]~reg0                       ; Merged with address[10]~reg0           ;
-; address[13]~reg0                       ; Merged with address[10]~reg0           ;
-; address[14]~reg0                       ; Merged with address[10]~reg0           ;
-; address[15]~reg0                       ; Merged with address[10]~reg0           ;
-; address[16]~reg0                       ; Merged with address[10]~reg0           ;
-; address[17]~reg0                       ; Merged with address[10]~reg0           ;
-; address[18]~reg0                       ; Merged with address[10]~reg0           ;
-; address[19]~reg0                       ; Merged with address[10]~reg0           ;
-; address[20]~reg0                       ; Merged with address[10]~reg0           ;
-; address[24]~reg0                       ; Merged with address[10]~reg0           ;
-; address[2]~reg0                        ; Merged with address[10]~reg0           ;
-; address[3]~reg0                        ; Merged with address[10]~reg0           ;
-; address[4]~reg0                        ; Merged with address[10]~reg0           ;
-; address[5]~reg0                        ; Merged with address[10]~reg0           ;
-; address[6]~reg0                        ; Merged with address[10]~reg0           ;
-; address[7]~reg0                        ; Merged with address[10]~reg0           ;
-; address[8]~reg0                        ; Merged with address[10]~reg0           ;
-; address[9]~reg0                        ; Merged with address[10]~reg0           ;
-; data_out[5..7]                         ; Merged with data_out[4]                ;
-; data_out[4]                            ; Stuck at GND due to stuck port data_in ;
-; address[10]~reg0                       ; Stuck at GND due to stuck port data_in ;
-; estado~11                              ; Lost fanout                            ;
-; estado~12                              ; Lost fanout                            ;
-; Total Number of Removed Registers = 26 ;                                        ;
-+----------------------------------------+----------------------------------------+
++----------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "dram_controller:u_dram_controller|write:u_write"                                    ;
++------+--------+----------+-------------------------------------------------------------------------------------+
+; Port ; Type   ; Severity ; Details                                                                             ;
++------+--------+----------+-------------------------------------------------------------------------------------+
+; busy ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++------+--------+----------+-------------------------------------------------------------------------------------+
 
 
-+------------------------------------------------------+
-; General Register Statistics                          ;
-+----------------------------------------------+-------+
-; Statistic                                    ; Value ;
-+----------------------------------------------+-------+
-; Total registers                              ; 31    ;
-; Number of registers using Synchronous Clear  ; 5     ;
-; Number of registers using Synchronous Load   ; 0     ;
-; Number of registers using Asynchronous Clear ; 0     ;
-; Number of registers using Asynchronous Load  ; 0     ;
-; Number of registers using Clock Enable       ; 20    ;
-; Number of registers using Preset             ; 0     ;
-+----------------------------------------------+-------+
++---------------------------------------------------------------------------+
+; Port Connectivity Checks: "dram_controller:u_dram_controller|read:u_read" ;
++------+--------+----------+------------------------------------------------+
+; Port ; Type   ; Severity ; Details                                        ;
++------+--------+----------+------------------------------------------------+
+; cke  ; Output ; Info     ; Explicitly unconnected                         ;
++------+--------+----------+------------------------------------------------+
 
 
-+------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Multiplexer Restructuring Statistics (Restructuring Performed)                                                                                       ;
-+--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------------------+
-; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output             ;
-+--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------------------+
-; 3:1                ; 6 bits    ; 12 LEs        ; 6 LEs                ; 6 LEs                  ; Yes        ; |dram_iface|endereco_ultima_leitura[2] ;
-; 3:1                ; 4 bits    ; 8 LEs         ; 4 LEs                ; 4 LEs                  ; Yes        ; |dram_iface|dado_escrito[0]            ;
-; 3:1                ; 4 bits    ; 8 LEs         ; 4 LEs                ; 4 LEs                  ; Yes        ; |dram_iface|dado_exibir[3]             ;
-; 3:1                ; 6 bits    ; 12 LEs        ; 6 LEs                ; 6 LEs                  ; Yes        ; |dram_iface|address[0]~reg0            ;
-; 11:1               ; 2 bits    ; 14 LEs        ; 8 LEs                ; 6 LEs                  ; No         ; |dram_iface|estado                     ;
-; 11:1               ; 2 bits    ; 14 LEs        ; 8 LEs                ; 6 LEs                  ; No         ; |dram_iface|estado                     ;
-+--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------------------+
++---------------------------------------------------------------------------+
+; Port Connectivity Checks: "dram_controller:u_dram_controller|init:u_init" ;
++------+--------+----------+------------------------------------------------+
+; Port ; Type   ; Severity ; Details                                        ;
++------+--------+----------+------------------------------------------------+
+; cke  ; Output ; Info     ; Explicitly unconnected                         ;
++------+--------+----------+------------------------------------------------+
 
 
-+-----------------------------------------------------+
-; Post-Synthesis Netlist Statistics for Top Partition ;
-+-----------------------+-----------------------------+
-; Type                  ; Count                       ;
-+-----------------------+-----------------------------+
-; arriav_ff             ; 31                          ;
-;     ENA               ; 20                          ;
-;     SCLR              ; 5                           ;
-;     plain             ; 6                           ;
-; arriav_io_obuf        ; 8                           ;
-; arriav_lcell_comb     ; 36                          ;
-;     normal            ; 36                          ;
-;         0 data inputs ; 1                           ;
-;         2 data inputs ; 16                          ;
-;         3 data inputs ; 4                           ;
-;         4 data inputs ; 5                           ;
-;         5 data inputs ; 8                           ;
-;         6 data inputs ; 2                           ;
-; boundary_port         ; 66                          ;
-;                       ;                             ;
-; Max LUT depth         ; 3.00                        ;
-; Average LUT depth     ; 1.20                        ;
-+-----------------------+-----------------------------+
++--------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "dram_controller:u_dram_controller"                                                      ;
++----------+--------+----------+-------------------------------------------------------------------------------------+
+; Port     ; Type   ; Severity ; Details                                                                             ;
++----------+--------+----------+-------------------------------------------------------------------------------------+
+; data_out ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++----------+--------+----------+-------------------------------------------------------------------------------------+
 
 
-+-------------------------------+
-; Elapsed Time Per Partition    ;
-+----------------+--------------+
-; Partition Name ; Elapsed Time ;
-+----------------+--------------+
-; Top            ; 00:00:00     ;
-+----------------+--------------+
-
-
-+-------------------------------+
-; Analysis & Synthesis Messages ;
-+-------------------------------+
++---------------------------------+
+; Analysis & Elaboration Messages ;
++---------------------------------+
 Info: *******************************************************************
-Info: Running Quartus Prime Analysis & Synthesis
+Info: Running Quartus Prime Analysis & Elaboration
     Info: Version 17.1.0 Build 590 10/25/2017 SJ Lite Edition
-    Info: Processing started: Wed Jun 17 14:33:48 2026
-Info: Command: quartus_map --read_settings_files=on --write_settings_files=off dram_controller -c dram_controller
+    Info: Processing started: Wed Jun 17 17:01:11 2026
+Info: Command: quartus_map --read_settings_files=on --write_settings_files=off dram_controller -c dram_controller --analysis_and_elaboration
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (20030): Parallel compilation is enabled and will use 12 of the 12 processors detected
-Info (12021): Found 1 design units, including 1 entities, in source file /home/c-ec2024/ra252694/Documents/MC613/Pós Greve/Projetos-MC613/P3/Modulos/dram_controller.v
-    Info (12023): Found entity 1: dram_controller File: /home/c-ec2024/ra252694/Documents/MC613/Pós Greve/Projetos-MC613/P3/Modulos/dram_controller.v Line: 1
-Info (12021): Found 1 design units, including 1 entities, in source file /home/c-ec2024/ra252694/Documents/MC613/Pós Greve/Projetos-MC613/P3/Modulos/dram_iface.v
-    Info (12023): Found entity 1: dram_iface File: /home/c-ec2024/ra252694/Documents/MC613/Pós Greve/Projetos-MC613/P3/Modulos/dram_iface.v Line: 1
-Info (12021): Found 1 design units, including 1 entities, in source file /home/c-ec2024/ra252694/Documents/MC613/Pós Greve/Projetos-MC613/P3/Modulos/write.v
-    Info (12023): Found entity 1: write File: /home/c-ec2024/ra252694/Documents/MC613/Pós Greve/Projetos-MC613/P3/Modulos/write.v Line: 1
-Info (12021): Found 1 design units, including 1 entities, in source file /home/c-ec2024/ra252694/Documents/MC613/Pós Greve/Projetos-MC613/P3/Modulos/read.v
-    Info (12023): Found entity 1: read File: /home/c-ec2024/ra252694/Documents/MC613/Pós Greve/Projetos-MC613/P3/Modulos/read.v Line: 1
-Info (12021): Found 1 design units, including 1 entities, in source file /home/c-ec2024/ra252694/Documents/MC613/Pós Greve/Projetos-MC613/P3/Modulos/init.v
-    Info (12023): Found entity 1: init File: /home/c-ec2024/ra252694/Documents/MC613/Pós Greve/Projetos-MC613/P3/Modulos/init.v Line: 1
-Info (12021): Found 1 design units, including 1 entities, in source file /home/c-ec2024/ra252694/Documents/MC613/Pós Greve/Projetos-MC613/P3/Modulos/bin2hex.v
-    Info (12023): Found entity 1: bin2hex File: /home/c-ec2024/ra252694/Documents/MC613/Pós Greve/Projetos-MC613/P3/Modulos/bin2hex.v Line: 1
-Info (12021): Found 1 design units, including 1 entities, in source file /home/c-ec2024/ra252694/Documents/MC613/Pós Greve/Projetos-MC613/P3/Modulos/autorefresh.v
-    Info (12023): Found entity 1: autorefresh File: /home/c-ec2024/ra252694/Documents/MC613/Pós Greve/Projetos-MC613/P3/Modulos/autorefresh.v Line: 1
-Info (12127): Elaborating entity "dram_iface" for the top level hierarchy
-Warning (12069): Ignored assignment(s) for "KEY[0]" because "KEY" is not a bus or array File: /home/c-ec2024/ra252694/Documents/MC613/Pós Greve/Projetos-MC613/P3/Modulos/dram_iface.v Line: 5
-Warning (12069): Ignored assignment(s) for "KEY[1]" because "KEY" is not a bus or array File: /home/c-ec2024/ra252694/Documents/MC613/Pós Greve/Projetos-MC613/P3/Modulos/dram_iface.v Line: 5
-Warning (12069): Ignored assignment(s) for "KEY[2]" because "KEY" is not a bus or array File: /home/c-ec2024/ra252694/Documents/MC613/Pós Greve/Projetos-MC613/P3/Modulos/dram_iface.v Line: 5
-Warning (12069): Ignored assignment(s) for "KEY[3]" because "KEY" is not a bus or array File: /home/c-ec2024/ra252694/Documents/MC613/Pós Greve/Projetos-MC613/P3/Modulos/dram_iface.v Line: 5
-Warning (13024): Output pins are stuck at VCC or GND
-    Warning (13410): Pin "HEX5[2]" is stuck at GND File: /home/c-ec2024/ra252694/Documents/MC613/Pós Greve/Projetos-MC613/P3/Modulos/dram_iface.v Line: 9
-    Warning (13410): Pin "HEX5[3]" is stuck at GND File: /home/c-ec2024/ra252694/Documents/MC613/Pós Greve/Projetos-MC613/P3/Modulos/dram_iface.v Line: 9
-    Warning (13410): Pin "address[2]" is stuck at GND File: /home/c-ec2024/ra252694/Documents/MC613/Pós Greve/Projetos-MC613/P3/Modulos/dram_iface.v Line: 89
-    Warning (13410): Pin "address[3]" is stuck at GND File: /home/c-ec2024/ra252694/Documents/MC613/Pós Greve/Projetos-MC613/P3/Modulos/dram_iface.v Line: 89
-    Warning (13410): Pin "address[4]" is stuck at GND File: /home/c-ec2024/ra252694/Documents/MC613/Pós Greve/Projetos-MC613/P3/Modulos/dram_iface.v Line: 89
-    Warning (13410): Pin "address[5]" is stuck at GND File: /home/c-ec2024/ra252694/Documents/MC613/Pós Greve/Projetos-MC613/P3/Modulos/dram_iface.v Line: 89
-    Warning (13410): Pin "address[6]" is stuck at GND File: /home/c-ec2024/ra252694/Documents/MC613/Pós Greve/Projetos-MC613/P3/Modulos/dram_iface.v Line: 89
-    Warning (13410): Pin "address[7]" is stuck at GND File: /home/c-ec2024/ra252694/Documents/MC613/Pós Greve/Projetos-MC613/P3/Modulos/dram_iface.v Line: 89
-    Warning (13410): Pin "address[8]" is stuck at GND File: /home/c-ec2024/ra252694/Documents/MC613/Pós Greve/Projetos-MC613/P3/Modulos/dram_iface.v Line: 89
-    Warning (13410): Pin "address[9]" is stuck at GND File: /home/c-ec2024/ra252694/Documents/MC613/Pós Greve/Projetos-MC613/P3/Modulos/dram_iface.v Line: 89
-    Warning (13410): Pin "address[10]" is stuck at GND File: /home/c-ec2024/ra252694/Documents/MC613/Pós Greve/Projetos-MC613/P3/Modulos/dram_iface.v Line: 89
-    Warning (13410): Pin "address[11]" is stuck at GND File: /home/c-ec2024/ra252694/Documents/MC613/Pós Greve/Projetos-MC613/P3/Modulos/dram_iface.v Line: 89
-    Warning (13410): Pin "address[12]" is stuck at GND File: /home/c-ec2024/ra252694/Documents/MC613/Pós Greve/Projetos-MC613/P3/Modulos/dram_iface.v Line: 89
-    Warning (13410): Pin "address[13]" is stuck at GND File: /home/c-ec2024/ra252694/Documents/MC613/Pós Greve/Projetos-MC613/P3/Modulos/dram_iface.v Line: 89
-    Warning (13410): Pin "address[14]" is stuck at GND File: /home/c-ec2024/ra252694/Documents/MC613/Pós Greve/Projetos-MC613/P3/Modulos/dram_iface.v Line: 89
-    Warning (13410): Pin "address[15]" is stuck at GND File: /home/c-ec2024/ra252694/Documents/MC613/Pós Greve/Projetos-MC613/P3/Modulos/dram_iface.v Line: 89
-    Warning (13410): Pin "address[16]" is stuck at GND File: /home/c-ec2024/ra252694/Documents/MC613/Pós Greve/Projetos-MC613/P3/Modulos/dram_iface.v Line: 89
-    Warning (13410): Pin "address[17]" is stuck at GND File: /home/c-ec2024/ra252694/Documents/MC613/Pós Greve/Projetos-MC613/P3/Modulos/dram_iface.v Line: 89
-    Warning (13410): Pin "address[18]" is stuck at GND File: /home/c-ec2024/ra252694/Documents/MC613/Pós Greve/Projetos-MC613/P3/Modulos/dram_iface.v Line: 89
-    Warning (13410): Pin "address[19]" is stuck at GND File: /home/c-ec2024/ra252694/Documents/MC613/Pós Greve/Projetos-MC613/P3/Modulos/dram_iface.v Line: 89
-    Warning (13410): Pin "address[20]" is stuck at GND File: /home/c-ec2024/ra252694/Documents/MC613/Pós Greve/Projetos-MC613/P3/Modulos/dram_iface.v Line: 89
-    Warning (13410): Pin "address[24]" is stuck at GND File: /home/c-ec2024/ra252694/Documents/MC613/Pós Greve/Projetos-MC613/P3/Modulos/dram_iface.v Line: 89
-Info (286030): Timing-Driven Synthesis is running
-Info (17049): 2 registers lost all their fanouts during netlist optimizations.
+Info (12021): Found 1 design units, including 1 entities, in source file /home/c-ec2024/ra252694/Documents/MC613/PosGreve/Projetos-MC613/P3/TestBenchs/read_tb.v
+    Info (12023): Found entity 1: read_tb File: /home/c-ec2024/ra252694/Documents/MC613/PosGreve/Projetos-MC613/P3/TestBenchs/read_tb.v Line: 3
+Info (12021): Found 1 design units, including 1 entities, in source file /home/c-ec2024/ra252694/Documents/MC613/PosGreve/Projetos-MC613/P3/TestBenchs/write_tb.v
+    Info (12023): Found entity 1: write_tb File: /home/c-ec2024/ra252694/Documents/MC613/PosGreve/Projetos-MC613/P3/TestBenchs/write_tb.v Line: 3
+Info (12021): Found 1 design units, including 1 entities, in source file /home/c-ec2024/ra252694/Documents/MC613/PosGreve/Projetos-MC613/P3/TestBenchs/init_tb.v
+    Info (12023): Found entity 1: init_tb File: /home/c-ec2024/ra252694/Documents/MC613/PosGreve/Projetos-MC613/P3/TestBenchs/init_tb.v Line: 3
+Info (12021): Found 1 design units, including 1 entities, in source file /home/c-ec2024/ra252694/Documents/MC613/PosGreve/Projetos-MC613/P3/Modulos/dram_top_level.v
+    Info (12023): Found entity 1: dram_top_level File: /home/c-ec2024/ra252694/Documents/MC613/PosGreve/Projetos-MC613/P3/Modulos/dram_top_level.v Line: 1
+Info (12021): Found 1 design units, including 1 entities, in source file /home/c-ec2024/ra252694/Documents/MC613/PosGreve/Projetos-MC613/P3/Modulos/dram_controller.v
+    Info (12023): Found entity 1: dram_controller File: /home/c-ec2024/ra252694/Documents/MC613/PosGreve/Projetos-MC613/P3/Modulos/dram_controller.v Line: 1
+Info (12021): Found 1 design units, including 1 entities, in source file /home/c-ec2024/ra252694/Documents/MC613/PosGreve/Projetos-MC613/P3/Modulos/dram_iface.v
+    Info (12023): Found entity 1: dram_iface File: /home/c-ec2024/ra252694/Documents/MC613/PosGreve/Projetos-MC613/P3/Modulos/dram_iface.v Line: 1
+Info (12021): Found 1 design units, including 1 entities, in source file /home/c-ec2024/ra252694/Documents/MC613/PosGreve/Projetos-MC613/P3/Modulos/write.v
+    Info (12023): Found entity 1: write File: /home/c-ec2024/ra252694/Documents/MC613/PosGreve/Projetos-MC613/P3/Modulos/write.v Line: 1
+Info (12021): Found 1 design units, including 1 entities, in source file /home/c-ec2024/ra252694/Documents/MC613/PosGreve/Projetos-MC613/P3/Modulos/read.v
+    Info (12023): Found entity 1: read File: /home/c-ec2024/ra252694/Documents/MC613/PosGreve/Projetos-MC613/P3/Modulos/read.v Line: 1
+Info (12021): Found 1 design units, including 1 entities, in source file /home/c-ec2024/ra252694/Documents/MC613/PosGreve/Projetos-MC613/P3/Modulos/init.v
+    Info (12023): Found entity 1: init File: /home/c-ec2024/ra252694/Documents/MC613/PosGreve/Projetos-MC613/P3/Modulos/init.v Line: 1
+Info (12021): Found 1 design units, including 1 entities, in source file /home/c-ec2024/ra252694/Documents/MC613/PosGreve/Projetos-MC613/P3/Modulos/bin2hex.v
+    Info (12023): Found entity 1: bin2hex File: /home/c-ec2024/ra252694/Documents/MC613/PosGreve/Projetos-MC613/P3/Modulos/bin2hex.v Line: 1
+Info (12021): Found 1 design units, including 1 entities, in source file /home/c-ec2024/ra252694/Documents/MC613/PosGreve/Projetos-MC613/P3/Modulos/autorefresh.v
+    Info (12023): Found entity 1: autorefresh File: /home/c-ec2024/ra252694/Documents/MC613/PosGreve/Projetos-MC613/P3/Modulos/autorefresh.v Line: 1
+Info (12127): Elaborating entity "dram_top_level" for the top level hierarchy
+Info (12128): Elaborating entity "dram_iface" for hierarchy "dram_iface:u_dram_iface" File: /home/c-ec2024/ra252694/Documents/MC613/PosGreve/Projetos-MC613/P3/Modulos/dram_top_level.v Line: 64
+Info (12128): Elaborating entity "dram_controller" for hierarchy "dram_controller:u_dram_controller" File: /home/c-ec2024/ra252694/Documents/MC613/PosGreve/Projetos-MC613/P3/Modulos/dram_top_level.v Line: 84
+Info (10264): Verilog HDL Case Statement information at dram_controller.v(262): all case item expressions in this case statement are onehot File: /home/c-ec2024/ra252694/Documents/MC613/PosGreve/Projetos-MC613/P3/Modulos/dram_controller.v Line: 262
+Info (12128): Elaborating entity "init" for hierarchy "dram_controller:u_dram_controller|init:u_init" File: /home/c-ec2024/ra252694/Documents/MC613/PosGreve/Projetos-MC613/P3/Modulos/dram_controller.v Line: 76
+Info (12128): Elaborating entity "read" for hierarchy "dram_controller:u_dram_controller|read:u_read" File: /home/c-ec2024/ra252694/Documents/MC613/PosGreve/Projetos-MC613/P3/Modulos/dram_controller.v Line: 110
+Info (12128): Elaborating entity "write" for hierarchy "dram_controller:u_dram_controller|write:u_write" File: /home/c-ec2024/ra252694/Documents/MC613/PosGreve/Projetos-MC613/P3/Modulos/dram_controller.v Line: 137
+Info (12128): Elaborating entity "autorefresh" for hierarchy "dram_controller:u_dram_controller|autorefresh:u_refresh" File: /home/c-ec2024/ra252694/Documents/MC613/PosGreve/Projetos-MC613/P3/Modulos/dram_controller.v Line: 167
+Info (12128): Elaborating entity "bin2hex" for hierarchy "bin2hex:u_hex0" File: /home/c-ec2024/ra252694/Documents/MC613/PosGreve/Projetos-MC613/P3/Modulos/dram_top_level.v Line: 86
 Warning (20013): Ignored 571 assignments for entity "DE1_SoC" -- entity does not exist in design
     Warning (20014): Assignment for entity set_instance_assignment -name PACKAGE_SKEW_COMPENSATION OFF -to HPS_DDR3_ADDR[0] -entity DE1_SoC was ignored
     Warning (20014): Assignment for entity set_instance_assignment -name PACKAGE_SKEW_COMPENSATION OFF -to HPS_DDR3_ADDR[10] -entity DE1_SoC was ignored
@@ -953,24 +906,17 @@ Warning (20013): Ignored 571 assignments for entity "DE1_SoC" -- entity does not
     Warning (20014): Assignment for entity set_instance_assignment -name OUTPUT_TERMINATION "SERIES 50 OHM WITH CALIBRATION" -to HPS_DDR3_DQ[9] -entity DE1_SoC was ignored
     Warning (20014): Assignment for entity set_instance_assignment -name D5_DELAY 2 -to HPS_DDR3_CK_N -entity DE1_SoC was ignored
     Warning (20014): Assignment for entity set_instance_assignment -name D5_DELAY 2 -to HPS_DDR3_CK_P -entity DE1_SoC was ignored
-Info (144001): Generated suppressed messages file /home/c-ec2024/ra252694/Documents/MC613/Pós Greve/Projetos-MC613/P3/QuartusProjetoV2/output_files/dram_controller.map.smsg
-Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
-    Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
-Info (21057): Implemented 114 device resources after synthesis - the final resource count might be different
-    Info (21058): Implemented 14 input pins
-    Info (21059): Implemented 44 output pins
-    Info (21060): Implemented 8 bidirectional pins
-    Info (21061): Implemented 48 logic cells
-Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 600 warnings
-    Info: Peak virtual memory: 1315 megabytes
-    Info: Processing ended: Wed Jun 17 14:33:53 2026
+Info (144001): Generated suppressed messages file /home/c-ec2024/ra252694/Documents/MC613/PosGreve/Projetos-MC613/P3/QuartusProjetoV2/output_files/dram_controller.map.smsg
+Info: Quartus Prime Analysis & Elaboration was successful. 0 errors, 573 warnings
+    Info: Peak virtual memory: 1477 megabytes
+    Info: Processing ended: Wed Jun 17 17:01:16 2026
     Info: Elapsed time: 00:00:05
     Info: Total CPU time (on all processors): 00:00:13
 
 
-+------------------------------------------+
-; Analysis & Synthesis Suppressed Messages ;
-+------------------------------------------+
-The suppressed messages can be found in /home/c-ec2024/ra252694/Documents/MC613/Pós Greve/Projetos-MC613/P3/QuartusProjetoV2/output_files/dram_controller.map.smsg.
++--------------------------------------------+
+; Analysis & Elaboration Suppressed Messages ;
++--------------------------------------------+
+The suppressed messages can be found in /home/c-ec2024/ra252694/Documents/MC613/PosGreve/Projetos-MC613/P3/QuartusProjetoV2/output_files/dram_controller.map.smsg.
 
 
