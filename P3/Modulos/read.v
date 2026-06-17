@@ -76,11 +76,13 @@ module read #(
 
 			case (state)
 				S_IDLE: begin
-					ready <= 1'b1;
 					timer <= 8'd0;
 					if (start) begin
+						ready <= 1'b0;     
 						addr_reg <= addr;
 						state <= S_ACTIVATE;
+					end else begin
+						ready <= 1'b1;
 					end
 				end
 
