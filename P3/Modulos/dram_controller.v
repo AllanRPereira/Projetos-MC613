@@ -41,7 +41,7 @@ module dram_controller #(
 	localparam [2:0] S_REFRESH_GRANT = 3'd6;
 	localparam [2:0] S_REFRESH_WAIT  = 3'd7;
 
-	reg [2:0] state;
+	reg [2:0] state = S_INIT;
 	reg [ADDR_WIDTH-1:0] addr_reg;
 	reg [DATA_WIDTH-1:0] write_data_reg;
 	reg [DATA_WIDTH-1:0] read_data_reg;

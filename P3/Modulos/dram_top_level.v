@@ -107,6 +107,6 @@ module dram_top_level (
 	assign DRAM_LDQM = 1'b0;
 	assign DRAM_UDQM = 1'b1;
 
-	assign DRAM_DQ[15:8] = 8'hzz;
+	//assign DRAM_DQ[15:8] = 8'hzz;
 
 endmodule

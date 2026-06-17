@@ -45,10 +45,10 @@ module dram_iface (
             case (estado)
                 READY: begin
                     if (ready) begin
-                        if (SW[9:4] != endereco_ultima_leitura)
-                            estado <= REQ_READ;
-                        else if (KEY)
+                        if (KEY)
                             estado <= REQ_WRITE;
+                        else if (SW[9:4] != endereco_ultima_leitura)
+                            estado <= REQ_READ;
                     end
 
                 end
