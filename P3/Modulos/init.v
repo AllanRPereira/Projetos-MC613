@@ -16,6 +16,9 @@ module init (
 
     // MODOS REGISTRO CORRETO!
 
+    // Quantidade de Auto Refreshs antes do Load Mode Register.
+    localparam NUM_AUTOREFRESH = 10;
+
     // Parâmetros do Mode Register
     // M9 = 1 (Single Location Access)
     // M8:7 = 00 (Standard Operation)
@@ -53,11 +56,13 @@ module init (
 
     reg [2:0]  state;
     reg [14:0] timer;
+    reg [7:0]  refresh_count;
 
     always @(posedge clk) begin
         if (rst) begin
             state <= S_WAIT;
             timer <= 15'd0;
+            refresh_count <= 8'd0;
             ready <= 1'b0;
             
             cke   <= 1'b1;
@@ -74,6 +79,7 @@ module init (
                     if (timer == 15'd30000) begin
                         state <= S_PRECH;
                         timer <= 15'd0;
+                        refresh_count <= 8'd0;
                         
                         // Precharge ALL command
                         {cs_n, ras_n, cas_n, we_n} <= CMD_PALL;
@@ -86,35 +92,54 @@ module init (
                     if (timer == TRP) begin
                         state <= S_REF1;
                         timer <= 15'd0;
+                        refresh_count <= 8'd1;
                         
                         // Auto Refresh 1 command
                         {cs_n, ras_n, cas_n, we_n} <= CMD_AREF;
                     end
                 end
                 
-                // ADICIONAR MAIS AUTO-REFRESHS
-
                 S_REF1: begin
                     timer <= timer + 1'b1;
                     if (timer == TRC) begin
-                        state <= S_REF2;
-                        timer <= 15'd0;
-                        
-                        // Auto Refresh 2 command
-                        {cs_n, ras_n, cas_n, we_n} <= CMD_AREF;
+                        if (NUM_AUTOREFRESH <= 1) begin
+                            state <= S_MRS;
+                            timer <= 15'd0;
+                            
+                            // Load Mode Register command
+                            {cs_n, ras_n, cas_n, we_n} <= CMD_MRS;
+                            a <= MODE_REG;
+                            ba <= 2'b00;
+                        end else begin
+                            state <= S_REF2;
+                            timer <= 15'd0;
+                            refresh_count <= 8'd2;
+                            
+                            // Auto Refresh 2 command
+                            {cs_n, ras_n, cas_n, we_n} <= CMD_AREF;
+                        end
                     end
                 end
                 
                 S_REF2: begin
                     timer <= timer + 1'b1;
                     if (timer == TRC) begin
-                        state <= S_MRS;
-                        timer <= 15'd0;
-                        
-                        // Load Mode Register command
-                        {cs_n, ras_n, cas_n, we_n} <= CMD_MRS;
-                        a <= MODE_REG;
-                        ba <= 2'b00;
+                        if (refresh_count >= NUM_AUTOREFRESH) begin
+                            state <= S_MRS;
+                            timer <= 15'd0;
+                            
+                            // Load Mode Register command
+                            {cs_n, ras_n, cas_n, we_n} <= CMD_MRS;
+                            a <= MODE_REG;
+                            ba <= 2'b00;
+                        end else begin
+                            state <= S_REF2;
+                            timer <= 15'd0;
+                            refresh_count <= refresh_count + 1'b1;
+                            
+                            // Auto Refresh extra command
+                            {cs_n, ras_n, cas_n, we_n} <= CMD_AREF;
+                        end
                     end
                 end
                 
