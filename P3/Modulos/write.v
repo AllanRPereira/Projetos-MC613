@@ -26,7 +26,7 @@ module write (
     // ------------------------------------------------------------
 
     localparam TRCD = 3; // ACTIVATE -> WRITE
-    localparam TWR  = 3; // WRITE -> PRECHARGE
+    localparam TWR  = 4; // WRITE -> PRECHARGE (tRAS - tRCD)
     localparam TRP  = 3; // PRECHARGE -> próxima operação
 
     // ------------------------------------------------------------
