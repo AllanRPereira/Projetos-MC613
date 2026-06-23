@@ -1,15 +1,4 @@
 module sdram_controller (
-	// For connecting with Avalon Bus
-	//  input         clk, rstn,
-	//  input [21:0]  avl_Addr, // {BA[1:0], ROW[11:0], COL[7:0]}
-	//  input [1:0]   avl_byte_en,
-	//  input         avl_WRITEen, avl_READen,
-	//  input  [15:0] avl_WRDATA,
-	//  output [15:0] avl_RDDATA,
-	//  output        avl_req_wait,
-
-	// For connecting with Avalon Bus
-
 	input wire clk,
 	input wire rstn,					// Verificar bordas de subida (rstn)
 	input wire wEn,					// Write Enable
