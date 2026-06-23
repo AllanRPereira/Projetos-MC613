@@ -21,13 +21,13 @@ module sdram_controller (
 // Corrigidos para estarem em conformidade com as especificações físicas da SDRAM
 // e com as temporizações pretendidas nos submódulos (init, read, write, autorefresh)
 parameter integer T_200US   = 10000; // 200 us delay de inicialização
-parameter integer T_RP_INI  = 2;     // tRP para inicialização (conforme init.v: TRP = 4)
+parameter integer T_RP_INI  = 1;     // tRP para inicialização (conforme init.v: TRP = 4)
 parameter integer T_RC_INI  = 4;    // tRC para inicialização (conforme init.v: TRC = 10)
 parameter integer T_MRD     = 1;     // tMRD para inicialização (conforme init.v: TMRD = 3)
-parameter integer T_REF_NUM = 4;    // Número de auto-refreshes na inicialização (conforme init.v: 10)
+parameter integer T_REF_NUM = 8;    // Número de auto-refreshes na inicialização (conforme init.v: 10)
 
 parameter integer T_RCD     = 1;     // Active to Read/Write delay (conforme read.v/write.v: TRCD = 3)
-parameter integer T_CAS     = 1;     // CAS Latency (conforme read.v: TCAS_CYCLES = 3)
+parameter integer T_CAS     = 2;     // CAS Latency (conforme read.v: TCAS_CYCLES = 3)
 parameter integer T_RP_RD   = 2;     // Delay de Precharge após Leitura (conforme read.v: TRP_CYCLES = 4)
 
 parameter integer T_WR      = 2;     // Write Recovery Time (conforme write.v: TWR = 4)
@@ -95,7 +95,7 @@ always @(posedge clk or negedge rstn) begin
 		
 		case (state)
 			S_INIT_WAIT: begin
-				if (timer >= T_200US - 1) begin
+				if (timer == T_200US) begin
 					timer <= 15'd0;
 				end else begin
 					timer <= timer + 1'b1;
@@ -107,7 +107,7 @@ always @(posedge clk or negedge rstn) begin
 			end
 			
 			S_INIT_TRP: begin
-				if (timer >= T_RP_INI - 1) begin
+				if (timer == T_RP_INI) begin
 					timer        <= 15'd0;
 					init_ref_cnt <= 4'd0;
 				end else begin
@@ -120,9 +120,9 @@ always @(posedge clk or negedge rstn) begin
 			end
 			
 			S_INIT_TRC: begin
-				if (timer >= T_RC_INI - 1) begin
+				if (timer >= T_RC_INI) begin
 					timer <= 15'd0;
-					if (init_ref_cnt >= T_REF_NUM - 1) begin
+					if (init_ref_cnt >= T_REF_NUM) begin
 						init_ref_cnt <= 4'd0;
 					end else begin
 						init_ref_cnt <= init_ref_cnt + 1'b1;
@@ -137,7 +137,7 @@ always @(posedge clk or negedge rstn) begin
 			end
 			
 			S_INIT_TMRD: begin
-				if (timer >= T_MRD - 1) begin
+				if (timer >= T_MRD) begin
 					timer <= 15'd0;
 				end else begin
 					timer <= timer + 1'b1;
@@ -160,7 +160,7 @@ always @(posedge clk or negedge rstn) begin
 			end
 			
 			S_TRCD: begin
-				if (timer >= T_RCD - 2) begin
+				if (timer >= T_RCD) begin
 					timer <= 15'd0;
 				end else begin
 					timer <= timer + 1'b1;
@@ -172,7 +172,7 @@ always @(posedge clk or negedge rstn) begin
 			end
 			
 			S_CAS: begin
-				if (timer >= T_CAS - 2) begin
+				if (timer >= T_CAS) begin
 					timer <= 15'd0;
 				end else begin
 					timer <= timer + 1'b1;
@@ -180,7 +180,7 @@ always @(posedge clk or negedge rstn) begin
 			end
 			
 			S_RP_RD: begin
-				if (timer >= T_RP_RD - 1) begin
+				if (timer >= T_RP_RD) begin
 					timer <= 15'd0;
 				end else begin
 					timer <= timer + 1'b1;
@@ -192,7 +192,7 @@ always @(posedge clk or negedge rstn) begin
 			end
 			
 			S_WR_RP: begin
-				if (timer >= (T_WR + T_RP_WR - 3)) begin
+				if (timer >= (T_WR + T_RP_WR)) begin
 					timer <= 15'd0;
 				end else begin
 					timer <= timer + 1'b1;
@@ -204,7 +204,7 @@ always @(posedge clk or negedge rstn) begin
 			end
 			
 			S_TRFC: begin
-				if (timer >= T_RFC - 3) begin
+				if (timer >= T_RFC) begin
 					timer <= 15'd0;
 				end else begin
 					timer <= timer + 1'b1;
@@ -222,7 +222,7 @@ end
 always @(*) begin
 	case (state)
 		S_INIT_WAIT: begin
-			if (timer >= T_200US - 1)
+			if (timer >= T_200US)
 				next_state <= S_INIT_PALL;
 			else
 				next_state <= S_INIT_WAIT;
@@ -233,7 +233,7 @@ always @(*) begin
 		end
 		
 		S_INIT_TRP: begin
-			if (timer >= T_RP_INI - 1)
+			if (timer >= T_RP_INI)
 				next_state <= S_INIT_REF;
 			else
 				next_state <= S_INIT_TRP;
@@ -244,8 +244,8 @@ always @(*) begin
 		end
 		
 		S_INIT_TRC: begin
-			if (timer >= T_RC_INI - 1) begin
-				if (init_ref_cnt >= T_REF_NUM - 1)
+			if (timer >= T_RC_INI) begin
+				if (init_ref_cnt >= T_REF_NUM)
 					next_state <= S_INIT_MRS;
 				else
 					next_state <= S_INIT_REF;
@@ -259,7 +259,7 @@ always @(*) begin
 		end
 		
 		S_INIT_TMRD: begin
-			if (timer >= T_MRD - 1)
+			if (timer >= T_MRD)
 				next_state <= S_HALT;
 			else
 				next_state <= S_INIT_TMRD;
@@ -281,7 +281,7 @@ always @(*) begin
 		end
 		
 		S_TRCD: begin
-			if (timer >= T_RCD - 2) begin
+			if (timer >= T_RCD) begin
 				if (op_write)
 					next_state <= S_WRITE;
 				else
@@ -296,14 +296,14 @@ always @(*) begin
 		end
 		
 		S_CAS: begin
-			if (timer >= T_CAS - 2)
+			if (timer >= T_CAS)
 				next_state <= S_RP_RD;
 			else
 				next_state <= S_CAS;
 		end
 		
 		S_RP_RD: begin
-			if (timer >= T_RP_RD - 1)
+			if (timer >= T_RP_RD)
 				next_state <= S_HALT;
 			else
 				next_state <= S_RP_RD;
@@ -314,7 +314,7 @@ always @(*) begin
 		end
 		
 		S_WR_RP: begin
-			if (timer >= (T_WR + T_RP_WR - 3))
+			if (timer >= (T_WR + T_RP_WR))
 				next_state <= S_HALT;
 			else
 				next_state <= S_WR_RP;
@@ -325,7 +325,7 @@ always @(*) begin
 		end
 		
 		S_TRFC: begin
-			if (timer >= T_RFC - 3)
+			if (timer >= T_RFC)
 				next_state <= S_HALT;
 			else
 				next_state <= S_TRFC;
@@ -376,10 +376,10 @@ end
 
 // Controle do Barramento de Dados (DQ) e do Sinal Ready
 // DQ deve ser tri-state para leitura e ativo para escrita
-assign DQ[15:0] = (state == S_WRITE || (state == S_WR_RP && timer < T_WR - 1)) ? write_data[15:0] : 16'hzzzz;
+assign DQ[15:0] = (state == S_WRITE || (state == S_WR_RP && timer < T_WR)) ? write_data[15:0] : 16'hzzzz;
 
 // DQM habilitado (00) para permitir acesso de dados completo de 16 bits
-assign DQM[1:0] = 2'b00;
+assign DQM[1:0] = 2'b10;
 
 // O dado de leitura é continuamente atribuído ao read_data
 assign read_data[15:0] = DQ[15:0];
