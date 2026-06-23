@@ -1,5 +1,5 @@
 Fitter report for dram_controller
-Wed Jun 17 14:56:19 2026
+Mon Jun 22 22:23:39 2026
 Quartus Prime Version 17.1.0 Build 590 10/25/2017 SJ Lite Edition
 
 
@@ -64,16 +64,16 @@ refer to the applicable agreement for further details.
 +-------------------------------------------------------------------------------+
 ; Fitter Summary                                                                ;
 +---------------------------------+---------------------------------------------+
-; Fitter Status                   ; Successful - Wed Jun 17 14:56:19 2026       ;
+; Fitter Status                   ; Successful - Mon Jun 22 22:23:39 2026       ;
 ; Quartus Prime Version           ; 17.1.0 Build 590 10/25/2017 SJ Lite Edition ;
 ; Revision Name                   ; dram_controller                             ;
 ; Top-level Entity Name           ; dram_top_level                              ;
 ; Family                          ; Cyclone V                                   ;
 ; Device                          ; 5CSEMA5F31C6                                ;
 ; Timing Models                   ; Final                                       ;
-; Logic utilization (in ALMs)     ; 157 / 32,070 ( < 1 % )                      ;
-; Total registers                 ; 226                                         ;
-; Total pins                      ; 100 / 457 ( 22 % )                          ;
+; Logic utilization (in ALMs)     ; 172 / 32,070 ( < 1 % )                      ;
+; Total registers                 ; 239                                         ;
+; Total pins                      ; 106 / 457 ( 23 % )                          ;
 ; Total virtual pins              ; 0                                           ;
 ; Total block memory bits         ; 0 / 4,065,280 ( 0 % )                       ;
 ; Total RAM Blocks                ; 0 / 397 ( 0 % )                             ;
@@ -151,25 +151,19 @@ refer to the applicable agreement for further details.
 +----------------------------+-------------+
 ; Processors                 ; Number      ;
 +----------------------------+-------------+
-; Number detected on machine ; 20          ;
-; Maximum allowed            ; 12          ;
+; Number detected on machine ; 6           ;
+; Maximum allowed            ; 6           ;
 ;                            ;             ;
-; Average used               ; 1.06        ;
-; Maximum used               ; 12          ;
+; Average used               ; 1.03        ;
+; Maximum used               ; 6           ;
 ;                            ;             ;
 ; Usage by Processor         ; % Time Used ;
 ;     Processor 1            ; 100.0%      ;
-;     Processor 2            ;   0.6%      ;
-;     Processor 3            ;   0.6%      ;
-;     Processor 4            ;   0.6%      ;
-;     Processor 5            ;   0.6%      ;
-;     Processor 6            ;   0.6%      ;
-;     Processor 7            ;   0.6%      ;
-;     Processor 8            ;   0.6%      ;
-;     Processor 9            ;   0.6%      ;
-;     Processor 10           ;   0.6%      ;
-;     Processor 11           ;   0.6%      ;
-;     Processor 12           ;   0.5%      ;
+;     Processor 2            ;   0.7%      ;
+;     Processor 3            ;   0.7%      ;
+;     Processor 4            ;   0.7%      ;
+;     Processor 5            ;   0.7%      ;
+;     Processor 6            ;   0.7%      ;
 +----------------------------+-------------+
 
 
@@ -277,12 +271,6 @@ refer to the applicable agreement for further details.
 ; Location ;                ;              ; GPIO_1[9]      ; PIN_AG25      ; QSF Assignment ;
 ; Location ;                ;              ; IRDA_RXD       ; PIN_AA30      ; QSF Assignment ;
 ; Location ;                ;              ; IRDA_TXD       ; PIN_AB30      ; QSF Assignment ;
-; Location ;                ;              ; LEDR[4]        ; PIN_W17       ; QSF Assignment ;
-; Location ;                ;              ; LEDR[5]        ; PIN_W19       ; QSF Assignment ;
-; Location ;                ;              ; LEDR[6]        ; PIN_Y19       ; QSF Assignment ;
-; Location ;                ;              ; LEDR[7]        ; PIN_W20       ; QSF Assignment ;
-; Location ;                ;              ; LEDR[8]        ; PIN_W21       ; QSF Assignment ;
-; Location ;                ;              ; LEDR[9]        ; PIN_Y21       ; QSF Assignment ;
 ; Location ;                ;              ; PS2_CLK        ; PIN_AD7       ; QSF Assignment ;
 ; Location ;                ;              ; PS2_CLK2       ; PIN_AD9       ; QSF Assignment ;
 ; Location ;                ;              ; PS2_DAT        ; PIN_AE7       ; QSF Assignment ;
@@ -354,8 +342,8 @@ refer to the applicable agreement for further details.
 ; Type                ; Total [A + B]      ; From Design Partitions [A] ; From Rapid Recompile [B] ;
 +---------------------+--------------------+----------------------------+--------------------------+
 ; Placement (by node) ;                    ;                            ;                          ;
-;     -- Requested    ; 0.00 % ( 0 / 721 ) ; 0.00 % ( 0 / 721 )         ; 0.00 % ( 0 / 721 )       ;
-;     -- Achieved     ; 0.00 % ( 0 / 721 ) ; 0.00 % ( 0 / 721 )         ; 0.00 % ( 0 / 721 )       ;
+;     -- Requested    ; 0.00 % ( 0 / 774 ) ; 0.00 % ( 0 / 774 )         ; 0.00 % ( 0 / 774 )       ;
+;     -- Achieved     ; 0.00 % ( 0 / 774 ) ; 0.00 % ( 0 / 774 )         ; 0.00 % ( 0 / 774 )       ;
 ;                     ;                    ;                            ;                          ;
 ; Routing (by net)    ;                    ;                            ;                          ;
 ;     -- Requested    ; 0.00 % ( 0 / 0 )   ; 0.00 % ( 0 / 0 )           ; 0.00 % ( 0 / 0 )         ;
@@ -378,7 +366,7 @@ refer to the applicable agreement for further details.
 +--------------------------------+-----------------------+-------------------------+-------------------+---------------------+-------+
 ; Partition Name                 ; Preservation Achieved ; Preservation Level Used ; Netlist Type Used ; Preservation Method ; Notes ;
 +--------------------------------+-----------------------+-------------------------+-------------------+---------------------+-------+
-; Top                            ; 0.00 % ( 0 / 721 )    ; N/A                     ; Source File       ; N/A                 ;       ;
+; Top                            ; 0.00 % ( 0 / 774 )    ; N/A                     ; Source File       ; N/A                 ;       ;
 ; hard_block:auto_generated_inst ; 0.00 % ( 0 / 0 )      ; N/A                     ; Source File       ; N/A                 ;       ;
 +--------------------------------+-----------------------+-------------------------+-------------------+---------------------+-------+
 
@@ -386,7 +374,7 @@ refer to the applicable agreement for further details.
 +--------------+
 ; Pin-Out File ;
 +--------------+
-The pin-out file can be found in /home/c-ec2024/ra252694/Documents/MC613/Pós Greve/Projetos-MC613/P3/QuartusProjetoV2/output_files/dram_controller.pin.
+The pin-out file can be found in /home/c-ec2024/ra252694/Documents/MC613/PosGreve/Projetos-MC613/P3/QuartusProjetoV2/output_files/dram_controller.pin.
 
 
 +------------------------------------------------------------------------------------------+
@@ -394,14 +382,14 @@ The pin-out file can be found in /home/c-ec2024/ra252694/Documents/MC613/Pós Gr
 +-------------------------------------------------------------+--------------------+-------+
 ; Resource                                                    ; Usage              ; %     ;
 +-------------------------------------------------------------+--------------------+-------+
-; Logic utilization (ALMs needed / total ALMs on device)      ; 157 / 32,070       ; < 1 % ;
-; ALMs needed [=A-B+C]                                        ; 157                ;       ;
-;     [A] ALMs used in final placement [=a+b+c+d]             ; 172 / 32,070       ; < 1 % ;
-;         [a] ALMs used for LUT logic and registers           ; 98                 ;       ;
-;         [b] ALMs used for LUT logic                         ; 58                 ;       ;
+; Logic utilization (ALMs needed / total ALMs on device)      ; 172 / 32,070       ; < 1 % ;
+; ALMs needed [=A-B+C]                                        ; 172                ;       ;
+;     [A] ALMs used in final placement [=a+b+c+d]             ; 185 / 32,070       ; < 1 % ;
+;         [a] ALMs used for LUT logic and registers           ; 104                ;       ;
+;         [b] ALMs used for LUT logic                         ; 65                 ;       ;
 ;         [c] ALMs used for registers                         ; 16                 ;       ;
 ;         [d] ALMs used for memory (up to half of total ALMs) ; 0                  ;       ;
-;     [B] Estimate of ALMs recoverable by dense packing       ; 15 / 32,070        ; < 1 % ;
+;     [B] Estimate of ALMs recoverable by dense packing       ; 13 / 32,070        ; < 1 % ;
 ;     [C] Estimate of ALMs unavailable [=a+b+c+d]             ; 0 / 32,070         ; 0 %   ;
 ;         [a] Due to location constrained logic               ; 0                  ;       ;
 ;         [b] Due to LAB-wide signal conflicts                ; 0                  ;       ;
@@ -410,28 +398,28 @@ The pin-out file can be found in /home/c-ec2024/ra252694/Documents/MC613/Pós Gr
 ;                                                             ;                    ;       ;
 ; Difficulty packing design                                   ; Low                ;       ;
 ;                                                             ;                    ;       ;
-; Total LABs:  partially or completely used                   ; 25 / 3,207         ; < 1 % ;
-;     -- Logic LABs                                           ; 25                 ;       ;
+; Total LABs:  partially or completely used                   ; 26 / 3,207         ; < 1 % ;
+;     -- Logic LABs                                           ; 26                 ;       ;
 ;     -- Memory LABs (up to half of total LABs)               ; 0                  ;       ;
 ;                                                             ;                    ;       ;
-; Combinational ALUT usage for logic                          ; 278                ;       ;
-;     -- 7 input functions                                    ; 2                  ;       ;
-;     -- 6 input functions                                    ; 38                 ;       ;
-;     -- 5 input functions                                    ; 39                 ;       ;
-;     -- 4 input functions                                    ; 54                 ;       ;
-;     -- <=3 input functions                                  ; 145                ;       ;
-; Combinational ALUT usage for route-throughs                 ; 12                 ;       ;
+; Combinational ALUT usage for logic                          ; 306                ;       ;
+;     -- 7 input functions                                    ; 1                  ;       ;
+;     -- 6 input functions                                    ; 41                 ;       ;
+;     -- 5 input functions                                    ; 41                 ;       ;
+;     -- 4 input functions                                    ; 62                 ;       ;
+;     -- <=3 input functions                                  ; 161                ;       ;
+; Combinational ALUT usage for route-throughs                 ; 8                  ;       ;
 ;                                                             ;                    ;       ;
-; Dedicated logic registers                                   ; 226                ;       ;
+; Dedicated logic registers                                   ; 239                ;       ;
 ;     -- By type:                                             ;                    ;       ;
-;         -- Primary logic registers                          ; 226 / 64,140       ; < 1 % ;
+;         -- Primary logic registers                          ; 239 / 64,140       ; < 1 % ;
 ;         -- Secondary logic registers                        ; 0 / 64,140         ; 0 %   ;
 ;     -- By function:                                         ;                    ;       ;
-;         -- Design implementation registers                  ; 226                ;       ;
+;         -- Design implementation registers                  ; 239                ;       ;
 ;         -- Routing optimization registers                   ; 0                  ;       ;
 ;                                                             ;                    ;       ;
 ; Virtual pins                                                ; 0                  ;       ;
-; I/O pins                                                    ; 100 / 457          ; 22 %  ;
+; I/O pins                                                    ; 106 / 457          ; 23 %  ;
 ;     -- Clock pins                                           ; 4 / 8              ; 50 %  ;
 ;     -- Dedicated input pins                                 ; 0 / 21             ; 0 %   ;
 ;                                                             ;                    ;       ;
@@ -484,11 +472,11 @@ The pin-out file can be found in /home/c-ec2024/ra252694/Documents/MC613/Pós Gr
 ; Impedance control blocks                                    ; 0 / 4              ; 0 %   ;
 ; Hard Memory Controllers                                     ; 0 / 2              ; 0 %   ;
 ; Average interconnect usage (total/H/V)                      ; 0.2% / 0.2% / 0.1% ;       ;
-; Peak interconnect usage (total/H/V)                         ; 3.0% / 3.4% / 1.8% ;       ;
-; Maximum fan-out                                             ; 227                ;       ;
-; Highest non-global fan-out                                  ; 175                ;       ;
-; Total fan-out                                               ; 1879               ;       ;
-; Average fan-out                                             ; 2.56               ;       ;
+; Peak interconnect usage (total/H/V)                         ; 3.1% / 3.3% / 2.2% ;       ;
+; Maximum fan-out                                             ; 240                ;       ;
+; Highest non-global fan-out                                  ; 187                ;       ;
+; Total fan-out                                               ; 2014               ;       ;
+; Average fan-out                                             ; 2.58               ;       ;
 +-------------------------------------------------------------+--------------------+-------+
 
 
@@ -497,14 +485,14 @@ The pin-out file can be found in /home/c-ec2024/ra252694/Documents/MC613/Pós Gr
 +-------------------------------------------------------------+-----------------------+--------------------------------+
 ; Statistic                                                   ; Top                   ; hard_block:auto_generated_inst ;
 +-------------------------------------------------------------+-----------------------+--------------------------------+
-; Logic utilization (ALMs needed / total ALMs on device)      ; 157 / 32070 ( < 1 % ) ; 0 / 32070 ( 0 % )              ;
-; ALMs needed [=A-B+C]                                        ; 157                   ; 0                              ;
-;     [A] ALMs used in final placement [=a+b+c+d]             ; 172 / 32070 ( < 1 % ) ; 0 / 32070 ( 0 % )              ;
-;         [a] ALMs used for LUT logic and registers           ; 98                    ; 0                              ;
-;         [b] ALMs used for LUT logic                         ; 58                    ; 0                              ;
+; Logic utilization (ALMs needed / total ALMs on device)      ; 172 / 32070 ( < 1 % ) ; 0 / 32070 ( 0 % )              ;
+; ALMs needed [=A-B+C]                                        ; 172                   ; 0                              ;
+;     [A] ALMs used in final placement [=a+b+c+d]             ; 185 / 32070 ( < 1 % ) ; 0 / 32070 ( 0 % )              ;
+;         [a] ALMs used for LUT logic and registers           ; 104                   ; 0                              ;
+;         [b] ALMs used for LUT logic                         ; 65                    ; 0                              ;
 ;         [c] ALMs used for registers                         ; 16                    ; 0                              ;
 ;         [d] ALMs used for memory (up to half of total ALMs) ; 0                     ; 0                              ;
-;     [B] Estimate of ALMs recoverable by dense packing       ; 15 / 32070 ( < 1 % )  ; 0 / 32070 ( 0 % )              ;
+;     [B] Estimate of ALMs recoverable by dense packing       ; 13 / 32070 ( < 1 % )  ; 0 / 32070 ( 0 % )              ;
 ;     [C] Estimate of ALMs unavailable [=a+b+c+d]             ; 0 / 32070 ( 0 % )     ; 0 / 32070 ( 0 % )              ;
 ;         [a] Due to location constrained logic               ; 0                     ; 0                              ;
 ;         [b] Due to LAB-wide signal conflicts                ; 0                     ; 0                              ;
@@ -513,32 +501,32 @@ The pin-out file can be found in /home/c-ec2024/ra252694/Documents/MC613/Pós Gr
 ;                                                             ;                       ;                                ;
 ; Difficulty packing design                                   ; Low                   ; Low                            ;
 ;                                                             ;                       ;                                ;
-; Total LABs:  partially or completely used                   ; 25 / 3207 ( < 1 % )   ; 0 / 3207 ( 0 % )               ;
-;     -- Logic LABs                                           ; 25                    ; 0                              ;
+; Total LABs:  partially or completely used                   ; 26 / 3207 ( < 1 % )   ; 0 / 3207 ( 0 % )               ;
+;     -- Logic LABs                                           ; 26                    ; 0                              ;
 ;     -- Memory LABs (up to half of total LABs)               ; 0                     ; 0                              ;
 ;                                                             ;                       ;                                ;
-; Combinational ALUT usage for logic                          ; 278                   ; 0                              ;
-;     -- 7 input functions                                    ; 2                     ; 0                              ;
-;     -- 6 input functions                                    ; 38                    ; 0                              ;
-;     -- 5 input functions                                    ; 39                    ; 0                              ;
-;     -- 4 input functions                                    ; 54                    ; 0                              ;
-;     -- <=3 input functions                                  ; 145                   ; 0                              ;
-; Combinational ALUT usage for route-throughs                 ; 12                    ; 0                              ;
+; Combinational ALUT usage for logic                          ; 306                   ; 0                              ;
+;     -- 7 input functions                                    ; 1                     ; 0                              ;
+;     -- 6 input functions                                    ; 41                    ; 0                              ;
+;     -- 5 input functions                                    ; 41                    ; 0                              ;
+;     -- 4 input functions                                    ; 62                    ; 0                              ;
+;     -- <=3 input functions                                  ; 161                   ; 0                              ;
+; Combinational ALUT usage for route-throughs                 ; 8                     ; 0                              ;
 ; Memory ALUT usage                                           ; 0                     ; 0                              ;
 ;     -- 64-address deep                                      ; 0                     ; 0                              ;
 ;     -- 32-address deep                                      ; 0                     ; 0                              ;
 ;                                                             ;                       ;                                ;
 ; Dedicated logic registers                                   ; 0                     ; 0                              ;
 ;     -- By type:                                             ;                       ;                                ;
-;         -- Primary logic registers                          ; 226 / 64140 ( < 1 % ) ; 0 / 64140 ( 0 % )              ;
+;         -- Primary logic registers                          ; 239 / 64140 ( < 1 % ) ; 0 / 64140 ( 0 % )              ;
 ;         -- Secondary logic registers                        ; 0 / 64140 ( 0 % )     ; 0 / 64140 ( 0 % )              ;
 ;     -- By function:                                         ;                       ;                                ;
-;         -- Design implementation registers                  ; 226                   ; 0                              ;
+;         -- Design implementation registers                  ; 239                   ; 0                              ;
 ;         -- Routing optimization registers                   ; 0                     ; 0                              ;
 ;                                                             ;                       ;                                ;
 ;                                                             ;                       ;                                ;
 ; Virtual pins                                                ; 0                     ; 0                              ;
-; I/O pins                                                    ; 100                   ; 0                              ;
+; I/O pins                                                    ; 106                   ; 0                              ;
 ; I/O registers                                               ; 0                     ; 0                              ;
 ; Total block memory bits                                     ; 0                     ; 0                              ;
 ; Total block memory implementation bits                      ; 0                     ; 0                              ;
@@ -551,8 +539,8 @@ The pin-out file can be found in /home/c-ec2024/ra252694/Documents/MC613/Pós Gr
 ;     -- Registered Output Connections                        ; 0                     ; 0                              ;
 ;                                                             ;                       ;                                ;
 ; Internal Connections                                        ;                       ;                                ;
-;     -- Total Connections                                    ; 1879                  ; 0                              ;
-;     -- Registered Connections                               ; 687                   ; 0                              ;
+;     -- Total Connections                                    ; 2014                  ; 0                              ;
+;     -- Registered Connections                               ; 735                   ; 0                              ;
 ;                                                             ;                       ;                                ;
 ; External Connections                                        ;                       ;                                ;
 ;     -- Top                                                  ; 32                    ; 0                              ;
@@ -560,7 +548,7 @@ The pin-out file can be found in /home/c-ec2024/ra252694/Documents/MC613/Pós Gr
 ;                                                             ;                       ;                                ;
 ; Partition Interface                                         ;                       ;                                ;
 ;     -- Input Ports                                          ; 15                    ; 0                              ;
-;     -- Output Ports                                         ; 69                    ; 0                              ;
+;     -- Output Ports                                         ; 75                    ; 0                              ;
 ;     -- Bidir Ports                                          ; 16                    ; 0                              ;
 ;                                                             ;                       ;                                ;
 ; Registered Ports                                            ;                       ;                                ;
@@ -584,11 +572,11 @@ The pin-out file can be found in /home/c-ec2024/ra252694/Documents/MC613/Pós Gr
 +----------+-------+----------+--------------+--------------+--------------+-----------------------+--------------------+--------+----------------+-----------------+----------+--------------+--------------+-------------+---------------------------+----------------------+-----------+
 ; Name     ; Pin # ; I/O Bank ; X coordinate ; Y coordinate ; Z coordinate ; Combinational Fan-Out ; Registered Fan-Out ; Global ; Input Register ; PCI I/O Enabled ; Bus Hold ; Weak Pull Up ; I/O Standard ; Termination ; Termination Control Block ; Location assigned by ; Slew Rate ;
 +----------+-------+----------+--------------+--------------+--------------+-----------------------+--------------------+--------+----------------+-----------------+----------+--------------+--------------+-------------+---------------------------+----------------------+-----------+
-; CLOCK_50 ; AF14  ; 3B       ; 32           ; 0            ; 0            ; 227                   ; 0                  ; yes    ; no             ; no              ; no       ; Off          ; 2.5 V        ; Off         ; --                        ; User                 ; no        ;
-; KEY[0]   ; AA14  ; 3B       ; 36           ; 0            ; 0            ; 175                   ; 0                  ; no     ; no             ; no              ; no       ; Off          ; 2.5 V        ; Off         ; --                        ; User                 ; no        ;
+; CLOCK_50 ; AF14  ; 3B       ; 32           ; 0            ; 0            ; 240                   ; 0                  ; yes    ; no             ; no              ; no       ; Off          ; 2.5 V        ; Off         ; --                        ; User                 ; no        ;
+; KEY[0]   ; AA14  ; 3B       ; 36           ; 0            ; 0            ; 187                   ; 0                  ; no     ; no             ; no              ; no       ; Off          ; 2.5 V        ; Off         ; --                        ; User                 ; no        ;
 ; KEY[1]   ; AA15  ; 3B       ; 36           ; 0            ; 17           ; 0                     ; 0                  ; no     ; no             ; no              ; no       ; Off          ; 2.5 V        ; Off         ; --                        ; User                 ; no        ;
 ; KEY[2]   ; W15   ; 3B       ; 40           ; 0            ; 0            ; 0                     ; 0                  ; no     ; no             ; no              ; no       ; Off          ; 2.5 V        ; Off         ; --                        ; User                 ; no        ;
-; KEY[3]   ; Y16   ; 3B       ; 40           ; 0            ; 17           ; 2                     ; 0                  ; no     ; no             ; no              ; no       ; Off          ; 2.5 V        ; Off         ; --                        ; User                 ; no        ;
+; KEY[3]   ; Y16   ; 3B       ; 40           ; 0            ; 17           ; 4                     ; 0                  ; no     ; no             ; no              ; no       ; Off          ; 2.5 V        ; Off         ; --                        ; User                 ; no        ;
 ; SW[0]    ; AB12  ; 3A       ; 12           ; 0            ; 17           ; 2                     ; 0                  ; no     ; no             ; no              ; no       ; Off          ; 2.5 V        ; Off         ; --                        ; User                 ; no        ;
 ; SW[1]    ; AC12  ; 3A       ; 16           ; 0            ; 0            ; 2                     ; 0                  ; no     ; no             ; no              ; no       ; Off          ; 2.5 V        ; Off         ; --                        ; User                 ; no        ;
 ; SW[2]    ; AF9   ; 3A       ; 8            ; 0            ; 34           ; 2                     ; 0                  ; no     ; no             ; no              ; no       ; Off          ; 2.5 V        ; Off         ; --                        ; User                 ; no        ;
@@ -676,6 +664,12 @@ The pin-out file can be found in /home/c-ec2024/ra252694/Documents/MC613/Pós Gr
 ; LEDR[1]       ; W16   ; 4A       ; 52           ; 0            ; 17           ; no              ; no                     ; 1         ; no              ; no         ; no            ; no       ; Off          ; 2.5 V        ; Default          ; Series 50 Ohm without Calibration ; --                        ; no                         ; no                          ; 0                   ; Off                         ; User                 ; -                    ; -                   ;
 ; LEDR[2]       ; V17   ; 4A       ; 60           ; 0            ; 0            ; no              ; no                     ; 1         ; no              ; no         ; no            ; no       ; Off          ; 2.5 V        ; Default          ; Series 50 Ohm without Calibration ; --                        ; no                         ; no                          ; 0                   ; Off                         ; User                 ; -                    ; -                   ;
 ; LEDR[3]       ; V18   ; 4A       ; 80           ; 0            ; 0            ; no              ; no                     ; 1         ; no              ; no         ; no            ; no       ; Off          ; 2.5 V        ; Default          ; Series 50 Ohm without Calibration ; --                        ; no                         ; no                          ; 0                   ; Off                         ; User                 ; -                    ; -                   ;
+; LEDR[4]       ; W17   ; 4A       ; 60           ; 0            ; 17           ; no              ; no                     ; 1         ; no              ; no         ; no            ; no       ; Off          ; 2.5 V        ; Default          ; Series 50 Ohm without Calibration ; --                        ; no                         ; no                          ; 0                   ; Off                         ; User                 ; -                    ; -                   ;
+; LEDR[5]       ; W19   ; 4A       ; 80           ; 0            ; 17           ; no              ; no                     ; 1         ; no              ; no         ; no            ; no       ; Off          ; 2.5 V        ; Default          ; Series 50 Ohm without Calibration ; --                        ; no                         ; no                          ; 0                   ; Off                         ; User                 ; -                    ; -                   ;
+; LEDR[6]       ; Y19   ; 4A       ; 84           ; 0            ; 0            ; no              ; no                     ; 1         ; no              ; no         ; no            ; no       ; Off          ; 2.5 V        ; Default          ; Series 50 Ohm without Calibration ; --                        ; no                         ; no                          ; 0                   ; Off                         ; User                 ; -                    ; -                   ;
+; LEDR[7]       ; W20   ; 5A       ; 89           ; 6            ; 3            ; no              ; no                     ; 1         ; no              ; no         ; no            ; no       ; Off          ; 2.5 V        ; Default          ; Series 50 Ohm without Calibration ; --                        ; no                         ; no                          ; 0                   ; Off                         ; User                 ; -                    ; -                   ;
+; LEDR[8]       ; W21   ; 5A       ; 89           ; 8            ; 3            ; no              ; no                     ; 1         ; no              ; no         ; no            ; no       ; Off          ; 2.5 V        ; Default          ; Series 50 Ohm without Calibration ; --                        ; no                         ; no                          ; 0                   ; Off                         ; User                 ; -                    ; -                   ;
+; LEDR[9]       ; Y21   ; 5A       ; 89           ; 6            ; 20           ; no              ; no                     ; 1         ; no              ; no         ; no            ; no       ; Off          ; 2.5 V        ; Default          ; Series 50 Ohm without Calibration ; --                        ; no                         ; no                          ; 0                   ; Off                         ; User                 ; -                    ; -                   ;
 +---------------+-------+----------+--------------+--------------+--------------+-----------------+------------------------+-----------+-----------------+------------+---------------+----------+--------------+--------------+------------------+-----------------------------------+---------------------------+----------------------------+-----------------------------+---------------------+-----------------------------+----------------------+----------------------+---------------------+
 
 
@@ -703,26 +697,26 @@ The pin-out file can be found in /home/c-ec2024/ra252694/Documents/MC613/Pós Gr
 +-------------+-------+----------+--------------+--------------+--------------+-----------------------+--------------------+--------+----------------+-----------------+------------------------+-----------+-----------------+------------+----------+--------------+--------------+------------------+-------------------+-----------------------------------+---------------------------+----------------------------+---------------------+-----------------------------+----------------------+----------------------+------------------------------------------------------------------+
 
 
-+----------------------------------------------------------------------------+
-; I/O Bank Usage                                                             ;
-+----------+------------------+---------------+--------------+---------------+
-; I/O Bank ; Usage            ; VCCIO Voltage ; VREF Voltage ; VCCPD Voltage ;
-+----------+------------------+---------------+--------------+---------------+
-; B2L      ; 0 / 0 ( -- )     ; --            ; --           ; --            ;
-; B1L      ; 0 / 0 ( -- )     ; --            ; --           ; --            ;
-; 3A       ; 10 / 32 ( 31 % ) ; 2.5V          ; --           ; 2.5V          ;
-; 3B       ; 44 / 48 ( 92 % ) ; 2.5V          ; --           ; 2.5V          ;
-; 4A       ; 4 / 80 ( 5 % )   ; 2.5V          ; --           ; 2.5V          ;
-; 5A       ; 29 / 32 ( 91 % ) ; 2.5V          ; --           ; 2.5V          ;
-; 5B       ; 13 / 16 ( 81 % ) ; 2.5V          ; --           ; 2.5V          ;
-; 6B       ; 0 / 44 ( 0 % )   ; 2.5V          ; --           ; 2.5V          ;
-; 6A       ; 0 / 56 ( 0 % )   ; 2.5V          ; --           ; 2.5V          ;
-; 7A       ; 0 / 19 ( 0 % )   ; 2.5V          ; --           ; 2.5V          ;
-; 7B       ; 0 / 22 ( 0 % )   ; 2.5V          ; --           ; 2.5V          ;
-; 7C       ; 0 / 12 ( 0 % )   ; 2.5V          ; --           ; 2.5V          ;
-; 7D       ; 0 / 14 ( 0 % )   ; 2.5V          ; --           ; 2.5V          ;
-; 8A       ; 0 / 80 ( 0 % )   ; 2.5V          ; --           ; 2.5V          ;
-+----------+------------------+---------------+--------------+---------------+
++-----------------------------------------------------------------------------+
+; I/O Bank Usage                                                              ;
++----------+-------------------+---------------+--------------+---------------+
+; I/O Bank ; Usage             ; VCCIO Voltage ; VREF Voltage ; VCCPD Voltage ;
++----------+-------------------+---------------+--------------+---------------+
+; B2L      ; 0 / 0 ( -- )      ; --            ; --           ; --            ;
+; B1L      ; 0 / 0 ( -- )      ; --            ; --           ; --            ;
+; 3A       ; 10 / 32 ( 31 % )  ; 2.5V          ; --           ; 2.5V          ;
+; 3B       ; 44 / 48 ( 92 % )  ; 2.5V          ; --           ; 2.5V          ;
+; 4A       ; 7 / 80 ( 9 % )    ; 2.5V          ; --           ; 2.5V          ;
+; 5A       ; 32 / 32 ( 100 % ) ; 2.5V          ; --           ; 2.5V          ;
+; 5B       ; 13 / 16 ( 81 % )  ; 2.5V          ; --           ; 2.5V          ;
+; 6B       ; 0 / 44 ( 0 % )    ; 2.5V          ; --           ; 2.5V          ;
+; 6A       ; 0 / 56 ( 0 % )    ; 2.5V          ; --           ; 2.5V          ;
+; 7A       ; 0 / 19 ( 0 % )    ; 2.5V          ; --           ; 2.5V          ;
+; 7B       ; 0 / 22 ( 0 % )    ; 2.5V          ; --           ; 2.5V          ;
+; 7C       ; 0 / 12 ( 0 % )    ; 2.5V          ; --           ; 2.5V          ;
+; 7D       ; 0 / 14 ( 0 % )    ; 2.5V          ; --           ; 2.5V          ;
+; 8A       ; 0 / 80 ( 0 % )    ; 2.5V          ; --           ; 2.5V          ;
++----------+-------------------+---------------+--------------+---------------+
 
 
 +-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
@@ -1582,11 +1576,11 @@ The pin-out file can be found in /home/c-ec2024/ra252694/Documents/MC613/Pós Gr
 ; W14      ;            ; --             ; VCC                             ; power  ;              ; 1.1V                ; --           ;                 ; --       ; --           ;
 ; W15      ; 130        ; 3B             ; KEY[2]                          ; input  ; 2.5 V        ;                     ; Column I/O   ; Y               ; no       ; Off          ;
 ; W16      ; 136        ; 4A             ; LEDR[1]                         ; output ; 2.5 V        ;                     ; Column I/O   ; Y               ; no       ; Off          ;
-; W17      ; 152        ; 4A             ; RESERVED_INPUT_WITH_WEAK_PULLUP ;        ;              ;                     ; Column I/O   ;                 ; no       ; On           ;
+; W17      ; 152        ; 4A             ; LEDR[4]                         ; output ; 2.5 V        ;                     ; Column I/O   ; Y               ; no       ; Off          ;
 ; W18      ;            ;                ; GND                             ; gnd    ;              ;                     ; --           ;                 ; --       ; --           ;
-; W19      ; 192        ; 4A             ; RESERVED_INPUT_WITH_WEAK_PULLUP ;        ;              ;                     ; Column I/O   ;                 ; no       ; On           ;
-; W20      ; 217        ; 5A             ; RESERVED_INPUT_WITH_WEAK_PULLUP ;        ;              ;                     ; Row I/O      ;                 ; no       ; On           ;
-; W21      ; 221        ; 5A             ; RESERVED_INPUT_WITH_WEAK_PULLUP ;        ;              ;                     ; Row I/O      ;                 ; no       ; On           ;
+; W19      ; 192        ; 4A             ; LEDR[5]                         ; output ; 2.5 V        ;                     ; Column I/O   ; Y               ; no       ; Off          ;
+; W20      ; 217        ; 5A             ; LEDR[7]                         ; output ; 2.5 V        ;                     ; Row I/O      ; Y               ; no       ; Off          ;
+; W21      ; 221        ; 5A             ; LEDR[8]                         ; output ; 2.5 V        ;                     ; Row I/O      ; Y               ; no       ; Off          ;
 ; W22      ; 223        ; 5A             ; HEX4[3]                         ; output ; 2.5 V        ;                     ; Row I/O      ; Y               ; no       ; Off          ;
 ; W23      ;            ; 5A             ; VCCIO5A                         ; power  ;              ; 2.5V                ; --           ;                 ; --       ; --           ;
 ; W24      ; 238        ; 5A             ; HEX4[4]                         ; output ; 2.5 V        ;                     ; Row I/O      ; Y               ; no       ; Off          ;
@@ -1614,9 +1608,9 @@ The pin-out file can be found in /home/c-ec2024/ra252694/Documents/MC613/Pós Gr
 ; Y16      ; 128        ; 3B             ; KEY[3]                          ; input  ; 2.5 V        ;                     ; Column I/O   ; Y               ; no       ; Off          ;
 ; Y17      ; 170        ; 4A             ; RESERVED_INPUT_WITH_WEAK_PULLUP ;        ;              ;                     ; Column I/O   ;                 ; no       ; On           ;
 ; Y18      ; 178        ; 4A             ; RESERVED_INPUT_WITH_WEAK_PULLUP ;        ;              ;                     ; Column I/O   ;                 ; no       ; On           ;
-; Y19      ; 202        ; 4A             ; RESERVED_INPUT_WITH_WEAK_PULLUP ;        ;              ;                     ; Column I/O   ;                 ; no       ; On           ;
+; Y19      ; 202        ; 4A             ; LEDR[6]                         ; output ; 2.5 V        ;                     ; Column I/O   ; Y               ; no       ; Off          ;
 ; Y20      ;            ;                ; GND                             ; gnd    ;              ;                     ; --           ;                 ; --       ; --           ;
-; Y21      ; 219        ; 5A             ; RESERVED_INPUT_WITH_WEAK_PULLUP ;        ;              ;                     ; Row I/O      ;                 ; no       ; On           ;
+; Y21      ; 219        ; 5A             ; LEDR[9]                         ; output ; 2.5 V        ;                     ; Row I/O      ; Y               ; no       ; Off          ;
 ; Y22      ;            ; --             ; VCCA_FPLL                       ; power  ;              ; 2.5V                ; --           ;                 ; --       ; --           ;
 ; Y23      ; 232        ; 5A             ; HEX4[1]                         ; output ; 2.5 V        ;                     ; Row I/O      ; Y               ; no       ; Off          ;
 ; Y24      ; 234        ; 5A             ; HEX4[2]                         ; output ; 2.5 V        ;                     ; Row I/O      ; Y               ; no       ; Off          ;
@@ -1683,6 +1677,12 @@ Note: Pin directions (input, output or bidir) are based on device operating in u
 ; LEDR[1]       ; Incomplete set of assignments ;
 ; LEDR[2]       ; Incomplete set of assignments ;
 ; LEDR[3]       ; Incomplete set of assignments ;
+; LEDR[4]       ; Incomplete set of assignments ;
+; LEDR[5]       ; Incomplete set of assignments ;
+; LEDR[6]       ; Incomplete set of assignments ;
+; LEDR[7]       ; Incomplete set of assignments ;
+; LEDR[8]       ; Incomplete set of assignments ;
+; LEDR[9]       ; Incomplete set of assignments ;
 ; DRAM_CKE      ; Incomplete set of assignments ;
 ; DRAM_CS_N     ; Incomplete set of assignments ;
 ; DRAM_RAS_N    ; Incomplete set of assignments ;
@@ -1743,17 +1743,17 @@ Note: Pin directions (input, output or bidir) are based on device operating in u
 +----------------------------------------+----------------------+----------------------------------+---------------------------------------------------+----------------------------------+----------------------+---------------------+---------------------------+---------------+-------------------+-------+------------+------+--------------+-------------------------------------------------------------------------+-----------------+--------------+
 ; Compilation Hierarchy Node             ; ALMs needed [=A-B+C] ; [A] ALMs used in final placement ; [B] Estimate of ALMs recoverable by dense packing ; [C] Estimate of ALMs unavailable ; ALMs used for memory ; Combinational ALUTs ; Dedicated Logic Registers ; I/O Registers ; Block Memory Bits ; M10Ks ; DSP Blocks ; Pins ; Virtual Pins ; Full Hierarchy Name                                                     ; Entity Name     ; Library Name ;
 +----------------------------------------+----------------------+----------------------------------+---------------------------------------------------+----------------------------------+----------------------+---------------------+---------------------------+---------------+-------------------+-------+------------+------+--------------+-------------------------------------------------------------------------+-----------------+--------------+
-; |dram_top_level                        ; 157.0 (0.5)          ; 170.5 (0.5)                      ; 13.5 (0.0)                                        ; 0.0 (0.0)                        ; 0.0 (0.0)            ; 278 (1)             ; 226 (0)                   ; 0 (0)         ; 0                 ; 0     ; 0          ; 100  ; 0            ; |dram_top_level                                                         ; dram_top_level  ; work         ;
-;    |bin2hex:u_hex0|                    ; 3.5 (3.5)            ; 3.5 (3.5)                        ; 0.0 (0.0)                                         ; 0.0 (0.0)                        ; 0.0 (0.0)            ; 7 (7)               ; 7 (7)                     ; 0 (0)         ; 0                 ; 0     ; 0          ; 0    ; 0            ; |dram_top_level|bin2hex:u_hex0                                          ; bin2hex         ; work         ;
-;    |bin2hex:u_hex1|                    ; 3.5 (3.5)            ; 3.9 (3.9)                        ; 0.4 (0.4)                                         ; 0.0 (0.0)                        ; 0.0 (0.0)            ; 7 (7)               ; 7 (7)                     ; 0 (0)         ; 0                 ; 0     ; 0          ; 0    ; 0            ; |dram_top_level|bin2hex:u_hex1                                          ; bin2hex         ; work         ;
-;    |bin2hex:u_hex4|                    ; 3.5 (3.5)            ; 3.5 (3.5)                        ; 0.0 (0.0)                                         ; 0.0 (0.0)                        ; 0.0 (0.0)            ; 7 (7)               ; 7 (7)                     ; 0 (0)         ; 0                 ; 0     ; 0          ; 0    ; 0            ; |dram_top_level|bin2hex:u_hex4                                          ; bin2hex         ; work         ;
-;    |bin2hex:u_hex5|                    ; 2.2 (2.2)            ; 2.8 (2.8)                        ; 0.6 (0.6)                                         ; 0.0 (0.0)                        ; 0.0 (0.0)            ; 4 (4)               ; 6 (6)                     ; 0 (0)         ; 0                 ; 0     ; 0          ; 0    ; 0            ; |dram_top_level|bin2hex:u_hex5                                          ; bin2hex         ; work         ;
-;    |dram_controller:u_dram_controller| ; 122.8 (27.2)         ; 133.7 (30.7)                     ; 10.8 (3.4)                                        ; 0.0 (0.0)                        ; 0.0 (0.0)            ; 217 (47)            ; 168 (32)                  ; 0 (0)         ; 0                 ; 0     ; 0          ; 0    ; 0            ; |dram_top_level|dram_controller:u_dram_controller                       ; dram_controller ; work         ;
-;       |autorefresh:u_refresh|          ; 29.9 (29.9)          ; 31.2 (31.2)                      ; 1.3 (1.3)                                         ; 0.0 (0.0)                        ; 0.0 (0.0)            ; 54 (54)             ; 38 (38)                   ; 0 (0)         ; 0                 ; 0     ; 0          ; 0    ; 0            ; |dram_top_level|dram_controller:u_dram_controller|autorefresh:u_refresh ; autorefresh     ; work         ;
-;       |init:u_init|                    ; 28.2 (28.2)          ; 29.5 (29.5)                      ; 1.3 (1.3)                                         ; 0.0 (0.0)                        ; 0.0 (0.0)            ; 46 (46)             ; 27 (27)                   ; 0 (0)         ; 0                 ; 0     ; 0          ; 0    ; 0            ; |dram_top_level|dram_controller:u_dram_controller|init:u_init           ; init            ; work         ;
-;       |read:u_read|                    ; 20.3 (20.3)          ; 24.9 (24.9)                      ; 4.7 (4.7)                                         ; 0.0 (0.0)                        ; 0.0 (0.0)            ; 38 (38)             ; 41 (41)                   ; 0 (0)         ; 0                 ; 0     ; 0          ; 0    ; 0            ; |dram_top_level|dram_controller:u_dram_controller|read:u_read           ; read            ; work         ;
-;       |write:u_write|                  ; 17.2 (17.2)          ; 17.3 (17.3)                      ; 0.2 (0.2)                                         ; 0.0 (0.0)                        ; 0.0 (0.0)            ; 32 (32)             ; 30 (30)                   ; 0 (0)         ; 0                 ; 0     ; 0          ; 0    ; 0            ; |dram_top_level|dram_controller:u_dram_controller|write:u_write         ; write           ; work         ;
-;    |dram_iface:u_dram_iface|           ; 20.7 (20.7)          ; 22.6 (22.6)                      ; 1.8 (1.8)                                         ; 0.0 (0.0)                        ; 0.0 (0.0)            ; 35 (35)             ; 31 (31)                   ; 0 (0)         ; 0                 ; 0     ; 0          ; 0    ; 0            ; |dram_top_level|dram_iface:u_dram_iface                                 ; dram_iface      ; work         ;
+; |dram_top_level                        ; 172.0 (0.5)          ; 184.5 (0.5)                      ; 12.5 (0.0)                                        ; 0.0 (0.0)                        ; 0.0 (0.0)            ; 306 (1)             ; 239 (0)                   ; 0 (0)         ; 0                 ; 0     ; 0          ; 106  ; 0            ; |dram_top_level                                                         ; dram_top_level  ; work         ;
+;    |bin2hex:u_hex0|                    ; 3.5 (3.5)            ; 3.7 (3.7)                        ; 0.2 (0.2)                                         ; 0.0 (0.0)                        ; 0.0 (0.0)            ; 7 (7)               ; 7 (7)                     ; 0 (0)         ; 0                 ; 0     ; 0          ; 0    ; 0            ; |dram_top_level|bin2hex:u_hex0                                          ; bin2hex         ; work         ;
+;    |bin2hex:u_hex1|                    ; 3.5 (3.5)            ; 3.5 (3.5)                        ; 0.0 (0.0)                                         ; 0.0 (0.0)                        ; 0.0 (0.0)            ; 7 (7)               ; 7 (7)                     ; 0 (0)         ; 0                 ; 0     ; 0          ; 0    ; 0            ; |dram_top_level|bin2hex:u_hex1                                          ; bin2hex         ; work         ;
+;    |bin2hex:u_hex4|                    ; 3.5 (3.5)            ; 3.7 (3.7)                        ; 0.2 (0.2)                                         ; 0.0 (0.0)                        ; 0.0 (0.0)            ; 7 (7)               ; 7 (7)                     ; 0 (0)         ; 0                 ; 0     ; 0          ; 0    ; 0            ; |dram_top_level|bin2hex:u_hex4                                          ; bin2hex         ; work         ;
+;    |bin2hex:u_hex5|                    ; 2.2 (2.2)            ; 3.3 (3.3)                        ; 1.1 (1.1)                                         ; 0.0 (0.0)                        ; 0.0 (0.0)            ; 4 (4)               ; 6 (6)                     ; 0 (0)         ; 0                 ; 0     ; 0          ; 0    ; 0            ; |dram_top_level|bin2hex:u_hex5                                          ; bin2hex         ; work         ;
+;    |dram_controller:u_dram_controller| ; 139.8 (29.3)         ; 149.3 (33.7)                     ; 9.6 (4.3)                                         ; 0.0 (0.0)                        ; 0.0 (0.0)            ; 247 (52)            ; 181 (37)                  ; 0 (0)         ; 0                 ; 0     ; 0          ; 0    ; 0            ; |dram_top_level|dram_controller:u_dram_controller                       ; dram_controller ; work         ;
+;       |autorefresh:u_refresh|          ; 29.8 (29.8)          ; 32.0 (32.0)                      ; 2.2 (2.2)                                         ; 0.0 (0.0)                        ; 0.0 (0.0)            ; 54 (54)             ; 38 (38)                   ; 0 (0)         ; 0                 ; 0     ; 0          ; 0    ; 0            ; |dram_top_level|dram_controller:u_dram_controller|autorefresh:u_refresh ; autorefresh     ; work         ;
+;       |init:u_init|                    ; 41.5 (41.5)          ; 41.5 (41.5)                      ; 0.0 (0.0)                                         ; 0.0 (0.0)                        ; 0.0 (0.0)            ; 71 (71)             ; 35 (35)                   ; 0 (0)         ; 0                 ; 0     ; 0          ; 0    ; 0            ; |dram_top_level|dram_controller:u_dram_controller|init:u_init           ; init            ; work         ;
+;       |read:u_read|                    ; 21.4 (21.4)          ; 24.7 (24.7)                      ; 3.3 (3.3)                                         ; 0.0 (0.0)                        ; 0.0 (0.0)            ; 38 (38)             ; 41 (41)                   ; 0 (0)         ; 0                 ; 0     ; 0          ; 0    ; 0            ; |dram_top_level|dram_controller:u_dram_controller|read:u_read           ; read            ; work         ;
+;       |write:u_write|                  ; 16.8 (16.8)          ; 17.5 (17.5)                      ; 0.7 (0.7)                                         ; 0.0 (0.0)                        ; 0.0 (0.0)            ; 32 (32)             ; 30 (30)                   ; 0 (0)         ; 0                 ; 0     ; 0          ; 0    ; 0            ; |dram_top_level|dram_controller:u_dram_controller|write:u_write         ; write           ; work         ;
+;    |dram_iface:u_dram_iface|           ; 19.0 (19.0)          ; 20.5 (20.5)                      ; 1.5 (1.5)                                         ; 0.0 (0.0)                        ; 0.0 (0.0)            ; 33 (33)             ; 31 (31)                   ; 0 (0)         ; 0                 ; 0     ; 0          ; 0    ; 0            ; |dram_top_level|dram_iface:u_dram_iface                                 ; dram_iface      ; work         ;
 +----------------------------------------+----------------------+----------------------------------+---------------------------------------------------+----------------------------------+----------------------+---------------------+---------------------------+---------------+-------------------+-------+------------+------+--------------+-------------------------------------------------------------------------+-----------------+--------------+
 Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
 
@@ -1811,6 +1811,12 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 ; LEDR[1]       ; Output   ; -- ; --   ; --   ; -- ; (0)  ; (31)  ; --     ; --                     ; --                       ;
 ; LEDR[2]       ; Output   ; -- ; --   ; --   ; -- ; (0)  ; (31)  ; --     ; --                     ; --                       ;
 ; LEDR[3]       ; Output   ; -- ; --   ; --   ; -- ; (0)  ; (31)  ; --     ; --                     ; --                       ;
+; LEDR[4]       ; Output   ; -- ; --   ; --   ; -- ; (0)  ; (31)  ; --     ; --                     ; --                       ;
+; LEDR[5]       ; Output   ; -- ; --   ; --   ; -- ; (0)  ; (31)  ; --     ; --                     ; --                       ;
+; LEDR[6]       ; Output   ; -- ; --   ; --   ; -- ; (0)  ; (31)  ; --     ; --                     ; --                       ;
+; LEDR[7]       ; Output   ; -- ; --   ; --   ; -- ; (0)  ; (31)  ; --     ; --                     ; --                       ;
+; LEDR[8]       ; Output   ; -- ; --   ; --   ; -- ; (0)  ; (31)  ; --     ; --                     ; --                       ;
+; LEDR[9]       ; Output   ; -- ; --   ; --   ; -- ; (0)  ; (31)  ; --     ; --                     ; --                       ;
 ; DRAM_CKE      ; Output   ; -- ; --   ; --   ; -- ; (0)  ; (31)  ; --     ; --                     ; --                       ;
 ; DRAM_CS_N     ; Output   ; -- ; --   ; --   ; -- ; (0)  ; (31)  ; --     ; --                     ; --                       ;
 ; DRAM_RAS_N    ; Output   ; -- ; --   ; --   ; -- ; (0)  ; (31)  ; --     ; --                     ; --                       ;
@@ -1836,11 +1842,11 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 ; DRAM_UDQM     ; Output   ; -- ; --   ; --   ; -- ; (0)  ; (31)  ; --     ; --                     ; --                       ;
 ; DRAM_DQ[0]    ; Bidir    ; -- ; --   ; (0)  ; -- ; (0)  ; (31)  ; --     ; --                     ; --                       ;
 ; DRAM_DQ[1]    ; Bidir    ; -- ; --   ; (0)  ; -- ; (0)  ; (31)  ; --     ; --                     ; --                       ;
-; DRAM_DQ[2]    ; Bidir    ; -- ; (0)  ; --   ; -- ; (0)  ; (31)  ; --     ; --                     ; --                       ;
-; DRAM_DQ[3]    ; Bidir    ; -- ; (0)  ; --   ; -- ; (0)  ; (31)  ; --     ; --                     ; --                       ;
-; DRAM_DQ[4]    ; Bidir    ; -- ; (0)  ; --   ; -- ; (0)  ; (31)  ; --     ; --                     ; --                       ;
+; DRAM_DQ[2]    ; Bidir    ; -- ; --   ; (0)  ; -- ; (0)  ; (31)  ; --     ; --                     ; --                       ;
+; DRAM_DQ[3]    ; Bidir    ; -- ; --   ; (0)  ; -- ; (0)  ; (31)  ; --     ; --                     ; --                       ;
+; DRAM_DQ[4]    ; Bidir    ; -- ; --   ; (0)  ; -- ; (0)  ; (31)  ; --     ; --                     ; --                       ;
 ; DRAM_DQ[5]    ; Bidir    ; -- ; --   ; (0)  ; -- ; (0)  ; (31)  ; --     ; --                     ; --                       ;
-; DRAM_DQ[6]    ; Bidir    ; -- ; --   ; (0)  ; -- ; (0)  ; (31)  ; --     ; --                     ; --                       ;
+; DRAM_DQ[6]    ; Bidir    ; -- ; (0)  ; --   ; -- ; (0)  ; (31)  ; --     ; --                     ; --                       ;
 ; DRAM_DQ[7]    ; Bidir    ; -- ; --   ; (0)  ; -- ; (0)  ; (31)  ; --     ; --                     ; --                       ;
 ; DRAM_DQ[8]    ; Bidir    ; -- ; --   ; --   ; -- ; (0)  ; (31)  ; --     ; --                     ; --                       ;
 ; DRAM_DQ[9]    ; Bidir    ; -- ; --   ; --   ; -- ; (0)  ; (31)  ; --     ; --                     ; --                       ;
@@ -1859,8 +1865,8 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 ; SW[9]         ; Input    ; -- ; (0)  ; --   ; -- ; --   ; --    ; --     ; --                     ; --                       ;
 ; SW[8]         ; Input    ; -- ; --   ; (0)  ; -- ; --   ; --    ; --     ; --                     ; --                       ;
 ; SW[0]         ; Input    ; -- ; (0)  ; --   ; -- ; --   ; --    ; --     ; --                     ; --                       ;
-; SW[1]         ; Input    ; -- ; --   ; (0)  ; -- ; --   ; --    ; --     ; --                     ; --                       ;
-; SW[2]         ; Input    ; -- ; --   ; (0)  ; -- ; --   ; --    ; --     ; --                     ; --                       ;
+; SW[1]         ; Input    ; -- ; (0)  ; --   ; -- ; --   ; --    ; --     ; --                     ; --                       ;
+; SW[2]         ; Input    ; -- ; (0)  ; --   ; -- ; --   ; --    ; --     ; --                     ; --                       ;
 ; SW[3]         ; Input    ; -- ; --   ; (0)  ; -- ; --   ; --    ; --     ; --                     ; --                       ;
 ; KEY[3]        ; Input    ; -- ; (0)  ; --   ; -- ; --   ; --    ; --     ; --                     ; --                       ;
 +---------------+----------+----+------+------+----+------+-------+--------+------------------------+--------------------------+
@@ -1874,21 +1880,21 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 ; KEY[1]                                                                        ;                   ;         ;
 ; KEY[2]                                                                        ;                   ;         ;
 ; DRAM_DQ[0]                                                                    ;                   ;         ;
-;      - dram_controller:u_dram_controller|read:u_read|data_out[0]              ; 1                 ; 0       ;
+;      - dram_controller:u_dram_controller|read:u_read|data_out[0]~feeder       ; 1                 ; 0       ;
 ; DRAM_DQ[1]                                                                    ;                   ;         ;
 ;      - dram_controller:u_dram_controller|read:u_read|data_out[1]              ; 1                 ; 0       ;
 ; DRAM_DQ[2]                                                                    ;                   ;         ;
-;      - dram_controller:u_dram_controller|read:u_read|data_out[2]              ; 0                 ; 0       ;
+;      - dram_controller:u_dram_controller|read:u_read|data_out[2]              ; 1                 ; 0       ;
 ; DRAM_DQ[3]                                                                    ;                   ;         ;
-;      - dram_controller:u_dram_controller|read:u_read|data_out[3]              ; 0                 ; 0       ;
+;      - dram_controller:u_dram_controller|read:u_read|data_out[3]              ; 1                 ; 0       ;
 ; DRAM_DQ[4]                                                                    ;                   ;         ;
-;      - dram_controller:u_dram_controller|read:u_read|data_out[4]~feeder       ; 0                 ; 0       ;
+;      - dram_controller:u_dram_controller|read:u_read|data_out[4]              ; 1                 ; 0       ;
 ; DRAM_DQ[5]                                                                    ;                   ;         ;
 ;      - dram_controller:u_dram_controller|read:u_read|data_out[5]~feeder       ; 1                 ; 0       ;
 ; DRAM_DQ[6]                                                                    ;                   ;         ;
-;      - dram_controller:u_dram_controller|read:u_read|data_out[6]~feeder       ; 1                 ; 0       ;
+;      - dram_controller:u_dram_controller|read:u_read|data_out[6]              ; 0                 ; 0       ;
 ; DRAM_DQ[7]                                                                    ;                   ;         ;
-;      - dram_controller:u_dram_controller|read:u_read|data_out[7]~feeder       ; 1                 ; 0       ;
+;      - dram_controller:u_dram_controller|read:u_read|data_out[7]              ; 1                 ; 0       ;
 ; DRAM_DQ[8]                                                                    ;                   ;         ;
 ; DRAM_DQ[9]                                                                    ;                   ;         ;
 ; DRAM_DQ[10]                                                                   ;                   ;         ;
@@ -1899,62 +1905,70 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 ; DRAM_DQ[15]                                                                   ;                   ;         ;
 ; CLOCK_50                                                                      ;                   ;         ;
 ; KEY[0]                                                                        ;                   ;         ;
-;      - bin2hex:u_hex1|hex[1]                                                  ; 1                 ; 0       ;
-;      - bin2hex:u_hex4|hex[4]                                                  ; 1                 ; 0       ;
-;      - bin2hex:u_hex4|hex[3]                                                  ; 1                 ; 0       ;
-;      - bin2hex:u_hex4|hex[2]                                                  ; 1                 ; 0       ;
-;      - bin2hex:u_hex4|hex[1]                                                  ; 1                 ; 0       ;
-;      - bin2hex:u_hex4|hex[0]                                                  ; 1                 ; 0       ;
-;      - bin2hex:u_hex1|hex[5]                                                  ; 1                 ; 0       ;
-;      - bin2hex:u_hex1|hex[4]                                                  ; 1                 ; 0       ;
 ;      - bin2hex:u_hex1|hex[3]                                                  ; 1                 ; 0       ;
-;      - bin2hex:u_hex1|hex[2]                                                  ; 1                 ; 0       ;
-;      - bin2hex:u_hex4|hex[5]                                                  ; 1                 ; 0       ;
-;      - bin2hex:u_hex1|hex[0]                                                  ; 1                 ; 0       ;
-;      - bin2hex:u_hex0|hex[5]                                                  ; 1                 ; 0       ;
-;      - bin2hex:u_hex0|hex[4]                                                  ; 1                 ; 0       ;
-;      - bin2hex:u_hex0|hex[3]                                                  ; 1                 ; 0       ;
-;      - bin2hex:u_hex0|hex[2]                                                  ; 1                 ; 0       ;
-;      - bin2hex:u_hex0|hex[1]                                                  ; 1                 ; 0       ;
-;      - bin2hex:u_hex0|hex[0]                                                  ; 1                 ; 0       ;
-;      - dram_iface:u_dram_iface|data_out[3]                                    ; 1                 ; 0       ;
-;      - dram_controller:u_dram_controller|read:u_read|a[0]                     ; 1                 ; 0       ;
-;      - dram_controller:u_dram_controller|read:u_read|data_valid               ; 1                 ; 0       ;
-;      - dram_controller:u_dram_controller|write:u_write|done                   ; 1                 ; 0       ;
-;      - dram_controller:u_dram_controller|read:u_read|a[12]                    ; 1                 ; 0       ;
-;      - dram_controller:u_dram_controller|write:u_write|a[12]                  ; 1                 ; 0       ;
+;      - bin2hex:u_hex4|hex[1]                                                  ; 1                 ; 0       ;
 ;      - dram_controller:u_dram_controller|read:u_read|a[11]                    ; 1                 ; 0       ;
 ;      - dram_controller:u_dram_controller|write:u_write|a[11]                  ; 1                 ; 0       ;
 ;      - dram_controller:u_dram_controller|read:u_read|a[10]                    ; 1                 ; 0       ;
 ;      - dram_controller:u_dram_controller|read:u_read|a[1]                     ; 1                 ; 0       ;
 ;      - dram_controller:u_dram_controller|write:u_write|a[1]                   ; 1                 ; 0       ;
-;      - dram_iface:u_dram_iface|data_out[2]                                    ; 1                 ; 0       ;
+;      - dram_controller:u_dram_controller|read:u_read|a[0]                     ; 1                 ; 0       ;
 ;      - dram_controller:u_dram_controller|write:u_write|a[0]                   ; 1                 ; 0       ;
+;      - bin2hex:u_hex4|hex[0]                                                  ; 1                 ; 0       ;
+;      - bin2hex:u_hex1|hex[5]                                                  ; 1                 ; 0       ;
+;      - bin2hex:u_hex1|hex[4]                                                  ; 1                 ; 0       ;
+;      - dram_controller:u_dram_controller|write:u_write|a[12]                  ; 1                 ; 0       ;
+;      - bin2hex:u_hex1|hex[2]                                                  ; 1                 ; 0       ;
+;      - bin2hex:u_hex1|hex[1]                                                  ; 1                 ; 0       ;
+;      - bin2hex:u_hex1|hex[0]                                                  ; 1                 ; 0       ;
+;      - dram_iface:u_dram_iface|data_out[3]                                    ; 1                 ; 0       ;
+;      - bin2hex:u_hex0|hex[0]                                                  ; 1                 ; 0       ;
+;      - bin2hex:u_hex0|hex[1]                                                  ; 1                 ; 0       ;
+;      - bin2hex:u_hex0|hex[2]                                                  ; 1                 ; 0       ;
+;      - bin2hex:u_hex0|hex[3]                                                  ; 1                 ; 0       ;
+;      - bin2hex:u_hex0|hex[4]                                                  ; 1                 ; 0       ;
+;      - bin2hex:u_hex0|hex[5]                                                  ; 1                 ; 0       ;
+;      - bin2hex:u_hex5|hex[5]                                                  ; 1                 ; 0       ;
+;      - dram_iface:u_dram_iface|data_out[2]                                    ; 1                 ; 0       ;
+;      - dram_iface:u_dram_iface|data_out[1]                                    ; 1                 ; 0       ;
 ;      - dram_controller:u_dram_controller|data_valid                           ; 1                 ; 0       ;
 ;      - dram_controller:u_dram_controller|ready                                ; 1                 ; 0       ;
 ;      - dram_iface:u_dram_iface|wEn                                            ; 1                 ; 0       ;
+;      - dram_iface:u_dram_iface|data_out[0]                                    ; 1                 ; 0       ;
+;      - dram_controller:u_dram_controller|read:u_read|data_valid               ; 1                 ; 0       ;
 ;      - dram_iface:u_dram_iface|req                                            ; 1                 ; 0       ;
-;      - bin2hex:u_hex5|hex[5]                                                  ; 1                 ; 0       ;
+;      - bin2hex:u_hex4|hex[2]                                                  ; 1                 ; 0       ;
 ;      - bin2hex:u_hex5|hex[4]                                                  ; 1                 ; 0       ;
 ;      - bin2hex:u_hex5|hex[2]                                                  ; 1                 ; 0       ;
-;      - dram_iface:u_dram_iface|data_out[1]                                    ; 1                 ; 0       ;
-;      - dram_iface:u_dram_iface|data_out[0]                                    ; 1                 ; 0       ;
-;      - dram_controller:u_dram_controller|read:u_read|data_out[5]              ; 1                 ; 0       ;
-;      - dram_controller:u_dram_controller|read:u_read|data_out[3]              ; 1                 ; 0       ;
-;      - dram_controller:u_dram_controller|read:u_read|data_out[2]              ; 1                 ; 0       ;
-;      - dram_controller:u_dram_controller|read:u_read|data_out[1]              ; 1                 ; 0       ;
-;      - dram_controller:u_dram_controller|read:u_read|data_out[0]              ; 1                 ; 0       ;
+;      - dram_controller:u_dram_controller|write:u_write|done                   ; 1                 ; 0       ;
+;      - bin2hex:u_hex4|hex[5]                                                  ; 1                 ; 0       ;
+;      - dram_controller:u_dram_controller|read:u_read|a[12]                    ; 1                 ; 0       ;
+;      - bin2hex:u_hex4|hex[4]                                                  ; 1                 ; 0       ;
+;      - bin2hex:u_hex4|hex[3]                                                  ; 1                 ; 0       ;
 ;      - dram_controller:u_dram_controller|read:u_read|data_out[7]              ; 1                 ; 0       ;
-;      - dram_controller:u_dram_controller|read:u_read|data_out[4]              ; 1                 ; 0       ;
 ;      - dram_controller:u_dram_controller|read:u_read|data_out[6]              ; 1                 ; 0       ;
-;      - dram_controller:u_dram_controller|read_data_reg[3]                     ; 1                 ; 0       ;
+;      - dram_controller:u_dram_controller|read:u_read|data_out[5]              ; 1                 ; 0       ;
+;      - dram_controller:u_dram_controller|read:u_read|data_out[0]              ; 1                 ; 0       ;
+;      - dram_controller:u_dram_controller|read:u_read|data_out[1]              ; 1                 ; 0       ;
+;      - dram_controller:u_dram_controller|read:u_read|data_out[2]              ; 1                 ; 0       ;
+;      - dram_controller:u_dram_controller|read:u_read|data_out[3]              ; 1                 ; 0       ;
+;      - dram_controller:u_dram_controller|read:u_read|data_out[4]              ; 1                 ; 0       ;
 ;      - dram_controller:u_dram_controller|read_data_reg[1]                     ; 1                 ; 0       ;
-;      - dram_controller:u_dram_controller|read_data_reg[7]                     ; 1                 ; 0       ;
-;      - dram_controller:u_dram_controller|read_data_reg[6]                     ; 1                 ; 0       ;
-;      - dram_controller:u_dram_controller|read_data_reg[5]                     ; 1                 ; 0       ;
-;      - dram_controller:u_dram_controller|read_data_reg[4]                     ; 1                 ; 0       ;
 ;      - dram_controller:u_dram_controller|read_data_reg[0]                     ; 1                 ; 0       ;
+;      - dram_controller:u_dram_controller|read_data_reg[5]                     ; 1                 ; 0       ;
+;      - dram_controller:u_dram_controller|read_data_reg[7]                     ; 1                 ; 0       ;
+;      - dram_controller:u_dram_controller|read_data_reg[4]                     ; 1                 ; 0       ;
 ;      - dram_controller:u_dram_controller|read_data_reg[2]                     ; 1                 ; 0       ;
+;      - dram_controller:u_dram_controller|read_data_reg[3]                     ; 1                 ; 0       ;
+;      - dram_controller:u_dram_controller|read_data_reg[6]                     ; 1                 ; 0       ;
+;      - dram_controller:u_dram_controller|init:u_init|refresh_count[6]         ; 1                 ; 0       ;
+;      - dram_controller:u_dram_controller|init:u_init|refresh_count[0]         ; 1                 ; 0       ;
+;      - dram_controller:u_dram_controller|init:u_init|refresh_count[7]         ; 1                 ; 0       ;
+;      - dram_controller:u_dram_controller|init:u_init|refresh_count[5]         ; 1                 ; 0       ;
+;      - dram_controller:u_dram_controller|init:u_init|refresh_count[4]         ; 1                 ; 0       ;
+;      - dram_controller:u_dram_controller|init:u_init|refresh_count[3]         ; 1                 ; 0       ;
+;      - dram_controller:u_dram_controller|init:u_init|refresh_count[1]         ; 1                 ; 0       ;
+;      - dram_controller:u_dram_controller|init:u_init|refresh_count[2]         ; 1                 ; 0       ;
 ;      - bin2hex:u_hex0|hex[6]                                                  ; 1                 ; 0       ;
 ;      - bin2hex:u_hex1|hex[6]                                                  ; 1                 ; 0       ;
 ;      - bin2hex:u_hex4|hex[6]                                                  ; 1                 ; 0       ;
@@ -1971,6 +1985,7 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 ;      - dram_controller:u_dram_controller|write:u_write|a[10]                  ; 1                 ; 0       ;
 ;      - dram_controller:u_dram_controller|init:u_init|a[10]                    ; 1                 ; 0       ;
 ;      - dram_controller:u_dram_controller|autorefresh:u_refresh|done           ; 1                 ; 0       ;
+;      - dram_controller:u_dram_controller|read:u_read|ready                    ; 1                 ; 0       ;
 ;      - dram_controller:u_dram_controller|init:u_init|ready                    ; 1                 ; 0       ;
 ;      - dram_controller:u_dram_controller|autorefresh:u_refresh|refresh_req    ; 1                 ; 0       ;
 ;      - dram_controller:u_dram_controller|write:u_write|dq_out[0]              ; 1                 ; 0       ;
@@ -1985,9 +2000,6 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 ;      - dram_controller:u_dram_controller|state.S_REFRESH_WAIT                 ; 1                 ; 0       ;
 ;      - dram_controller:u_dram_controller|state.S_READ_WAIT                    ; 1                 ; 0       ;
 ;      - dram_controller:u_dram_controller|state.S_WRITE_WAIT                   ; 1                 ; 0       ;
-;      - dram_iface:u_dram_iface|estado.REQ_READ                                ; 1                 ; 0       ;
-;      - dram_controller:u_dram_controller|init:u_init|state.S_REF2             ; 1                 ; 0       ;
-;      - dram_controller:u_dram_controller|init:u_init|state.S_MRS              ; 1                 ; 0       ;
 ;      - dram_controller:u_dram_controller|init:u_init|state.S_DONE             ; 1                 ; 0       ;
 ;      - dram_controller:u_dram_controller|write:u_write|state.S_WAIT_TWR       ; 1                 ; 0       ;
 ;      - dram_controller:u_dram_controller|read:u_read|state.S_WAIT_RCD         ; 1                 ; 0       ;
@@ -1997,29 +2009,34 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 ;      - dram_controller:u_dram_controller|write:u_write|state.S_WAIT_TRP       ; 1                 ; 0       ;
 ;      - bin2hex:u_hex5|hex~0                                                   ; 1                 ; 0       ;
 ;      - bin2hex:u_hex5|hex~1                                                   ; 1                 ; 0       ;
-;      - dram_controller:u_dram_controller|state~19                             ; 1                 ; 0       ;
-;      - dram_controller:u_dram_controller|state~20                             ; 1                 ; 0       ;
-;      - dram_controller:u_dram_controller|state~24                             ; 1                 ; 0       ;
+;      - dram_controller:u_dram_controller|leds[0]~0                            ; 1                 ; 0       ;
+;      - dram_controller:u_dram_controller|leds[1]~1                            ; 1                 ; 0       ;
+;      - dram_controller:u_dram_controller|leds[2]~2                            ; 1                 ; 0       ;
+;      - dram_controller:u_dram_controller|leds[3]~3                            ; 1                 ; 0       ;
+;      - dram_controller:u_dram_controller|leds[4]~4                            ; 1                 ; 0       ;
+;      - dram_controller:u_dram_controller|state~17                             ; 1                 ; 0       ;
+;      - dram_controller:u_dram_controller|state~22                             ; 1                 ; 0       ;
+;      - dram_controller:u_dram_controller|state~25                             ; 1                 ; 0       ;
 ;      - dram_controller:u_dram_controller|read:u_read|cas_n~0                  ; 1                 ; 0       ;
 ;      - dram_controller:u_dram_controller|write:u_write|cas_n~0                ; 1                 ; 0       ;
 ;      - dram_controller:u_dram_controller|read:u_read|we_n~0                   ; 1                 ; 0       ;
 ;      - dram_controller:u_dram_controller|state.S_INIT~1                       ; 1                 ; 0       ;
 ;      - dram_iface:u_dram_iface|dado_escrito~0                                 ; 1                 ; 0       ;
-;      - dram_iface:u_dram_iface|dado_escrito[2]~1                              ; 1                 ; 0       ;
+;      - dram_iface:u_dram_iface|dado_escrito[0]~1                              ; 1                 ; 0       ;
 ;      - dram_iface:u_dram_iface|dado_escrito~2                                 ; 1                 ; 0       ;
 ;      - dram_iface:u_dram_iface|dado_escrito~3                                 ; 1                 ; 0       ;
 ;      - dram_iface:u_dram_iface|dado_escrito~4                                 ; 1                 ; 0       ;
 ;      - dram_iface:u_dram_iface|dado_exibir~0                                  ; 1                 ; 0       ;
-;      - dram_iface:u_dram_iface|dado_exibir[0]~1                               ; 1                 ; 0       ;
+;      - dram_iface:u_dram_iface|dado_exibir[3]~1                               ; 1                 ; 0       ;
 ;      - dram_iface:u_dram_iface|dado_exibir~2                                  ; 1                 ; 0       ;
 ;      - dram_iface:u_dram_iface|dado_exibir~3                                  ; 1                 ; 0       ;
 ;      - dram_iface:u_dram_iface|dado_exibir~4                                  ; 1                 ; 0       ;
-;      - dram_iface:u_dram_iface|estado~19                                      ; 1                 ; 0       ;
-;      - dram_controller:u_dram_controller|read:u_read|ready~0                  ; 1                 ; 0       ;
-;      - dram_controller:u_dram_controller|init:u_init|timer[9]~1               ; 1                 ; 0       ;
-;      - dram_controller:u_dram_controller|init:u_init|timer[9]~2               ; 1                 ; 0       ;
+;      - dram_iface:u_dram_iface|estado~18                                      ; 1                 ; 0       ;
 ;      - dram_controller:u_dram_controller|init:u_init|state~20                 ; 1                 ; 0       ;
+;      - dram_controller:u_dram_controller|init:u_init|timer[12]~1              ; 1                 ; 0       ;
+;      - dram_controller:u_dram_controller|init:u_init|timer[12]~2              ; 1                 ; 0       ;
 ;      - dram_controller:u_dram_controller|init:u_init|state~21                 ; 1                 ; 0       ;
+;      - dram_controller:u_dram_controller|init:u_init|state~26                 ; 1                 ; 0       ;
 ;      - dram_controller:u_dram_controller|init:u_init|state.S_WAIT~1           ; 1                 ; 0       ;
 ;      - dram_controller:u_dram_controller|read:u_read|state~22                 ; 1                 ; 0       ;
 ;      - dram_controller:u_dram_controller|read:u_read|state~23                 ; 1                 ; 0       ;
@@ -2028,10 +2045,11 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 ;      - dram_controller:u_dram_controller|autorefresh:u_refresh|state~9        ; 1                 ; 0       ;
 ;      - dram_controller:u_dram_controller|read:u_read|state~24                 ; 1                 ; 0       ;
 ;      - dram_controller:u_dram_controller|write:u_write|state~23               ; 1                 ; 0       ;
+;      - dram_controller:u_dram_controller|init:u_init|refresh_count[6]~1       ; 1                 ; 0       ;
 ;      - dram_controller:u_dram_controller|addr_reg~0                           ; 1                 ; 0       ;
-;      - dram_controller:u_dram_controller|addr_reg[22]~1                       ; 1                 ; 0       ;
+;      - dram_controller:u_dram_controller|addr_reg[1]~1                        ; 1                 ; 0       ;
 ;      - dram_controller:u_dram_controller|read:u_read|addr_reg~0               ; 1                 ; 0       ;
-;      - dram_controller:u_dram_controller|read:u_read|addr_reg[22]~1           ; 1                 ; 0       ;
+;      - dram_controller:u_dram_controller|read:u_read|addr_reg[0]~1            ; 1                 ; 0       ;
 ;      - dram_controller:u_dram_controller|addr_reg~2                           ; 1                 ; 0       ;
 ;      - dram_controller:u_dram_controller|read:u_read|addr_reg~2               ; 1                 ; 0       ;
 ;      - dram_controller:u_dram_controller|addr_reg~3                           ; 1                 ; 0       ;
@@ -2042,38 +2060,38 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 ;      - dram_controller:u_dram_controller|read:u_read|addr_reg~5               ; 1                 ; 0       ;
 ;      - dram_controller:u_dram_controller|addr_reg~6                           ; 1                 ; 0       ;
 ;      - dram_controller:u_dram_controller|read:u_read|addr_reg~6               ; 1                 ; 0       ;
-;      - dram_controller:u_dram_controller|read_data_reg[3]~0                   ; 1                 ; 0       ;
+;      - dram_controller:u_dram_controller|read_data_reg[1]~0                   ; 1                 ; 0       ;
 ;      - dram_iface:u_dram_iface|estado~22                                      ; 1                 ; 0       ;
+;      - dram_iface:u_dram_iface|estado~24                                      ; 1                 ; 0       ;
 ;      - dram_iface:u_dram_iface|endereco_ultima_leitura~0                      ; 1                 ; 0       ;
-;      - dram_iface:u_dram_iface|endereco_ultima_leitura[4]~1                   ; 1                 ; 0       ;
+;      - dram_iface:u_dram_iface|endereco_ultima_leitura[0]~1                   ; 1                 ; 0       ;
 ;      - dram_iface:u_dram_iface|endereco_ultima_leitura~2                      ; 1                 ; 0       ;
 ;      - dram_iface:u_dram_iface|endereco_ultima_leitura~3                      ; 1                 ; 0       ;
 ;      - dram_iface:u_dram_iface|endereco_ultima_leitura~4                      ; 1                 ; 0       ;
 ;      - dram_iface:u_dram_iface|endereco_ultima_leitura~5                      ; 1                 ; 0       ;
-;      - dram_iface:u_dram_iface|estado~24                                      ; 1                 ; 0       ;
-;      - dram_iface:u_dram_iface|estado~26                                      ; 1                 ; 0       ;
 ;      - dram_controller:u_dram_controller|read:u_read|state~25                 ; 1                 ; 0       ;
+;      - dram_controller:u_dram_controller|init:u_init|refresh_count[6]~8       ; 1                 ; 0       ;
 ;      - dram_controller:u_dram_controller|read:u_read|state~26                 ; 1                 ; 0       ;
-;      - dram_controller:u_dram_controller|autorefresh:u_refresh|state.S_WAIT~0 ; 1                 ; 0       ;
-;      - dram_controller:u_dram_controller|autorefresh:u_refresh|ref_timer[9]~1 ; 1                 ; 0       ;
-;      - dram_controller:u_dram_controller|autorefresh:u_refresh|rfc_timer[1]~0 ; 1                 ; 0       ;
 ;      - dram_controller:u_dram_controller|write:u_write|state~24               ; 1                 ; 0       ;
+;      - dram_controller:u_dram_controller|autorefresh:u_refresh|state.S_WAIT~0 ; 1                 ; 0       ;
+;      - dram_controller:u_dram_controller|autorefresh:u_refresh|ref_timer[0]~1 ; 1                 ; 0       ;
+;      - dram_controller:u_dram_controller|autorefresh:u_refresh|rfc_timer[4]~0 ; 1                 ; 0       ;
 ;      - dram_controller:u_dram_controller|autorefresh:u_refresh|state~12       ; 1                 ; 0       ;
-;      - dram_controller:u_dram_controller|autorefresh:u_refresh|ref_timer[9]~2 ; 1                 ; 0       ;
-;      - dram_controller:u_dram_controller|autorefresh:u_refresh|ref_timer[9]~3 ; 1                 ; 0       ;
+;      - dram_controller:u_dram_controller|autorefresh:u_refresh|ref_timer[0]~2 ; 1                 ; 0       ;
+;      - dram_controller:u_dram_controller|autorefresh:u_refresh|ref_timer[0]~3 ; 1                 ; 0       ;
 ;      - dram_controller:u_dram_controller|write:u_write|state~25               ; 1                 ; 0       ;
 ;      - dram_controller:u_dram_controller|write:u_write|timer[1]~0             ; 1                 ; 0       ;
 ;      - dram_controller:u_dram_controller|write:u_write|timer[1]~2             ; 1                 ; 0       ;
-;      - dram_controller:u_dram_controller|read:u_read|timer[0]~1               ; 1                 ; 0       ;
-;      - dram_iface:u_dram_iface|address[22]~1                                  ; 1                 ; 0       ;
-;      - dram_controller:u_dram_controller|read:u_read|data_out[5]~0            ; 1                 ; 0       ;
+;      - dram_controller:u_dram_controller|read:u_read|timer[7]~1               ; 1                 ; 0       ;
+;      - dram_iface:u_dram_iface|address[21]~1                                  ; 1                 ; 0       ;
+;      - dram_controller:u_dram_controller|read:u_read|data_out[7]~0            ; 1                 ; 0       ;
 ;      - dram_controller:u_dram_controller|write_data_reg[2]~0                  ; 1                 ; 0       ;
 ;      - dram_controller:u_dram_controller|write_data_reg~1                     ; 1                 ; 0       ;
 ;      - dram_controller:u_dram_controller|write_data_reg~2                     ; 1                 ; 0       ;
 ;      - dram_controller:u_dram_controller|write_data_reg~3                     ; 1                 ; 0       ;
 ;      - dram_controller:u_dram_controller|write_data_reg~4                     ; 1                 ; 0       ;
-;      - dram_controller:u_dram_controller|state~25                             ; 1                 ; 0       ;
 ;      - dram_controller:u_dram_controller|state~26                             ; 1                 ; 0       ;
+;      - dram_controller:u_dram_controller|state~27                             ; 1                 ; 0       ;
 ; SW[4]                                                                         ;                   ;         ;
 ;      - bin2hex:u_hex4|WideOr6~0                                               ; 0                 ; 0       ;
 ;      - bin2hex:u_hex4|WideOr5~0                                               ; 0                 ; 0       ;
@@ -2131,16 +2149,18 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 ;      - dram_iface:u_dram_iface|dado_escrito~0                                 ; 0                 ; 0       ;
 ;      - dram_iface:u_dram_iface|Selector8~0                                    ; 0                 ; 0       ;
 ; SW[1]                                                                         ;                   ;         ;
-;      - dram_iface:u_dram_iface|dado_escrito~2                                 ; 1                 ; 0       ;
-;      - dram_iface:u_dram_iface|Selector7~0                                    ; 1                 ; 0       ;
+;      - dram_iface:u_dram_iface|dado_escrito~2                                 ; 0                 ; 0       ;
+;      - dram_iface:u_dram_iface|Selector7~0                                    ; 0                 ; 0       ;
 ; SW[2]                                                                         ;                   ;         ;
-;      - dram_iface:u_dram_iface|dado_escrito~3                                 ; 1                 ; 0       ;
-;      - dram_iface:u_dram_iface|Selector6~0                                    ; 1                 ; 0       ;
+;      - dram_iface:u_dram_iface|dado_escrito~3                                 ; 0                 ; 0       ;
+;      - dram_iface:u_dram_iface|Selector6~0                                    ; 0                 ; 0       ;
 ; SW[3]                                                                         ;                   ;         ;
 ;      - dram_iface:u_dram_iface|dado_escrito~4                                 ; 1                 ; 0       ;
 ;      - dram_iface:u_dram_iface|Selector5~0                                    ; 1                 ; 0       ;
 ; KEY[3]                                                                        ;                   ;         ;
 ;      - dram_iface:u_dram_iface|estado~18                                      ; 0                 ; 0       ;
+;      - dram_iface:u_dram_iface|estado~19                                      ; 0                 ; 0       ;
+;      - dram_iface:u_dram_iface|estado~20                                      ; 0                 ; 0       ;
 ;      - dram_iface:u_dram_iface|estado~23                                      ; 0                 ; 0       ;
 +-------------------------------------------------------------------------------+-------------------+---------+
 
@@ -2150,27 +2170,28 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +------------------------------------------------------------------------+---------------------+---------+-------------------------+--------+----------------------+------------------+---------------------------+
 ; Name                                                                   ; Location            ; Fan-Out ; Usage                   ; Global ; Global Resource Used ; Global Line Name ; Enable Signal Source Name ;
 +------------------------------------------------------------------------+---------------------+---------+-------------------------+--------+----------------------+------------------+---------------------------+
-; CLOCK_50                                                               ; PIN_AF14            ; 227     ; Clock                   ; yes    ; Global Clock         ; GCLK6            ; --                        ;
-; KEY[0]                                                                 ; PIN_AA14            ; 175     ; Sync. clear, Sync. load ; no     ; --                   ; --               ; --                        ;
-; dram_controller:u_dram_controller|addr_reg[22]~1                       ; MLABCELL_X28_Y2_N36 ; 6       ; Clock enable            ; no     ; --                   ; --               ; --                        ;
-; dram_controller:u_dram_controller|autorefresh:u_refresh|ref_timer[9]~1 ; MLABCELL_X28_Y3_N54 ; 16      ; Sync. clear             ; no     ; --                   ; --               ; --                        ;
-; dram_controller:u_dram_controller|autorefresh:u_refresh|ref_timer[9]~2 ; LABCELL_X29_Y3_N51  ; 16      ; Sync. clear             ; no     ; --                   ; --               ; --                        ;
-; dram_controller:u_dram_controller|autorefresh:u_refresh|ref_timer[9]~3 ; LABCELL_X29_Y3_N54  ; 16      ; Clock enable            ; no     ; --                   ; --               ; --                        ;
-; dram_controller:u_dram_controller|autorefresh:u_refresh|rfc_timer[1]~0 ; LABCELL_X29_Y3_N0   ; 16      ; Clock enable            ; no     ; --                   ; --               ; --                        ;
-; dram_controller:u_dram_controller|init:u_init|timer[9]~1               ; LABCELL_X22_Y2_N48  ; 15      ; Sync. clear             ; no     ; --                   ; --               ; --                        ;
-; dram_controller:u_dram_controller|init:u_init|timer[9]~2               ; LABCELL_X23_Y2_N30  ; 15      ; Clock enable            ; no     ; --                   ; --               ; --                        ;
-; dram_controller:u_dram_controller|read:u_read|addr_reg[22]~1           ; LABCELL_X29_Y2_N27  ; 6       ; Clock enable            ; no     ; --                   ; --               ; --                        ;
-; dram_controller:u_dram_controller|read:u_read|data_out[5]~0            ; LABCELL_X27_Y2_N3   ; 8       ; Clock enable            ; no     ; --                   ; --               ; --                        ;
-; dram_controller:u_dram_controller|read:u_read|state~23                 ; LABCELL_X24_Y2_N0   ; 9       ; Clock enable            ; no     ; --                   ; --               ; --                        ;
-; dram_controller:u_dram_controller|read:u_read|timer[0]~1               ; MLABCELL_X25_Y2_N42 ; 8       ; Sync. clear             ; no     ; --                   ; --               ; --                        ;
-; dram_controller:u_dram_controller|read_data_reg[3]~0                   ; LABCELL_X29_Y1_N48  ; 8       ; Clock enable            ; no     ; --                   ; --               ; --                        ;
-; dram_controller:u_dram_controller|write:u_write|dq_oe                  ; FF_X25_Y1_N32       ; 9       ; Output enable           ; no     ; --                   ; --               ; --                        ;
-; dram_controller:u_dram_controller|write:u_write|timer[1]~2             ; MLABCELL_X25_Y1_N45 ; 3       ; Clock enable            ; no     ; --                   ; --               ; --                        ;
-; dram_controller:u_dram_controller|write_data_reg[2]~0                  ; MLABCELL_X28_Y2_N45 ; 8       ; Clock enable            ; no     ; --                   ; --               ; --                        ;
-; dram_iface:u_dram_iface|address[22]~1                                  ; LABCELL_X31_Y2_N51  ; 6       ; Clock enable            ; no     ; --                   ; --               ; --                        ;
-; dram_iface:u_dram_iface|dado_escrito[2]~1                              ; LABCELL_X31_Y2_N18  ; 4       ; Clock enable            ; no     ; --                   ; --               ; --                        ;
-; dram_iface:u_dram_iface|dado_exibir[0]~1                               ; LABCELL_X31_Y2_N27  ; 4       ; Clock enable            ; no     ; --                   ; --               ; --                        ;
-; dram_iface:u_dram_iface|endereco_ultima_leitura[4]~1                   ; LABCELL_X31_Y2_N0   ; 6       ; Clock enable            ; no     ; --                   ; --               ; --                        ;
+; CLOCK_50                                                               ; PIN_AF14            ; 240     ; Clock                   ; yes    ; Global Clock         ; GCLK6            ; --                        ;
+; KEY[0]                                                                 ; PIN_AA14            ; 187     ; Sync. clear, Sync. load ; no     ; --                   ; --               ; --                        ;
+; dram_controller:u_dram_controller|addr_reg[1]~1                        ; MLABCELL_X39_Y3_N33 ; 6       ; Clock enable            ; no     ; --                   ; --               ; --                        ;
+; dram_controller:u_dram_controller|autorefresh:u_refresh|ref_timer[0]~1 ; LABCELL_X35_Y3_N12  ; 16      ; Sync. clear             ; no     ; --                   ; --               ; --                        ;
+; dram_controller:u_dram_controller|autorefresh:u_refresh|ref_timer[0]~2 ; LABCELL_X37_Y3_N39  ; 16      ; Sync. clear             ; no     ; --                   ; --               ; --                        ;
+; dram_controller:u_dram_controller|autorefresh:u_refresh|ref_timer[0]~3 ; LABCELL_X35_Y3_N54  ; 16      ; Clock enable            ; no     ; --                   ; --               ; --                        ;
+; dram_controller:u_dram_controller|autorefresh:u_refresh|rfc_timer[4]~0 ; LABCELL_X37_Y3_N30  ; 16      ; Clock enable            ; no     ; --                   ; --               ; --                        ;
+; dram_controller:u_dram_controller|init:u_init|refresh_count[6]~1       ; LABCELL_X33_Y2_N24  ; 8       ; Clock enable            ; no     ; --                   ; --               ; --                        ;
+; dram_controller:u_dram_controller|init:u_init|timer[12]~1              ; LABCELL_X35_Y2_N48  ; 15      ; Sync. clear             ; no     ; --                   ; --               ; --                        ;
+; dram_controller:u_dram_controller|init:u_init|timer[12]~2              ; LABCELL_X36_Y2_N39  ; 15      ; Clock enable            ; no     ; --                   ; --               ; --                        ;
+; dram_controller:u_dram_controller|read:u_read|addr_reg[0]~1            ; LABCELL_X36_Y1_N48  ; 6       ; Clock enable            ; no     ; --                   ; --               ; --                        ;
+; dram_controller:u_dram_controller|read:u_read|data_out[7]~0            ; LABCELL_X37_Y2_N51  ; 8       ; Clock enable            ; no     ; --                   ; --               ; --                        ;
+; dram_controller:u_dram_controller|read:u_read|state~23                 ; MLABCELL_X34_Y1_N6  ; 9       ; Clock enable            ; no     ; --                   ; --               ; --                        ;
+; dram_controller:u_dram_controller|read:u_read|timer[7]~1               ; LABCELL_X36_Y1_N45  ; 8       ; Sync. clear             ; no     ; --                   ; --               ; --                        ;
+; dram_controller:u_dram_controller|read_data_reg[1]~0                   ; MLABCELL_X39_Y2_N15 ; 8       ; Clock enable            ; no     ; --                   ; --               ; --                        ;
+; dram_controller:u_dram_controller|write:u_write|dq_oe                  ; FF_X34_Y1_N35       ; 9       ; Output enable           ; no     ; --                   ; --               ; --                        ;
+; dram_controller:u_dram_controller|write:u_write|timer[1]~2             ; MLABCELL_X34_Y1_N9  ; 3       ; Clock enable            ; no     ; --                   ; --               ; --                        ;
+; dram_controller:u_dram_controller|write_data_reg[2]~0                  ; MLABCELL_X39_Y3_N0  ; 8       ; Clock enable            ; no     ; --                   ; --               ; --                        ;
+; dram_iface:u_dram_iface|address[21]~1                                  ; LABCELL_X40_Y4_N36  ; 6       ; Clock enable            ; no     ; --                   ; --               ; --                        ;
+; dram_iface:u_dram_iface|dado_escrito[0]~1                              ; LABCELL_X45_Y4_N57  ; 4       ; Clock enable            ; no     ; --                   ; --               ; --                        ;
+; dram_iface:u_dram_iface|dado_exibir[3]~1                               ; LABCELL_X40_Y2_N30  ; 6       ; Clock enable            ; no     ; --                   ; --               ; --                        ;
+; dram_iface:u_dram_iface|endereco_ultima_leitura[0]~1                   ; LABCELL_X40_Y2_N18  ; 6       ; Clock enable            ; no     ; --                   ; --               ; --                        ;
 +------------------------------------------------------------------------+---------------------+---------+-------------------------+--------+----------------------+------------------+---------------------------+
 
 
@@ -2179,7 +2200,7 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +----------+----------+---------+----------------------+------------------+---------------------------+
 ; Name     ; Location ; Fan-Out ; Global Resource Used ; Global Line Name ; Enable Signal Source Name ;
 +----------+----------+---------+----------------------+------------------+---------------------------+
-; CLOCK_50 ; PIN_AF14 ; 227     ; Global Clock         ; GCLK6            ; --                        ;
+; CLOCK_50 ; PIN_AF14 ; 240     ; Global Clock         ; GCLK6            ; --                        ;
 +----------+----------+---------+----------------------+------------------+---------------------------+
 
 
@@ -2188,14 +2209,14 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +---------------------------------------------+-------------------------+
 ; Routing Resource Type                       ; Usage                   ;
 +---------------------------------------------+-------------------------+
-; Block interconnects                         ; 432 / 289,320 ( < 1 % ) ;
-; C12 interconnects                           ; 9 / 13,420 ( < 1 % )    ;
-; C2 interconnects                            ; 85 / 119,108 ( < 1 % )  ;
-; C4 interconnects                            ; 91 / 56,300 ( < 1 % )   ;
+; Block interconnects                         ; 448 / 289,320 ( < 1 % ) ;
+; C12 interconnects                           ; 10 / 13,420 ( < 1 % )   ;
+; C2 interconnects                            ; 99 / 119,108 ( < 1 % )  ;
+; C4 interconnects                            ; 109 / 56,300 ( < 1 % )  ;
 ; DQS bus muxes                               ; 0 / 25 ( 0 % )          ;
 ; DQS-18 I/O buses                            ; 0 / 25 ( 0 % )          ;
 ; DQS-9 I/O buses                             ; 0 / 25 ( 0 % )          ;
-; Direct links                                ; 68 / 289,320 ( < 1 % )  ;
+; Direct links                                ; 66 / 289,320 ( < 1 % )  ;
 ; Global clocks                               ; 1 / 16 ( 6 % )          ;
 ; HPS SDRAM PLL inputs                        ; 0 / 1 ( 0 % )           ;
 ; HPS SDRAM PLL outputs                       ; 0 / 1 ( 0 % )           ;
@@ -2251,13 +2272,13 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 ; HPS_INTERFACE_TPIU_TRACE_INPUTs             ; 0 / 2 ( 0 % )           ;
 ; HPS_INTERFACE_TPIU_TRACE_OUTPUTs            ; 0 / 33 ( 0 % )          ;
 ; Horizontal periphery clocks                 ; 0 / 72 ( 0 % )          ;
-; Local interconnects                         ; 167 / 84,580 ( < 1 % )  ;
+; Local interconnects                         ; 181 / 84,580 ( < 1 % )  ;
 ; Quadrant clocks                             ; 0 / 66 ( 0 % )          ;
-; R14 interconnects                           ; 107 / 12,676 ( < 1 % )  ;
-; R14/C12 interconnect drivers                ; 112 / 20,720 ( < 1 % )  ;
-; R3 interconnects                            ; 197 / 130,992 ( < 1 % ) ;
-; R6 interconnects                            ; 243 / 266,960 ( < 1 % ) ;
-; Spine clocks                                ; 2 / 360 ( < 1 % )       ;
+; R14 interconnects                           ; 81 / 12,676 ( < 1 % )   ;
+; R14/C12 interconnect drivers                ; 86 / 20,720 ( < 1 % )   ;
+; R3 interconnects                            ; 198 / 130,992 ( < 1 % ) ;
+; R6 interconnects                            ; 344 / 266,960 ( < 1 % ) ;
+; Spine clocks                                ; 3 / 360 ( < 1 % )       ;
 ; Wire stub REs                               ; 0 / 15,858 ( 0 % )      ;
 +---------------------------------------------+-------------------------+
 
@@ -2317,9 +2338,9 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +--------------------+--------------+-----------+-----------+--------------+--------------+-----------+-----------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+-----------+-----------+--------------+
 ; Pin/Rules          ; IO_000002    ; IO_000003 ; IO_000001 ; IO_000004    ; IO_000005    ; IO_000006 ; IO_000007 ; IO_000008    ; IO_000022    ; IO_000021    ; IO_000046    ; IO_000023    ; IO_000024    ; IO_000026    ; IO_000027    ; IO_000045    ; IO_000047    ; IO_000020    ; IO_000019    ; IO_000018    ; IO_000015    ; IO_000014    ; IO_000013    ; IO_000012    ; IO_000011    ; IO_000010 ; IO_000009 ; IO_000034    ;
 +--------------------+--------------+-----------+-----------+--------------+--------------+-----------+-----------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+-----------+-----------+--------------+
-; Total Pass         ; 0            ; 100       ; 100       ; 0            ; 0            ; 100       ; 100       ; 0            ; 0            ; 0            ; 0            ; 8            ; 85           ; 0            ; 0            ; 0            ; 0            ; 0            ; 85           ; 0            ; 0            ; 0            ; 0            ; 85           ; 0            ; 100       ; 100       ; 0            ;
+; Total Pass         ; 0            ; 106       ; 106       ; 0            ; 0            ; 106       ; 106       ; 0            ; 0            ; 0            ; 0            ; 8            ; 91           ; 0            ; 0            ; 0            ; 0            ; 0            ; 91           ; 0            ; 0            ; 0            ; 0            ; 91           ; 0            ; 106       ; 106       ; 0            ;
 ; Total Unchecked    ; 0            ; 0         ; 0         ; 0            ; 0            ; 0         ; 0         ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0         ; 0         ; 0            ;
-; Total Inapplicable ; 100          ; 0         ; 0         ; 100          ; 100          ; 0         ; 0         ; 100          ; 100          ; 100          ; 100          ; 92           ; 15           ; 100          ; 100          ; 100          ; 100          ; 100          ; 15           ; 100          ; 100          ; 100          ; 100          ; 15           ; 100          ; 0         ; 0         ; 100          ;
+; Total Inapplicable ; 106          ; 0         ; 0         ; 106          ; 106          ; 0         ; 0         ; 106          ; 106          ; 106          ; 106          ; 98           ; 15           ; 106          ; 106          ; 106          ; 106          ; 106          ; 15           ; 106          ; 106          ; 106          ; 106          ; 15           ; 106          ; 0         ; 0         ; 106          ;
 ; Total Fail         ; 0            ; 0         ; 0         ; 0            ; 0            ; 0         ; 0         ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0         ; 0         ; 0            ;
 ; KEY[1]             ; Inapplicable ; Pass      ; Pass      ; Inapplicable ; Inapplicable ; Pass      ; Pass      ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass      ; Pass      ; Inapplicable ;
 ; KEY[2]             ; Inapplicable ; Pass      ; Pass      ; Inapplicable ; Inapplicable ; Pass      ; Pass      ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass      ; Pass      ; Inapplicable ;
@@ -2369,6 +2390,12 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 ; LEDR[1]            ; Inapplicable ; Pass      ; Pass      ; Inapplicable ; Inapplicable ; Pass      ; Pass      ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Pass      ; Pass      ; Inapplicable ;
 ; LEDR[2]            ; Inapplicable ; Pass      ; Pass      ; Inapplicable ; Inapplicable ; Pass      ; Pass      ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Pass      ; Pass      ; Inapplicable ;
 ; LEDR[3]            ; Inapplicable ; Pass      ; Pass      ; Inapplicable ; Inapplicable ; Pass      ; Pass      ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Pass      ; Pass      ; Inapplicable ;
+; LEDR[4]            ; Inapplicable ; Pass      ; Pass      ; Inapplicable ; Inapplicable ; Pass      ; Pass      ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Pass      ; Pass      ; Inapplicable ;
+; LEDR[5]            ; Inapplicable ; Pass      ; Pass      ; Inapplicable ; Inapplicable ; Pass      ; Pass      ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Pass      ; Pass      ; Inapplicable ;
+; LEDR[6]            ; Inapplicable ; Pass      ; Pass      ; Inapplicable ; Inapplicable ; Pass      ; Pass      ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Pass      ; Pass      ; Inapplicable ;
+; LEDR[7]            ; Inapplicable ; Pass      ; Pass      ; Inapplicable ; Inapplicable ; Pass      ; Pass      ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Pass      ; Pass      ; Inapplicable ;
+; LEDR[8]            ; Inapplicable ; Pass      ; Pass      ; Inapplicable ; Inapplicable ; Pass      ; Pass      ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Pass      ; Pass      ; Inapplicable ;
+; LEDR[9]            ; Inapplicable ; Pass      ; Pass      ; Inapplicable ; Inapplicable ; Pass      ; Pass      ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Pass      ; Pass      ; Inapplicable ;
 ; DRAM_CKE           ; Inapplicable ; Pass      ; Pass      ; Inapplicable ; Inapplicable ; Pass      ; Pass      ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Pass      ; Pass      ; Inapplicable ;
 ; DRAM_CS_N          ; Inapplicable ; Pass      ; Pass      ; Inapplicable ; Inapplicable ; Pass      ; Pass      ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Pass      ; Pass      ; Inapplicable ;
 ; DRAM_RAS_N         ; Inapplicable ; Pass      ; Pass      ; Inapplicable ; Inapplicable ; Pass      ; Pass      ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Pass      ; Pass      ; Inapplicable ;
@@ -2472,118 +2499,119 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +-----------------+----------------------+-------------------+
 ; Source Clock(s) ; Destination Clock(s) ; Delay Added in ns ;
 +-----------------+----------------------+-------------------+
-; CLOCK_50        ; CLOCK_50             ; 46.3              ;
+; CLOCK_50        ; CLOCK_50             ; 35.5              ;
+; CLOCK_50,I/O    ; CLOCK_50             ; 1.2               ;
 +-----------------+----------------------+-------------------+
 Note: For more information on problematic transfers, consider running the Fitter again with the Optimize hold timing option (Settings Menu) turned off.
 This will disable optimization of problematic paths and expose them for further analysis using the TimeQuest Timing Analyzer.
 
 
-+----------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Estimated Delay Added for Hold Timing Details                                                                                                                  ;
-+----------------------------------------------------------------------+---------------------------------------------------------------------+-------------------+
-; Source Register                                                      ; Destination Register                                                ; Delay Added in ns ;
-+----------------------------------------------------------------------+---------------------------------------------------------------------+-------------------+
-; dram_controller:u_dram_controller|autorefresh:u_refresh|state.S_WAIT ; dram_controller:u_dram_controller|autorefresh:u_refresh|refresh_req ; 0.350             ;
-; dram_controller:u_dram_controller|write_data_reg[7]                  ; dram_controller:u_dram_controller|write:u_write|dq_out[7]           ; 0.348             ;
-; dram_controller:u_dram_controller|write_data_reg[6]                  ; dram_controller:u_dram_controller|write:u_write|dq_out[6]           ; 0.348             ;
-; dram_controller:u_dram_controller|write:u_write|timer[0]             ; dram_controller:u_dram_controller|write:u_write|timer[2]            ; 0.348             ;
-; dram_controller:u_dram_controller|write:u_write|state.S_PRECHARGE    ; dram_controller:u_dram_controller|write:u_write|a[10]               ; 0.346             ;
-; dram_controller:u_dram_controller|write:u_write|state.S_WAIT_TWR     ; dram_controller:u_dram_controller|write:u_write|timer[2]            ; 0.346             ;
-; dram_iface:u_dram_iface|dado_exibir[2]                               ; bin2hex:u_hex1|hex[6]                                               ; 0.344             ;
-; dram_iface:u_dram_iface|dado_exibir[3]                               ; bin2hex:u_hex1|hex[6]                                               ; 0.342             ;
-; dram_controller:u_dram_controller|write_data_reg[4]                  ; dram_controller:u_dram_controller|write:u_write|dq_out[4]           ; 0.333             ;
-; dram_iface:u_dram_iface|dado_exibir[0]                               ; bin2hex:u_hex1|hex[6]                                               ; 0.331             ;
-; dram_iface:u_dram_iface|estado.000                                   ; dram_iface:u_dram_iface|estado.REQ_READ                             ; 0.319             ;
-; dram_controller:u_dram_controller|write:u_write|state.S_WRITE        ; dram_controller:u_dram_controller|write:u_write|a[10]               ; 0.317             ;
-; dram_iface:u_dram_iface|dado_escrito[0]                              ; bin2hex:u_hex0|hex[0]                                               ; 0.314             ;
-; dram_controller:u_dram_controller|init:u_init|state.S_MRS            ; dram_controller:u_dram_controller|init:u_init|state.S_DONE          ; 0.314             ;
-; dram_controller:u_dram_controller|write:u_write|done                 ; dram_controller:u_dram_controller|state.S_WRITE_WAIT                ; 0.314             ;
-; dram_controller:u_dram_controller|write:u_write|state.S_ACTIVATE     ; dram_controller:u_dram_controller|write:u_write|state.S_WAIT_TRCD   ; 0.305             ;
-; dram_controller:u_dram_controller|state.S_READ_START                 ; dram_controller:u_dram_controller|state.S_READ_WAIT                 ; 0.304             ;
-; dram_controller:u_dram_controller|read:u_read|state.S_READ           ; dram_controller:u_dram_controller|read:u_read|state.S_WAIT_CAS      ; 0.303             ;
-; dram_controller:u_dram_controller|ready                              ; dram_iface:u_dram_iface|estado.WAIT_READ                            ; 0.301             ;
-; dram_iface:u_dram_iface|estado.WAIT_READ                             ; dram_iface:u_dram_iface|estado.REQ_READ                             ; 0.300             ;
-; dram_controller:u_dram_controller|state.S_REFRESH_GRANT              ; dram_controller:u_dram_controller|state.S_REFRESH_WAIT              ; 0.299             ;
-; dram_controller:u_dram_controller|write:u_write|timer[2]             ; dram_controller:u_dram_controller|write:u_write|dq_oe               ; 0.298             ;
-; dram_iface:u_dram_iface|dado_exibir[1]                               ; bin2hex:u_hex1|hex[6]                                               ; 0.295             ;
-; dram_controller:u_dram_controller|write:u_write|state.S_DONE         ; dram_controller:u_dram_controller|write:u_write|state.S_IDLE        ; 0.295             ;
-; dram_iface:u_dram_iface|dado_escrito[2]                              ; bin2hex:u_hex0|hex[5]                                               ; 0.294             ;
-; dram_iface:u_dram_iface|estado.REQ_WRITE                             ; dram_iface:u_dram_iface|estado.WAIT_READ                            ; 0.293             ;
-; dram_iface:u_dram_iface|dado_escrito[1]                              ; bin2hex:u_hex0|hex[5]                                               ; 0.288             ;
-; dram_controller:u_dram_controller|read:u_read|state.S_ACTIVATE       ; dram_controller:u_dram_controller|read:u_read|ras_n                 ; 0.288             ;
-; dram_controller:u_dram_controller|init:u_init|ready                  ; dram_controller:u_dram_controller|init:u_init|ready                 ; 0.288             ;
-; dram_controller:u_dram_controller|write:u_write|state.S_IDLE         ; dram_controller:u_dram_controller|write:u_write|state.S_ACTIVATE    ; 0.284             ;
-; dram_controller:u_dram_controller|read_data_reg[6]                   ; dram_controller:u_dram_controller|write_data_reg[6]                 ; 0.281             ;
-; dram_controller:u_dram_controller|read_data_reg[4]                   ; dram_controller:u_dram_controller|write_data_reg[4]                 ; 0.281             ;
-; dram_controller:u_dram_controller|write_data_reg[3]                  ; dram_controller:u_dram_controller|write:u_write|dq_out[3]           ; 0.281             ;
-; dram_controller:u_dram_controller|write_data_reg[2]                  ; dram_controller:u_dram_controller|write:u_write|dq_out[2]           ; 0.281             ;
-; dram_iface:u_dram_iface|data_out[0]                                  ; dram_controller:u_dram_controller|write_data_reg[0]                 ; 0.281             ;
-; dram_iface:u_dram_iface|data_out[2]                                  ; dram_controller:u_dram_controller|write_data_reg[2]                 ; 0.281             ;
-; dram_controller:u_dram_controller|init:u_init|state.S_REF1           ; dram_controller:u_dram_controller|init:u_init|cas_n                 ; 0.281             ;
-; dram_controller:u_dram_controller|read:u_read|timer[2]               ; dram_controller:u_dram_controller|read:u_read|state.S_IDLE          ; 0.280             ;
-; dram_iface:u_dram_iface|address[21]                                  ; dram_controller:u_dram_controller|addr_reg[21]                      ; 0.277             ;
-; dram_controller:u_dram_controller|write:u_write|timer[1]             ; dram_controller:u_dram_controller|write:u_write|state.S_WAIT_TRP    ; 0.277             ;
-; dram_iface:u_dram_iface|req                                          ; dram_controller:u_dram_controller|state.S_REFRESH_GRANT             ; 0.277             ;
-; dram_controller:u_dram_controller|state.S_IDLE                       ; dram_controller:u_dram_controller|state.S_READ_START                ; 0.277             ;
-; dram_controller:u_dram_controller|read:u_read|state.S_WAIT_RCD       ; dram_controller:u_dram_controller|read:u_read|state.S_READ          ; 0.276             ;
-; dram_controller:u_dram_controller|init:u_init|state.S_WAIT           ; dram_controller:u_dram_controller|init:u_init|a[10]                 ; 0.274             ;
-; dram_controller:u_dram_controller|read:u_read|state.S_PRECHARGE      ; dram_controller:u_dram_controller|read:u_read|we_n                  ; 0.272             ;
-; dram_iface:u_dram_iface|dado_escrito[3]                              ; bin2hex:u_hex0|hex[5]                                               ; 0.272             ;
-; dram_controller:u_dram_controller|state.S_READ_WAIT                  ; dram_controller:u_dram_controller|state.S_IDLE                      ; 0.269             ;
-; dram_iface:u_dram_iface|wEn                                          ; dram_controller:u_dram_controller|state.S_READ_START                ; 0.269             ;
-; dram_controller:u_dram_controller|read:u_read|timer[5]               ; dram_controller:u_dram_controller|read:u_read|state.S_IDLE          ; 0.267             ;
-; dram_controller:u_dram_controller|init:u_init|state.S_REF2           ; dram_controller:u_dram_controller|init:u_init|a[4]                  ; 0.266             ;
-; dram_controller:u_dram_controller|read_data_reg[7]                   ; dram_controller:u_dram_controller|write_data_reg[7]                 ; 0.266             ;
-; dram_controller:u_dram_controller|read_data_reg[5]                   ; dram_controller:u_dram_controller|write_data_reg[5]                 ; 0.266             ;
-; dram_controller:u_dram_controller|write_data_reg[5]                  ; dram_controller:u_dram_controller|write:u_write|dq_out[5]           ; 0.266             ;
-; dram_controller:u_dram_controller|write_data_reg[0]                  ; dram_controller:u_dram_controller|write:u_write|dq_out[0]           ; 0.266             ;
-; dram_iface:u_dram_iface|data_out[1]                                  ; dram_controller:u_dram_controller|write_data_reg[1]                 ; 0.265             ;
-; dram_iface:u_dram_iface|data_out[3]                                  ; dram_controller:u_dram_controller|write_data_reg[3]                 ; 0.265             ;
-; dram_controller:u_dram_controller|read_data_reg[0]                   ; dram_controller:u_dram_controller|write_data_reg[0]                 ; 0.264             ;
-; dram_controller:u_dram_controller|read_data_reg[2]                   ; dram_controller:u_dram_controller|write_data_reg[2]                 ; 0.264             ;
-; dram_controller:u_dram_controller|write:u_write|state.S_WAIT_TRCD    ; dram_controller:u_dram_controller|write:u_write|state.S_WRITE       ; 0.264             ;
-; dram_controller:u_dram_controller|read:u_read|timer[4]               ; dram_controller:u_dram_controller|read:u_read|state.S_IDLE          ; 0.263             ;
-; dram_iface:u_dram_iface|estado.REQ_READ                              ; dram_iface:u_dram_iface|estado.WAIT_READ                            ; 0.262             ;
-; dram_iface:u_dram_iface|address[0]                                   ; dram_controller:u_dram_controller|addr_reg[0]                       ; 0.261             ;
-; dram_controller:u_dram_controller|read_data_reg[1]                   ; dram_controller:u_dram_controller|write_data_reg[1]                 ; 0.250             ;
-; dram_controller:u_dram_controller|read_data_reg[3]                   ; dram_controller:u_dram_controller|write_data_reg[3]                 ; 0.250             ;
-; dram_controller:u_dram_controller|read:u_read|state.S_WAIT_CAS       ; dram_controller:u_dram_controller|read:u_read|state.S_CAPTURE       ; 0.243             ;
-; dram_controller:u_dram_controller|read:u_read|timer[3]               ; dram_controller:u_dram_controller|read:u_read|state.S_IDLE          ; 0.241             ;
-; dram_controller:u_dram_controller|state.S_INIT                       ; dram_controller:u_dram_controller|state.S_INIT                      ; 0.240             ;
-; dram_controller:u_dram_controller|read:u_read|addr_reg[21]           ; dram_controller:u_dram_controller|read:u_read|a[10]                 ; 0.240             ;
-; dram_controller:u_dram_controller|read:u_read|addr_reg[0]            ; dram_controller:u_dram_controller|read:u_read|a[0]                  ; 0.240             ;
-; dram_controller:u_dram_controller|read:u_read|addr_reg[25]           ; dram_controller:u_dram_controller|read:u_read|ba[1]                 ; 0.240             ;
-; dram_controller:u_dram_controller|read:u_read|addr_reg[23]           ; dram_controller:u_dram_controller|read:u_read|a[12]                 ; 0.225             ;
-; dram_controller:u_dram_controller|read:u_read|addr_reg[22]           ; dram_controller:u_dram_controller|read:u_read|a[11]                 ; 0.225             ;
-; dram_controller:u_dram_controller|read:u_read|addr_reg[1]            ; dram_controller:u_dram_controller|read:u_read|a[1]                  ; 0.225             ;
-; dram_controller:u_dram_controller|write:u_write|state.S_WAIT_TRP     ; dram_controller:u_dram_controller|write:u_write|state.S_DONE        ; 0.224             ;
-; dram_controller:u_dram_controller|init:u_init|timer[13]              ; dram_controller:u_dram_controller|init:u_init|state.S_WAIT          ; 0.212             ;
-; dram_controller:u_dram_controller|init:u_init|timer[12]              ; dram_controller:u_dram_controller|init:u_init|state.S_WAIT          ; 0.212             ;
-; dram_controller:u_dram_controller|init:u_init|timer[14]              ; dram_controller:u_dram_controller|init:u_init|state.S_WAIT          ; 0.212             ;
-; dram_controller:u_dram_controller|init:u_init|timer[10]              ; dram_controller:u_dram_controller|init:u_init|state.S_WAIT          ; 0.212             ;
-; dram_controller:u_dram_controller|init:u_init|timer[9]               ; dram_controller:u_dram_controller|init:u_init|state.S_WAIT          ; 0.212             ;
-; dram_controller:u_dram_controller|init:u_init|timer[8]               ; dram_controller:u_dram_controller|init:u_init|state.S_WAIT          ; 0.212             ;
-; dram_controller:u_dram_controller|init:u_init|timer[7]               ; dram_controller:u_dram_controller|init:u_init|state.S_WAIT          ; 0.212             ;
-; dram_controller:u_dram_controller|init:u_init|timer[11]              ; dram_controller:u_dram_controller|init:u_init|state.S_WAIT          ; 0.212             ;
-; dram_controller:u_dram_controller|init:u_init|timer[5]               ; dram_controller:u_dram_controller|init:u_init|state.S_WAIT          ; 0.212             ;
-; dram_controller:u_dram_controller|init:u_init|timer[4]               ; dram_controller:u_dram_controller|init:u_init|state.S_WAIT          ; 0.212             ;
-; dram_controller:u_dram_controller|init:u_init|timer[6]               ; dram_controller:u_dram_controller|init:u_init|state.S_WAIT          ; 0.212             ;
-; dram_controller:u_dram_controller|init:u_init|timer[2]               ; dram_controller:u_dram_controller|init:u_init|state.S_WAIT          ; 0.212             ;
-; dram_controller:u_dram_controller|init:u_init|timer[1]               ; dram_controller:u_dram_controller|init:u_init|state.S_WAIT          ; 0.212             ;
-; dram_controller:u_dram_controller|init:u_init|timer[0]               ; dram_controller:u_dram_controller|init:u_init|state.S_WAIT          ; 0.212             ;
-; dram_controller:u_dram_controller|init:u_init|timer[3]               ; dram_controller:u_dram_controller|init:u_init|state.S_WAIT          ; 0.212             ;
-; dram_controller:u_dram_controller|read:u_read|data_out[5]            ; dram_controller:u_dram_controller|read_data_reg[5]                  ; 0.211             ;
-; SW[7]                                                                ; dram_iface:u_dram_iface|estado.000                                  ; 0.204             ;
-; dram_iface:u_dram_iface|endereco_ultima_leitura[3]                   ; dram_iface:u_dram_iface|estado.000                                  ; 0.204             ;
-; SW[8]                                                                ; dram_iface:u_dram_iface|estado.000                                  ; 0.204             ;
-; dram_iface:u_dram_iface|endereco_ultima_leitura[4]                   ; dram_iface:u_dram_iface|estado.000                                  ; 0.204             ;
-; SW[9]                                                                ; dram_iface:u_dram_iface|estado.000                                  ; 0.204             ;
-; dram_iface:u_dram_iface|endereco_ultima_leitura[5]                   ; dram_iface:u_dram_iface|estado.000                                  ; 0.204             ;
-; dram_controller:u_dram_controller|state.S_WRITE_START                ; dram_controller:u_dram_controller|state.S_IDLE                      ; 0.195             ;
-; dram_controller:u_dram_controller|read:u_read|timer[6]               ; dram_controller:u_dram_controller|read:u_read|state.S_IDLE          ; 0.193             ;
-; dram_controller:u_dram_controller|read:u_read|timer[7]               ; dram_controller:u_dram_controller|read:u_read|state.S_IDLE          ; 0.193             ;
-; dram_controller:u_dram_controller|state.S_REFRESH_WAIT               ; dram_controller:u_dram_controller|state.S_INIT                      ; 0.180             ;
-+----------------------------------------------------------------------+---------------------------------------------------------------------+-------------------+
++------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Estimated Delay Added for Hold Timing Details                                                                                                                    ;
++-----------------------------------------------------------------------+----------------------------------------------------------------------+-------------------+
+; Source Register                                                       ; Destination Register                                                 ; Delay Added in ns ;
++-----------------------------------------------------------------------+----------------------------------------------------------------------+-------------------+
+; dram_iface:u_dram_iface|estado.WAIT_WRITE                             ; dram_iface:u_dram_iface|estado.REQ_READ                              ; 0.350             ;
+; dram_controller:u_dram_controller|write:u_write|timer[0]              ; dram_controller:u_dram_controller|write:u_write|timer[2]             ; 0.349             ;
+; dram_controller:u_dram_controller|autorefresh:u_refresh|state.S_WAIT  ; dram_controller:u_dram_controller|autorefresh:u_refresh|refresh_req  ; 0.349             ;
+; dram_controller:u_dram_controller|write:u_write|state.S_PRECHARGE     ; dram_controller:u_dram_controller|write:u_write|a[10]                ; 0.347             ;
+; dram_iface:u_dram_iface|dado_exibir[2]                                ; bin2hex:u_hex1|hex[6]                                                ; 0.345             ;
+; dram_iface:u_dram_iface|dado_exibir[3]                                ; bin2hex:u_hex1|hex[6]                                                ; 0.343             ;
+; dram_iface:u_dram_iface|dado_exibir[0]                                ; bin2hex:u_hex1|hex[6]                                                ; 0.334             ;
+; dram_controller:u_dram_controller|write:u_write|state.S_WAIT_TWR      ; dram_controller:u_dram_controller|write:u_write|state.S_PRECHARGE    ; 0.325             ;
+; dram_controller:u_dram_controller|write:u_write|state.S_WRITE         ; dram_controller:u_dram_controller|write:u_write|a[10]                ; 0.321             ;
+; dram_controller:u_dram_controller|write:u_write|done                  ; dram_controller:u_dram_controller|leds[3]                            ; 0.321             ;
+; dram_iface:u_dram_iface|dado_escrito[3]                               ; bin2hex:u_hex0|hex[6]                                                ; 0.318             ;
+; dram_iface:u_dram_iface|dado_escrito[2]                               ; bin2hex:u_hex0|hex[6]                                                ; 0.317             ;
+; dram_iface:u_dram_iface|estado.REQ_WRITE                              ; dram_iface:u_dram_iface|data_out[1]                                  ; 0.307             ;
+; dram_iface:u_dram_iface|dado_exibir[1]                                ; bin2hex:u_hex1|hex[6]                                                ; 0.303             ;
+; dram_iface:u_dram_iface|dado_escrito[0]                               ; bin2hex:u_hex0|hex[6]                                                ; 0.302             ;
+; dram_controller:u_dram_controller|state.S_WRITE_WAIT                  ; dram_controller:u_dram_controller|leds[3]                            ; 0.301             ;
+; dram_controller:u_dram_controller|write:u_write|state.S_ACTIVATE      ; dram_controller:u_dram_controller|write:u_write|a[10]                ; 0.300             ;
+; dram_controller:u_dram_controller|write:u_write|state.S_IDLE          ; dram_controller:u_dram_controller|write:u_write|state.S_ACTIVATE     ; 0.299             ;
+; dram_controller:u_dram_controller|state.S_INIT                        ; dram_controller:u_dram_controller|leds[0]                            ; 0.292             ;
+; dram_controller:u_dram_controller|read:u_read|timer[5]                ; dram_controller:u_dram_controller|read:u_read|state.S_IDLE           ; 0.289             ;
+; dram_controller:u_dram_controller|read:u_read|state.S_READ            ; dram_controller:u_dram_controller|read:u_read|state.S_WAIT_CAS       ; 0.288             ;
+; dram_controller:u_dram_controller|read:u_read|state.S_IDLE            ; dram_controller:u_dram_controller|read:u_read|state.S_ACTIVATE       ; 0.286             ;
+; dram_controller:u_dram_controller|read:u_read|timer[4]                ; dram_controller:u_dram_controller|read:u_read|state.S_IDLE           ; 0.285             ;
+; dram_controller:u_dram_controller|state.S_READ_WAIT                   ; dram_controller:u_dram_controller|leds[2]                            ; 0.285             ;
+; dram_controller:u_dram_controller|state.S_REFRESH_WAIT                ; dram_controller:u_dram_controller|leds[4]                            ; 0.285             ;
+; dram_controller:u_dram_controller|write:u_write|state.S_DONE          ; dram_controller:u_dram_controller|write:u_write|state.S_IDLE         ; 0.283             ;
+; dram_controller:u_dram_controller|state.S_IDLE                        ; dram_controller:u_dram_controller|state.S_INIT                       ; 0.283             ;
+; dram_iface:u_dram_iface|estado.WAIT_READ                              ; dram_iface:u_dram_iface|data_out[1]                                  ; 0.282             ;
+; dram_controller:u_dram_controller|write:u_write|state.S_WAIT_TRCD     ; dram_controller:u_dram_controller|write:u_write|state.S_WRITE        ; 0.280             ;
+; dram_controller:u_dram_controller|state.S_READ_START                  ; dram_controller:u_dram_controller|state.S_READ_START                 ; 0.280             ;
+; dram_iface:u_dram_iface|address[22]                                   ; dram_controller:u_dram_controller|addr_reg[22]                       ; 0.279             ;
+; dram_iface:u_dram_iface|address[0]                                    ; dram_controller:u_dram_controller|addr_reg[0]                        ; 0.279             ;
+; dram_iface:u_dram_iface|address[25]                                   ; dram_controller:u_dram_controller|addr_reg[25]                       ; 0.279             ;
+; dram_controller:u_dram_controller|ready                               ; dram_iface:u_dram_iface|estado.000                                   ; 0.275             ;
+; dram_iface:u_dram_iface|dado_escrito[1]                               ; bin2hex:u_hex0|hex[6]                                                ; 0.271             ;
+; dram_controller:u_dram_controller|read_data_reg[7]                    ; dram_controller:u_dram_controller|write_data_reg[7]                  ; 0.265             ;
+; dram_controller:u_dram_controller|read_data_reg[5]                    ; dram_controller:u_dram_controller|write_data_reg[5]                  ; 0.265             ;
+; dram_iface:u_dram_iface|wEn                                           ; dram_controller:u_dram_controller|state.S_WRITE_START                ; 0.264             ;
+; dram_iface:u_dram_iface|address[23]                                   ; dram_controller:u_dram_controller|addr_reg[23]                       ; 0.263             ;
+; dram_iface:u_dram_iface|address[21]                                   ; dram_controller:u_dram_controller|addr_reg[21]                       ; 0.263             ;
+; dram_iface:u_dram_iface|address[1]                                    ; dram_controller:u_dram_controller|addr_reg[1]                        ; 0.263             ;
+; dram_iface:u_dram_iface|req                                           ; dram_controller:u_dram_controller|state.S_REFRESH_GRANT              ; 0.263             ;
+; dram_controller:u_dram_controller|read:u_read|timer[6]                ; dram_controller:u_dram_controller|read:u_read|state.S_IDLE           ; 0.262             ;
+; dram_controller:u_dram_controller|read:u_read|state.S_WAIT_RCD        ; dram_controller:u_dram_controller|read:u_read|state.S_READ           ; 0.262             ;
+; dram_controller:u_dram_controller|autorefresh:u_refresh|state.S_IDLE  ; dram_controller:u_dram_controller|autorefresh:u_refresh|refresh_req  ; 0.261             ;
+; dram_controller:u_dram_controller|read:u_read|state.S_WAIT_CAS        ; dram_controller:u_dram_controller|read:u_read|state.S_CAPTURE        ; 0.261             ;
+; dram_controller:u_dram_controller|read_data_reg[0]                    ; dram_controller:u_dram_controller|write_data_reg[0]                  ; 0.260             ;
+; dram_controller:u_dram_controller|read_data_reg[2]                    ; dram_controller:u_dram_controller|write_data_reg[2]                  ; 0.260             ;
+; dram_controller:u_dram_controller|write:u_write|timer[1]              ; dram_controller:u_dram_controller|write:u_write|timer[2]             ; 0.259             ;
+; KEY[0]                                                                ; dram_iface:u_dram_iface|estado.REQ_READ                              ; 0.254             ;
+; dram_iface:u_dram_iface|estado.REQ_READ                               ; dram_iface:u_dram_iface|estado.WAIT_READ                             ; 0.249             ;
+; dram_controller:u_dram_controller|read_data_reg[1]                    ; dram_controller:u_dram_controller|write_data_reg[1]                  ; 0.245             ;
+; dram_iface:u_dram_iface|estado.000                                    ; dram_iface:u_dram_iface|estado.REQ_WRITE                             ; 0.245             ;
+; dram_controller:u_dram_controller|init:u_init|timer[8]                ; dram_controller:u_dram_controller|init:u_init|state.S_WAIT           ; 0.243             ;
+; dram_controller:u_dram_controller|read:u_read|addr_reg[23]            ; dram_controller:u_dram_controller|read:u_read|a[12]                  ; 0.242             ;
+; dram_controller:u_dram_controller|read:u_read|addr_reg[1]             ; dram_controller:u_dram_controller|read:u_read|a[1]                   ; 0.242             ;
+; dram_controller:u_dram_controller|read:u_read|addr_reg[0]             ; dram_controller:u_dram_controller|read:u_read|a[0]                   ; 0.242             ;
+; dram_controller:u_dram_controller|read:u_read|addr_reg[21]            ; dram_controller:u_dram_controller|read:u_read|a[10]                  ; 0.241             ;
+; dram_controller:u_dram_controller|state.S_REFRESH_GRANT               ; dram_controller:u_dram_controller|state.S_READ_START                 ; 0.241             ;
+; dram_controller:u_dram_controller|write:u_write|state.S_WAIT_TRP      ; dram_controller:u_dram_controller|write:u_write|state.S_DONE         ; 0.240             ;
+; dram_controller:u_dram_controller|state.S_WRITE_START                 ; dram_controller:u_dram_controller|state.S_READ_START                 ; 0.239             ;
+; dram_controller:u_dram_controller|read:u_read|addr_reg[25]            ; dram_controller:u_dram_controller|read:u_read|ba[1]                  ; 0.227             ;
+; dram_controller:u_dram_controller|read:u_read|timer[3]                ; dram_controller:u_dram_controller|read:u_read|state.S_IDLE           ; 0.220             ;
+; dram_controller:u_dram_controller|init:u_init|timer[4]                ; dram_controller:u_dram_controller|init:u_init|state.S_WAIT           ; 0.206             ;
+; dram_controller:u_dram_controller|init:u_init|timer[14]               ; dram_controller:u_dram_controller|init:u_init|state.S_WAIT           ; 0.200             ;
+; dram_controller:u_dram_controller|init:u_init|timer[2]                ; dram_controller:u_dram_controller|init:u_init|state.S_WAIT           ; 0.182             ;
+; SW[4]                                                                 ; dram_iface:u_dram_iface|estado.000                                   ; 0.176             ;
+; dram_iface:u_dram_iface|endereco_ultima_leitura[0]                    ; dram_iface:u_dram_iface|estado.000                                   ; 0.176             ;
+; SW[5]                                                                 ; dram_iface:u_dram_iface|estado.000                                   ; 0.176             ;
+; dram_iface:u_dram_iface|endereco_ultima_leitura[1]                    ; dram_iface:u_dram_iface|estado.000                                   ; 0.176             ;
+; SW[6]                                                                 ; dram_iface:u_dram_iface|estado.000                                   ; 0.176             ;
+; dram_iface:u_dram_iface|endereco_ultima_leitura[2]                    ; dram_iface:u_dram_iface|estado.000                                   ; 0.176             ;
+; dram_controller:u_dram_controller|init:u_init|state.S_REF1            ; dram_controller:u_dram_controller|init:u_init|state.S_WAIT           ; 0.174             ;
+; dram_controller:u_dram_controller|autorefresh:u_refresh|state.S_REQ   ; dram_controller:u_dram_controller|autorefresh:u_refresh|state.S_WAIT ; 0.166             ;
+; dram_controller:u_dram_controller|init:u_init|timer[6]                ; dram_controller:u_dram_controller|init:u_init|state.S_WAIT           ; 0.163             ;
+; dram_controller:u_dram_controller|write:u_write|timer[2]              ; dram_controller:u_dram_controller|write:u_write|state.S_WAIT_TWR     ; 0.162             ;
+; dram_controller:u_dram_controller|autorefresh:u_refresh|rfc_timer[15] ; dram_controller:u_dram_controller|autorefresh:u_refresh|state.S_WAIT ; 0.162             ;
+; dram_controller:u_dram_controller|autorefresh:u_refresh|rfc_timer[13] ; dram_controller:u_dram_controller|autorefresh:u_refresh|state.S_WAIT ; 0.162             ;
+; dram_controller:u_dram_controller|autorefresh:u_refresh|rfc_timer[12] ; dram_controller:u_dram_controller|autorefresh:u_refresh|state.S_WAIT ; 0.162             ;
+; dram_controller:u_dram_controller|autorefresh:u_refresh|rfc_timer[11] ; dram_controller:u_dram_controller|autorefresh:u_refresh|state.S_WAIT ; 0.162             ;
+; dram_controller:u_dram_controller|autorefresh:u_refresh|rfc_timer[10] ; dram_controller:u_dram_controller|autorefresh:u_refresh|state.S_WAIT ; 0.162             ;
+; dram_controller:u_dram_controller|autorefresh:u_refresh|rfc_timer[8]  ; dram_controller:u_dram_controller|autorefresh:u_refresh|state.S_WAIT ; 0.162             ;
+; dram_controller:u_dram_controller|autorefresh:u_refresh|rfc_timer[7]  ; dram_controller:u_dram_controller|autorefresh:u_refresh|state.S_WAIT ; 0.162             ;
+; dram_controller:u_dram_controller|autorefresh:u_refresh|rfc_timer[6]  ; dram_controller:u_dram_controller|autorefresh:u_refresh|state.S_WAIT ; 0.162             ;
+; dram_controller:u_dram_controller|autorefresh:u_refresh|rfc_timer[5]  ; dram_controller:u_dram_controller|autorefresh:u_refresh|state.S_WAIT ; 0.162             ;
+; dram_controller:u_dram_controller|autorefresh:u_refresh|rfc_timer[4]  ; dram_controller:u_dram_controller|autorefresh:u_refresh|state.S_WAIT ; 0.162             ;
+; dram_controller:u_dram_controller|autorefresh:u_refresh|rfc_timer[3]  ; dram_controller:u_dram_controller|autorefresh:u_refresh|state.S_WAIT ; 0.162             ;
+; dram_controller:u_dram_controller|autorefresh:u_refresh|rfc_timer[2]  ; dram_controller:u_dram_controller|autorefresh:u_refresh|state.S_WAIT ; 0.162             ;
+; dram_controller:u_dram_controller|autorefresh:u_refresh|rfc_timer[1]  ; dram_controller:u_dram_controller|autorefresh:u_refresh|state.S_WAIT ; 0.162             ;
+; dram_controller:u_dram_controller|autorefresh:u_refresh|rfc_timer[0]  ; dram_controller:u_dram_controller|autorefresh:u_refresh|state.S_WAIT ; 0.162             ;
+; dram_controller:u_dram_controller|autorefresh:u_refresh|rfc_timer[14] ; dram_controller:u_dram_controller|autorefresh:u_refresh|state.S_WAIT ; 0.162             ;
+; dram_controller:u_dram_controller|autorefresh:u_refresh|rfc_timer[9]  ; dram_controller:u_dram_controller|autorefresh:u_refresh|state.S_WAIT ; 0.162             ;
+; dram_controller:u_dram_controller|read:u_read|ready                   ; dram_controller:u_dram_controller|state.S_INIT                       ; 0.158             ;
+; dram_controller:u_dram_controller|autorefresh:u_refresh|done          ; dram_controller:u_dram_controller|state.S_INIT                       ; 0.158             ;
+; dram_controller:u_dram_controller|read:u_read|timer[7]                ; dram_controller:u_dram_controller|read:u_read|state.S_IDLE           ; 0.156             ;
+; dram_controller:u_dram_controller|read:u_read|timer[2]                ; dram_controller:u_dram_controller|read:u_read|state.S_IDLE           ; 0.156             ;
+; dram_iface:u_dram_iface|data_out[0]                                   ; dram_controller:u_dram_controller|write_data_reg[0]                  ; 0.153             ;
+; dram_iface:u_dram_iface|data_out[2]                                   ; dram_controller:u_dram_controller|write_data_reg[2]                  ; 0.153             ;
+; dram_controller:u_dram_controller|read:u_read|addr_reg[22]            ; dram_controller:u_dram_controller|read:u_read|a[11]                  ; 0.146             ;
+; dram_controller:u_dram_controller|init:u_init|ready                   ; dram_controller:u_dram_controller|init:u_init|ready                  ; 0.136             ;
++-----------------------------------------------------------------------+----------------------------------------------------------------------+-------------------+
 Note: This table only shows the top 100 path(s) that have the largest delay added for hold.
 
 
@@ -2591,7 +2619,7 @@ Note: This table only shows the top 100 path(s) that have the largest delay adde
 ; Fitter Messages ;
 +-----------------+
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
-Info (20030): Parallel compilation is enabled and will use 12 of the 12 processors detected
+Info (20030): Parallel compilation is enabled and will use 6 of the 6 processors detected
 Info (119006): Selected device 5CSEMA5F31C6 for design "dram_controller"
 Info (21077): Low junction temperature is 0 degrees C
 Info (21077): High junction temperature is 85 degrees C
@@ -2600,7 +2628,7 @@ Warning (292013): Feature LogicLock is only available with a valid subscription 
 Warning (15714): Some pins have incomplete I/O assignments. Refer to the I/O Assignment Warnings report for details
 Info (184020): Starting Fitter periphery placement operations
 Info (11191): Automatically promoted 1 clock (1 global)
-    Info (11162): CLOCK_50~inputCLKENA0 with 227 fanout uses global clock CLKCTRL_G6
+    Info (11162): CLOCK_50~inputCLKENA0 with 240 fanout uses global clock CLKCTRL_G6
 Info (184021): Fitter periphery placement operations ending: elapsed time is 00:00:00
 Info (176233): Starting register packing
 Critical Warning (332012): Synopsys Design Constraints File file not found: 'dram_controller.sdc'. A Synopsys Design Constraints File is required by the TimeQuest Timing Analyzer to get proper timing constraints. Without it, the Compiler will not properly optimize the design.
@@ -2701,12 +2729,6 @@ Warning (15705): Ignored locations or region assignments to the following nodes
     Warning (15706): Node "GPIO_1[9]" is assigned to location or region, but does not exist in design
     Warning (15706): Node "IRDA_RXD" is assigned to location or region, but does not exist in design
     Warning (15706): Node "IRDA_TXD" is assigned to location or region, but does not exist in design
-    Warning (15706): Node "LEDR[4]" is assigned to location or region, but does not exist in design
-    Warning (15706): Node "LEDR[5]" is assigned to location or region, but does not exist in design
-    Warning (15706): Node "LEDR[6]" is assigned to location or region, but does not exist in design
-    Warning (15706): Node "LEDR[7]" is assigned to location or region, but does not exist in design
-    Warning (15706): Node "LEDR[8]" is assigned to location or region, but does not exist in design
-    Warning (15706): Node "LEDR[9]" is assigned to location or region, but does not exist in design
     Warning (15706): Node "PS2_CLK" is assigned to location or region, but does not exist in design
     Warning (15706): Node "PS2_CLK2" is assigned to location or region, but does not exist in design
     Warning (15706): Node "PS2_DAT" is assigned to location or region, but does not exist in design
@@ -2769,7 +2791,7 @@ Warning (15705): Ignored locations or region assignments to the following nodes
     Warning (15706): Node "VGA_R[7]" is assigned to location or region, but does not exist in design
     Warning (15706): Node "VGA_SYNC_N" is assigned to location or region, but does not exist in design
     Warning (15706): Node "VGA_VS" is assigned to location or region, but does not exist in design
-Info (11798): Fitter preparation operations ending: elapsed time is 00:00:06
+Info (11798): Fitter preparation operations ending: elapsed time is 00:00:10
 Info (170189): Fitter placement preparation operations beginning
 Info (14951): The Fitter is using Advanced Physical Optimization.
 Info (170190): Fitter placement preparation operations ending: elapsed time is 00:00:01
@@ -2778,37 +2800,37 @@ Info (170137): Fitter placement was successful
 Info (170192): Fitter placement operations ending: elapsed time is 00:00:01
 Info (170193): Fitter routing operations beginning
 Info (170195): Router estimated average interconnect usage is 0% of the available device resources
-    Info (170196): Router estimated peak interconnect usage is 2% of the available device resources in the region that extends from location X22_Y0 to location X32_Y10
+    Info (170196): Router estimated peak interconnect usage is 2% of the available device resources in the region that extends from location X33_Y0 to location X44_Y10
 Info (170199): The Fitter performed an Auto Fit compilation.  Optimizations were skipped to reduce compilation time.
     Info (170201): Optimizations that may affect the design's routability were skipped
-Info (170194): Fitter routing operations ending: elapsed time is 00:00:01
-Info (11888): Total time spent on timing analysis during the Fitter is 0.35 seconds.
+Info (170194): Fitter routing operations ending: elapsed time is 00:00:02
+Info (11888): Total time spent on timing analysis during the Fitter is 0.61 seconds.
 Info (334003): Started post-fitting delay annotation
 Info (334004): Delay annotation completed successfully
 Info (334003): Started post-fitting delay annotation
 Info (334004): Delay annotation completed successfully
-Info (11801): Fitter post-fit operations ending: elapsed time is 00:00:03
+Info (11801): Fitter post-fit operations ending: elapsed time is 00:00:04
 Warning (171167): Found invalid Fitter assignments. See the Ignored Assignments panel in the Fitter Compilation Report for more information.
 Warning (169064): Following 8 pins have no output enable or a GND or VCC output enable - later changes to this connectivity may change fitting results
-    Info (169065): Pin DRAM_DQ[8] has a permanently disabled output enable File: /home/c-ec2024/ra252694/Documents/MC613/Pós Greve/Projetos-MC613/P3/Modulos/dram_top_level.v Line: 21
-    Info (169065): Pin DRAM_DQ[9] has a permanently disabled output enable File: /home/c-ec2024/ra252694/Documents/MC613/Pós Greve/Projetos-MC613/P3/Modulos/dram_top_level.v Line: 21
-    Info (169065): Pin DRAM_DQ[10] has a permanently disabled output enable File: /home/c-ec2024/ra252694/Documents/MC613/Pós Greve/Projetos-MC613/P3/Modulos/dram_top_level.v Line: 21
-    Info (169065): Pin DRAM_DQ[11] has a permanently disabled output enable File: /home/c-ec2024/ra252694/Documents/MC613/Pós Greve/Projetos-MC613/P3/Modulos/dram_top_level.v Line: 21
-    Info (169065): Pin DRAM_DQ[12] has a permanently disabled output enable File: /home/c-ec2024/ra252694/Documents/MC613/Pós Greve/Projetos-MC613/P3/Modulos/dram_top_level.v Line: 21
-    Info (169065): Pin DRAM_DQ[13] has a permanently disabled output enable File: /home/c-ec2024/ra252694/Documents/MC613/Pós Greve/Projetos-MC613/P3/Modulos/dram_top_level.v Line: 21
-    Info (169065): Pin DRAM_DQ[14] has a permanently disabled output enable File: /home/c-ec2024/ra252694/Documents/MC613/Pós Greve/Projetos-MC613/P3/Modulos/dram_top_level.v Line: 21
-    Info (169065): Pin DRAM_DQ[15] has a permanently disabled output enable File: /home/c-ec2024/ra252694/Documents/MC613/Pós Greve/Projetos-MC613/P3/Modulos/dram_top_level.v Line: 21
-Info (144001): Generated suppressed messages file /home/c-ec2024/ra252694/Documents/MC613/Pós Greve/Projetos-MC613/P3/QuartusProjetoV2/output_files/dram_controller.fit.smsg
-Info: Quartus Prime Fitter was successful. 0 errors, 165 warnings
-    Info: Peak virtual memory: 3148 megabytes
-    Info: Processing ended: Wed Jun 17 14:56:19 2026
-    Info: Elapsed time: 00:00:18
-    Info: Total CPU time (on all processors): 00:01:08
+    Info (169065): Pin DRAM_DQ[8] has a permanently disabled output enable File: /home/c-ec2024/ra252694/Documents/MC613/PosGreve/Projetos-MC613/P3/Modulos/dram_top_level.v Line: 21
+    Info (169065): Pin DRAM_DQ[9] has a permanently disabled output enable File: /home/c-ec2024/ra252694/Documents/MC613/PosGreve/Projetos-MC613/P3/Modulos/dram_top_level.v Line: 21
+    Info (169065): Pin DRAM_DQ[10] has a permanently disabled output enable File: /home/c-ec2024/ra252694/Documents/MC613/PosGreve/Projetos-MC613/P3/Modulos/dram_top_level.v Line: 21
+    Info (169065): Pin DRAM_DQ[11] has a permanently disabled output enable File: /home/c-ec2024/ra252694/Documents/MC613/PosGreve/Projetos-MC613/P3/Modulos/dram_top_level.v Line: 21
+    Info (169065): Pin DRAM_DQ[12] has a permanently disabled output enable File: /home/c-ec2024/ra252694/Documents/MC613/PosGreve/Projetos-MC613/P3/Modulos/dram_top_level.v Line: 21
+    Info (169065): Pin DRAM_DQ[13] has a permanently disabled output enable File: /home/c-ec2024/ra252694/Documents/MC613/PosGreve/Projetos-MC613/P3/Modulos/dram_top_level.v Line: 21
+    Info (169065): Pin DRAM_DQ[14] has a permanently disabled output enable File: /home/c-ec2024/ra252694/Documents/MC613/PosGreve/Projetos-MC613/P3/Modulos/dram_top_level.v Line: 21
+    Info (169065): Pin DRAM_DQ[15] has a permanently disabled output enable File: /home/c-ec2024/ra252694/Documents/MC613/PosGreve/Projetos-MC613/P3/Modulos/dram_top_level.v Line: 21
+Info (144001): Generated suppressed messages file /home/c-ec2024/ra252694/Documents/MC613/PosGreve/Projetos-MC613/P3/QuartusProjetoV2/output_files/dram_controller.fit.smsg
+Info: Quartus Prime Fitter was successful. 0 errors, 159 warnings
+    Info: Peak virtual memory: 2771 megabytes
+    Info: Processing ended: Mon Jun 22 22:23:39 2026
+    Info: Elapsed time: 00:00:31
+    Info: Total CPU time (on all processors): 00:01:04
 
 
 +----------------------------+
 ; Fitter Suppressed Messages ;
 +----------------------------+
-The suppressed messages can be found in /home/c-ec2024/ra252694/Documents/MC613/Pós Greve/Projetos-MC613/P3/QuartusProjetoV2/output_files/dram_controller.fit.smsg.
+The suppressed messages can be found in /home/c-ec2024/ra252694/Documents/MC613/PosGreve/Projetos-MC613/P3/QuartusProjetoV2/output_files/dram_controller.fit.smsg.
 
 

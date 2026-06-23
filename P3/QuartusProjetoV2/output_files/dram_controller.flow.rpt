@@ -1,5 +1,5 @@
 Flow report for dram_controller
-Wed Jun 17 17:01:16 2026
+Mon Jun 22 22:55:40 2026
 Quartus Prime Version 17.1.0 Build 590 10/25/2017 SJ Lite Edition
 
 
@@ -37,24 +37,29 @@ refer to the applicable agreement for further details.
 
 
 
-+---------------------------------------------------------------------------+
-; Flow Summary                                                              ;
-+-----------------------------+---------------------------------------------+
-; Flow Status                 ; Successful - Wed Jun 17 17:01:16 2026       ;
-; Quartus Prime Version       ; 17.1.0 Build 590 10/25/2017 SJ Lite Edition ;
-; Revision Name               ; dram_controller                             ;
-; Top-level Entity Name       ; dram_top_level                              ;
-; Family                      ; Cyclone V                                   ;
-; Device                      ; 5CSEMA5F31C6                                ;
-; Timing Models               ; Final                                       ;
-; Logic utilization (in ALMs) ; N/A until Partition Merge                   ;
-; Total registers             ; N/A until Partition Merge                   ;
-; Total pins                  ; N/A until Partition Merge                   ;
-; Total virtual pins          ; N/A until Partition Merge                   ;
-; Total block memory bits     ; N/A until Partition Merge                   ;
-; Total PLLs                  ; N/A until Partition Merge                   ;
-; Total DLLs                  ; N/A until Partition Merge                   ;
-+-----------------------------+---------------------------------------------+
++-------------------------------------------------------------------------------+
+; Flow Summary                                                                  ;
++---------------------------------+---------------------------------------------+
+; Flow Status                     ; Successful - Mon Jun 22 22:55:40 2026       ;
+; Quartus Prime Version           ; 17.1.0 Build 590 10/25/2017 SJ Lite Edition ;
+; Revision Name                   ; dram_controller                             ;
+; Top-level Entity Name           ; dram_top_level                              ;
+; Family                          ; Cyclone V                                   ;
+; Device                          ; 5CSEMA5F31C6                                ;
+; Timing Models                   ; Final                                       ;
+; Logic utilization (in ALMs)     ; 172 / 32,070 ( < 1 % )                      ;
+; Total registers                 ; 239                                         ;
+; Total pins                      ; 106 / 457 ( 23 % )                          ;
+; Total virtual pins              ; 0                                           ;
+; Total block memory bits         ; 0 / 4,065,280 ( 0 % )                       ;
+; Total DSP Blocks                ; 0 / 87 ( 0 % )                              ;
+; Total HSSI RX PCSs              ; 0                                           ;
+; Total HSSI PMA RX Deserializers ; 0                                           ;
+; Total HSSI TX PCSs              ; 0                                           ;
+; Total HSSI PMA TX Serializers   ; 0                                           ;
+; Total PLLs                      ; 0 / 6 ( 0 % )                               ;
+; Total DLLs                      ; 0 / 4 ( 0 % )                               ;
++---------------------------------+---------------------------------------------+
 
 
 +-----------------------------------------+
@@ -62,7 +67,7 @@ refer to the applicable agreement for further details.
 +-------------------+---------------------+
 ; Option            ; Setting             ;
 +-------------------+---------------------+
-; Start date & time ; 06/17/2026 17:01:11 ;
+; Start date & time ; 06/22/2026 22:22:59 ;
 ; Main task         ; Compilation         ;
 ; Revision Name     ; dram_controller     ;
 +-------------------+---------------------+
@@ -73,7 +78,7 @@ refer to the applicable agreement for further details.
 +--------------------------------------+----------------------------------------+-----------------+----------------+----------------+
 ; Assignment Name                      ; Value                                  ; Default Value   ; Entity Name    ; Section Id     ;
 +--------------------------------------+----------------------------------------+-----------------+----------------+----------------+
-; COMPILER_SIGNATURE_ID                ; 251776447764830.178172647148738        ; --              ; --             ; --             ;
+; COMPILER_SIGNATURE_ID                ; 110073161993429.178217777937870        ; --              ; --             ; --             ;
 ; EDA_DESIGN_INSTANCE_NAME             ; NA                                     ; --              ; --             ; init_tb        ;
 ; EDA_NATIVELINK_SIMULATION_TEST_BENCH ; init_tb                                ; --              ; --             ; eda_simulation ;
 ; EDA_OUTPUT_DATA_FORMAT               ; Verilog Hdl                            ; --              ; --             ; eda_simulation ;
@@ -96,29 +101,44 @@ refer to the applicable agreement for further details.
 +--------------------------------------+----------------------------------------+-----------------+----------------+----------------+
 
 
-+----------------------------------------------------------------------------------------------------------------------------+
-; Flow Elapsed Time                                                                                                          ;
-+------------------------+--------------+-------------------------+---------------------+------------------------------------+
-; Module Name            ; Elapsed Time ; Average Processors Used ; Peak Virtual Memory ; Total CPU Time (on all processors) ;
-+------------------------+--------------+-------------------------+---------------------+------------------------------------+
-; Analysis & Elaboration ; 00:00:05     ; 1.0                     ; 1477 MB             ; 00:00:13                           ;
-; Total                  ; 00:00:05     ; --                      ; --                  ; 00:00:13                           ;
-+------------------------+--------------+-------------------------+---------------------+------------------------------------+
++--------------------------------------------------------------------------------------------------------------------------+
+; Flow Elapsed Time                                                                                                        ;
++----------------------+--------------+-------------------------+---------------------+------------------------------------+
+; Module Name          ; Elapsed Time ; Average Processors Used ; Peak Virtual Memory ; Total CPU Time (on all processors) ;
++----------------------+--------------+-------------------------+---------------------+------------------------------------+
+; Analysis & Synthesis ; 00:00:08     ; 1.0                     ; 1233 MB             ; 00:00:17                           ;
+; Fitter               ; 00:00:31     ; 1.0                     ; 2771 MB             ; 00:01:04                           ;
+; Assembler            ; 00:00:06     ; 1.0                     ; 1181 MB             ; 00:00:05                           ;
+; Assembler            ; 00:00:06     ; 1.0                     ; 1181 MB             ; 00:00:06                           ;
+; Assembler            ; 00:00:06     ; 1.0                     ; 1184 MB             ; 00:00:06                           ;
+; Assembler            ; 00:00:05     ; 1.0                     ; 1185 MB             ; 00:00:06                           ;
+; Total                ; 00:01:02     ; --                      ; --                  ; 00:01:44                           ;
++----------------------+--------------+-------------------------+---------------------+------------------------------------+
 
 
-+----------------------------------------------------------------------------------------------------+
-; Flow OS Summary                                                                                    ;
-+------------------------+------------------------------+-------------+-------------+----------------+
-; Module Name            ; Machine Hostname             ; OS Name     ; OS Version  ; Processor type ;
-+------------------------+------------------------------+-------------+-------------+----------------+
-; Analysis & Elaboration ; pernalonga.lab.ic.unicamp.br ; Fedora Core ; Fedora Core ; x86_64         ;
-+------------------------+------------------------------+-------------+-------------+----------------+
++----------------------------------------------------------------------------------------------+
+; Flow OS Summary                                                                              ;
++----------------------+--------------------------+-------------+-------------+----------------+
+; Module Name          ; Machine Hostname         ; OS Name     ; OS Version  ; Processor type ;
++----------------------+--------------------------+-------------+-------------+----------------+
+; Analysis & Synthesis ; morais.lab.ic.unicamp.br ; Fedora Core ; Fedora Core ; x86_64         ;
+; Fitter               ; morais.lab.ic.unicamp.br ; Fedora Core ; Fedora Core ; x86_64         ;
+; Assembler            ; morais.lab.ic.unicamp.br ; Fedora Core ; Fedora Core ; x86_64         ;
+; Assembler            ; morais.lab.ic.unicamp.br ; Fedora Core ; Fedora Core ; x86_64         ;
+; Assembler            ; morais.lab.ic.unicamp.br ; Fedora Core ; Fedora Core ; x86_64         ;
+; Assembler            ; morais.lab.ic.unicamp.br ; Fedora Core ; Fedora Core ; x86_64         ;
++----------------------+--------------------------+-------------+-------------+----------------+
 
 
 ------------
 ; Flow Log ;
 ------------
-quartus_map --read_settings_files=on --write_settings_files=off dram_controller -c dram_controller --analysis_and_elaboration
+quartus_map --read_settings_files=on --write_settings_files=off dram_controller -c dram_controller
+quartus_fit --read_settings_files=off --write_settings_files=off dram_controller -c dram_controller
+quartus_asm --read_settings_files=off --write_settings_files=off dram_controller -c dram_controller
+quartus_asm --read_settings_files=on --write_settings_files=off dram_controller -c dram_controller
+quartus_asm --read_settings_files=on --write_settings_files=off dram_controller -c dram_controller
+quartus_asm --read_settings_files=on --write_settings_files=off dram_controller -c dram_controller
 
 
 

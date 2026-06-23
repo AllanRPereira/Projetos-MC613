@@ -1,5 +1,5 @@
 Assembler report for dram_controller
-Wed Jun 17 16:40:12 2026
+Mon Jun 22 22:55:40 2026
 Quartus Prime Version 17.1.0 Build 590 10/25/2017 SJ Lite Edition
 
 
@@ -37,7 +37,7 @@ refer to the applicable agreement for further details.
 +---------------------------------------------------------------+
 ; Assembler Summary                                             ;
 +-----------------------+---------------------------------------+
-; Assembler Status      ; Successful - Wed Jun 17 16:40:12 2026 ;
+; Assembler Status      ; Successful - Mon Jun 22 22:55:40 2026 ;
 ; Revision Name         ; dram_controller                       ;
 ; Top-level Entity Name ; dram_top_level                        ;
 ; Family                ; Cyclone V                             ;
@@ -79,13 +79,13 @@ refer to the applicable agreement for further details.
 +-----------------------------------------------------------------------------+----------------+----------------+
 
 
-+------------------------------------------------------------------------------------------------------------------------+
-; Assembler Generated Files                                                                                              ;
-+------------------------------------------------------------------------------------------------------------------------+
-; File Name                                                                                                              ;
-+------------------------------------------------------------------------------------------------------------------------+
-; /home/c-ec2024/ra252694/Documents/MC613/Pós Greve/Projetos-MC613/P3/QuartusProjetoV2/output_files/dram_controller.sof ;
-+------------------------------------------------------------------------------------------------------------------------+
++----------------------------------------------------------------------------------------------------------------------+
+; Assembler Generated Files                                                                                            ;
++----------------------------------------------------------------------------------------------------------------------+
+; File Name                                                                                                            ;
++----------------------------------------------------------------------------------------------------------------------+
+; /home/c-ec2024/ra252694/Documents/MC613/PosGreve/Projetos-MC613/P3/QuartusProjetoV2/output_files/dram_controller.sof ;
++----------------------------------------------------------------------------------------------------------------------+
 
 
 +-----------------------------------------------+
@@ -93,8 +93,8 @@ refer to the applicable agreement for further details.
 +----------------+------------------------------+
 ; Option         ; Setting                      ;
 +----------------+------------------------------+
-; JTAG usercode  ; 0x00B4D067                   ;
-; Checksum       ; 0x00B4D067                   ;
+; JTAG usercode  ; 0x00B56C73                   ;
+; Checksum       ; 0x00B56C73                   ;
 +----------------+------------------------------+
 
 
@@ -104,7 +104,7 @@ refer to the applicable agreement for further details.
 Info: *******************************************************************
 Info: Running Quartus Prime Assembler
     Info: Version 17.1.0 Build 590 10/25/2017 SJ Lite Edition
-    Info: Processing started: Wed Jun 17 16:40:09 2026
+    Info: Processing started: Mon Jun 22 22:55:35 2026
 Info: Command: quartus_asm --read_settings_files=on --write_settings_files=off dram_controller -c dram_controller
 Warning (20013): Ignored 571 assignments for entity "DE1_SoC" -- entity does not exist in design
     Warning (20014): Assignment for entity set_instance_assignment -name PACKAGE_SKEW_COMPENSATION OFF -to HPS_DDR3_ADDR[0] -entity DE1_SoC was ignored
@@ -681,9 +681,9 @@ Warning (20013): Ignored 571 assignments for entity "DE1_SoC" -- entity does not
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (115030): Assembler is generating device programming files
 Info: Quartus Prime Assembler was successful. 0 errors, 573 warnings
-    Info: Peak virtual memory: 1187 megabytes
-    Info: Processing ended: Wed Jun 17 16:40:12 2026
-    Info: Elapsed time: 00:00:03
-    Info: Total CPU time (on all processors): 00:00:03
+    Info: Peak virtual memory: 1185 megabytes
+    Info: Processing ended: Mon Jun 22 22:55:40 2026
+    Info: Elapsed time: 00:00:05
+    Info: Total CPU time (on all processors): 00:00:06
 
 

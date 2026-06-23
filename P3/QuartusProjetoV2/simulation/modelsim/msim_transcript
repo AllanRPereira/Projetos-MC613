@@ -162,3 +162,5 @@
 #    Time: 301236 ns  Iteration: 0  Instance: /init_tb
 # 1
 # Break in Module init_tb at /home/c-ec2024/ra252694/Documents/MC613/PosGreve/Projetos-MC613/P3/QuartusProjetoV2/../TestBenchs/init_tb.v line 252
+# End time: 17:09:18 on Jun 17,2026, Elapsed time: 0:06:58
+# Errors: 0, Warnings: 1
