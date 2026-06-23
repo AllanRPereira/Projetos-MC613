@@ -102,22 +102,12 @@ module init (
                 S_REF1: begin
                     timer <= timer + 1'b1;
                     if (timer == TRC) begin
-                        if (NUM_AUTOREFRESH <= 1) begin
-                            state <= S_MRS;
-                            timer <= 15'd0;
-                            
-                            // Load Mode Register command
-                            {cs_n, ras_n, cas_n, we_n} <= CMD_MRS;
-                            a <= MODE_REG;
-                            ba <= 2'b00;
-                        end else begin
-                            state <= S_REF2;
-                            timer <= 15'd0;
-                            refresh_count <= 8'd2;
-                            
-                            // Auto Refresh 2 command
-                            {cs_n, ras_n, cas_n, we_n} <= CMD_AREF;
-                        end
+                        state <= S_REF2;
+                        timer <= 15'd0;
+                        refresh_count <= 8'd2;
+                        
+                        // Auto Refresh 2 command
+                        {cs_n, ras_n, cas_n, we_n} <= CMD_AREF;
                     end
                 end
                 
