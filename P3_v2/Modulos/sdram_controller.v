@@ -16,162 +16,376 @@ module sdram_controller (
 	inout      [15:0] DQ,
 	output     [1:0]  DQM // for setting byte selection (mask)
 );
- 
-// Declaration of FSM for READ/WRITE transactions
-parameter IWAIT=5'd0, IPALL=5'd1, IDELAY1=5'd2, IREF=5'd3, IDELAY2=5'd4, IMODE=5'd6;
-parameter RACT=5'd7, RDELAY1=5'd8, RDA=5'd9, RDELAY2=5'd10, RDELAY3=5'd11, HALT=5'd12;
-parameter WACT=5'd13, WDELAY1=5'd14, WRA=5'd15, WDELAY2=5'd16;
-parameter FREF=5'd17, FDELAY=5'd18;
 
-reg [4:0] cur, next;
+// Parâmetros de Temporização (baseados em 50 MHz, T = 20 ns)
+// Corrigidos para estarem em conformidade com as especificações físicas da SDRAM
+// e com as temporizações pretendidas nos submódulos (init, read, write, autorefresh)
+parameter integer T_200US   = 10000; // 200 us delay de inicialização
+parameter integer T_RP_INI  = 4;     // tRP para inicialização (conforme init.v: TRP = 4)
+parameter integer T_RC_INI  = 10;    // tRC para inicialização (conforme init.v: TRC = 10)
+parameter integer T_MRD     = 3;     // tMRD para inicialização (conforme init.v: TMRD = 3)
+parameter integer T_REF_NUM = 10;    // Número de auto-refreshes na inicialização (conforme init.v: 10)
 
-// The counter for initialising system 200 us
-parameter MAX200=14'd10_000;
-reg [13:0] i200cnt;
-wire i200cntup;
-assign i200cntup = (i200cnt == MAX200 - 1) ? 1'b1 : 1'b0;
+parameter integer T_RCD     = 3;     // Active to Read/Write delay (conforme read.v/write.v: TRCD = 3)
+parameter integer T_CAS     = 3;     // CAS Latency (conforme read.v: TCAS_CYCLES = 3)
+parameter integer T_RP_RD   = 4;     // Delay de Precharge após Leitura (conforme read.v: TRP_CYCLES = 4)
 
-always @(posedge clk, negedge rstn) begin
-	if(!rstn)
-		i200cnt[13:0] <= 14'd0;
-	else
-		i200cnt[13:0] <= i200cnt[13:0] + 1'b1;
-end
+parameter integer T_WR      = 4;     // Write Recovery Time (conforme write.v: TWR = 4)
+parameter integer T_RP_WR   = 3;     // Delay de Precharge após Escrita (conforme write.v: TRP = 3)
 
-// The 8-counter for initially refresh SDRAM eight times
-reg [2:0] init_ref_cnt;
-wire init_RefMax;
-assign init_RefMax = (init_ref_cnt == 3'b111) ? 1'b1 : 1'b0;
+parameter integer T_RFC     = 10;    // Refresh cycle time (conforme autorefresh.v: TRFC_CYCLES = 10)
+parameter integer T_REFI    = 390;   // Intervalo de Refresh (390 ciclos ~ 7.8 us, correto para 50 MHz)
 
-always @(posedge clk, negedge rstn) begin
-	if(!rstn)
-		init_ref_cnt[2:0] <= 3'b000;
-	else if(cur[4:0] == IWAIT[4:0])
-		init_ref_cnt[2:0] <= 3'b000;
-	else if(cur[4:0] == IDELAY2[4:0])
-		init_ref_cnt[2:0] <= init_ref_cnt[2:0] + 1'b1;
-	else // do nothing
-		init_ref_cnt[2:0] <= init_ref_cnt[2:0];
-end
+// Registro de Modo (Mode Register)
+// Valor parametrizado em init.v: 13'h0230 (CL=3, Burst Length=1, Sequential)
+localparam [12:0] MODE_REG = 13'h0230;
 
-// Refresh counter
-// 64ms / 8192 refresh-count / 20ns = 390 counts
-// Because the clk = 50 MHz, so 20ns for each clock cycle
-// TODO: IMPORTANTE 
-// Therefore, every 390 clock cycles the SDRAM have to be refreshed, i.e., tREFI=7.8125us
+// Estados da FSM
+localparam [4:0] S_INIT_WAIT = 5'd0,
+                 S_INIT_PALL = 5'd1,
+                 S_INIT_TRP  = 5'd2,
+                 S_INIT_REF  = 5'd3,
+                 S_INIT_TRC  = 5'd4,
+                 S_INIT_MRS  = 5'd5,
+                 S_INIT_TMRD = 5'd6,
+                 S_HALT      = 5'd7,
+                 S_ACT       = 5'd8,
+                 S_TRCD      = 5'd9,
+                 S_READ      = 5'd10,
+                 S_CAS       = 5'd11,
+                 S_RP_RD     = 5'd12,
+                 S_WRITE     = 5'd13,
+                 S_WR_RP     = 5'd14,
+                 S_REF       = 5'd15,
+                 S_TRFC      = 5'd16;
+
+reg [4:0] state, next_state;
+
+// Registrador de propósito geral para temporizações internas
+reg [14:0] timer;
+
+// Contador de refreshes durante a inicialização
+reg [3:0] init_ref_cnt;
+
+// Contador de intervalo de refresh periódico
 reg [8:0] ref_cnt;
-parameter RefMax=9'd390;
 
-always @(posedge clk, negedge rstn) begin
-	if(!rstn)
-		ref_cnt[8:0] <= 9'd0;
-	else if(cur[4:0] == FREF[4:0])
-		ref_cnt[8:0] <= 9'd0;
-	else 
-		ref_cnt[8:0] <= ref_cnt[8:0] + 1'b1;
-end 
+// Flag para indicar se a operação ativa é Escrita (1) ou Leitura (0)
+reg op_write;
 
-// FSM for READ/WRITE transactions
-always @(posedge clk, negedge rstn) begin
-	if(!rstn) 
-		cur[4:0] <= IWAIT[4:0];
+// Lógica de atualização do contador de refresh periódico (ref_cnt)
+always @(posedge clk or negedge rstn) begin
+	if (!rstn)
+		ref_cnt <= 9'd0;
+	else if (state == S_REF)
+		ref_cnt <= 9'd0;
 	else
-		cur[4:0] <= next[4:0];
+		ref_cnt <= ref_cnt + 1'b1;
 end
 
+// Lógica de transição de estados e controle do timer/contadores
+always @(posedge clk or negedge rstn) begin
+	if (!rstn) begin
+		state        <= S_INIT_WAIT;
+		timer        <= 15'd0;
+		init_ref_cnt <= 4'd0;
+		op_write     <= 1'b0;
+	end else begin
+		state <= next_state;
+		
+		case (state)
+			S_INIT_WAIT: begin
+				if (timer >= T_200US - 1) begin
+					timer <= 15'd0;
+				end else begin
+					timer <= timer + 1'b1;
+				end
+			end
+			
+			S_INIT_PALL: begin
+				timer <= 15'd0;
+			end
+			
+			S_INIT_TRP: begin
+				if (timer >= T_RP_INI - 1) begin
+					timer        <= 15'd0;
+					init_ref_cnt <= 4'd0;
+				end else begin
+					timer <= timer + 1'b1;
+				end
+			end
+			
+			S_INIT_REF: begin
+				timer <= 15'd0;
+			end
+			
+			S_INIT_TRC: begin
+				if (timer >= T_RC_INI - 1) begin
+					timer <= 15'd0;
+					if (init_ref_cnt >= T_REF_NUM - 1) begin
+						init_ref_cnt <= 4'd0;
+					end else begin
+						init_ref_cnt <= init_ref_cnt + 1'b1;
+					end
+				end else begin
+					timer <= timer + 1'b1;
+				end
+			end
+			
+			S_INIT_MRS: begin
+				timer <= 15'd0;
+			end
+			
+			S_INIT_TMRD: begin
+				if (timer >= T_MRD - 1) begin
+					timer <= 15'd0;
+				end else begin
+					timer <= timer + 1'b1;
+				end
+			end
+			
+			S_HALT: begin
+				timer <= 15'd0;
+				if (ref_cnt >= T_REFI) begin
+					op_write <= 1'b0;
+				end else if (wEn && !rEn) begin
+					op_write <= 1'b1;
+				end else if (rEn && !wEn) begin
+					op_write <= 1'b0;
+				end
+			end
+			
+			S_ACT: begin
+				timer <= 15'd0;
+			end
+			
+			S_TRCD: begin
+				if (timer >= T_RCD - 2) begin
+					timer <= 15'd0;
+				end else begin
+					timer <= timer + 1'b1;
+				end
+			end
+			
+			S_READ: begin
+				timer <= 15'd0;
+			end
+			
+			S_CAS: begin
+				if (timer >= T_CAS - 2) begin
+					timer <= 15'd0;
+				end else begin
+					timer <= timer + 1'b1;
+				end
+			end
+			
+			S_RP_RD: begin
+				if (timer >= T_RP_RD - 1) begin
+					timer <= 15'd0;
+				end else begin
+					timer <= timer + 1'b1;
+				end
+			end
+			
+			S_WRITE: begin
+				timer <= 15'd0;
+			end
+			
+			S_WR_RP: begin
+				if (timer >= (T_WR + T_RP_WR - 3)) begin
+					timer <= 15'd0;
+				end else begin
+					timer <= timer + 1'b1;
+				end
+			end
+			
+			S_REF: begin
+				timer <= 15'd0;
+			end
+			
+			S_TRFC: begin
+				if (timer >= T_RFC - 3) begin
+					timer <= 15'd0;
+				end else begin
+					timer <= timer + 1'b1;
+				end
+			end
+			
+			default: begin
+				timer <= 15'd0;
+			end
+		endcase
+	end
+end
+
+// Lógica de Próximo Estado da FSM
 always @(*) begin
-	case (cur[4:0])
-		IWAIT  : 
-			if(i200cntup == 1'b1) 
-				next[4:0] <= IPALL[4:0];
+	case (state)
+		S_INIT_WAIT: begin
+			if (timer >= T_200US - 1)
+				next_state <= S_INIT_PALL;
 			else
-				next[4:0] <= IWAIT[4:0];
-		IPALL  : next[4:0] <= IDELAY1[4:0];
-		IDELAY1: next[4:0] <= IREF[4:0];
-		IREF   : next[4:0] <= IDELAY2[4:0];
-		IDELAY2: 
-			if(init_RefMax == 1'b1) // the initial refresh opertion will be run eight times
-				next[4:0] <= IMODE[4:0];
+				next_state <= S_INIT_WAIT;
+		end
+		
+		S_INIT_PALL: begin
+			next_state <= S_INIT_TRP;
+		end
+		
+		S_INIT_TRP: begin
+			if (timer >= T_RP_INI - 1)
+				next_state <= S_INIT_REF;
 			else
-				next[4:0] <= IDELAY1[4:0];
-		IMODE  : next[4:0] <= HALT[4:0];
-		HALT   : 
-			if(ref_cnt[8:0] >= RefMax[8:0])
-				next[4:0] <= FREF[4:0];
-			else if(wEn && !rEn)
-				next[4:0] <= WACT[4:0];
-			else if(rEn && !wEn)
-				next[4:0] <= RACT[4:0];
-			else 
-				next[4:0] <= HALT[4:0];
-		// Write operation
-		WACT   : next[4:0] <= WDELAY1[4:0];
-		WDELAY1: next[4:0] <= WRA[4:0];
-		WRA    : next[4:0] <= WDELAY2[4:0];
-		WDELAY2: next[4:0] <= HALT[4:0];
-
-		// Read operation
-		RACT   : next[4:0] <= RDELAY1[4:0];
-		RDELAY1: next[4:0] <= RDA[4:0];
-		RDA    : next[4:0] <= RDELAY2[4:0];
-		RDELAY2: next[4:0] <= RDELAY3[4:0];
-		RDELAY3: next[4:0] <= HALT[4:0];
-
-		// Refresh operation
-		FREF   : next[4:0] <= FDELAY[4:0];
-		FDELAY : next[4:0] <= HALT[4:0];
-		default: next[4:0] <= HALT[4:0];   
+				next_state <= S_INIT_TRP;
+		end
+		
+		S_INIT_REF: begin
+			next_state <= S_INIT_TRC;
+		end
+		
+		S_INIT_TRC: begin
+			if (timer >= T_RC_INI - 1) begin
+				if (init_ref_cnt >= T_REF_NUM - 1)
+					next_state <= S_INIT_MRS;
+				else
+					next_state <= S_INIT_REF;
+			end else begin
+				next_state <= S_INIT_TRC;
+			end
+		end
+		
+		S_INIT_MRS: begin
+			next_state <= S_INIT_TMRD;
+		end
+		
+		S_INIT_TMRD: begin
+			if (timer >= T_MRD - 1)
+				next_state <= S_HALT;
+			else
+				next_state <= S_INIT_TMRD;
+		end
+		
+		S_HALT: begin
+			if (ref_cnt >= T_REFI)
+				next_state <= S_REF;
+			else if (wEn && !rEn)
+				next_state <= S_ACT;
+			else if (rEn && !wEn)
+				next_state <= S_ACT;
+			else
+				next_state <= S_HALT;
+		end
+		
+		S_ACT: begin
+			next_state <= S_TRCD;
+		end
+		
+		S_TRCD: begin
+			if (timer >= T_RCD - 2) begin
+				if (op_write)
+					next_state <= S_WRITE;
+				else
+					next_state <= S_READ;
+			end else begin
+				next_state <= S_TRCD;
+			end
+		end
+		
+		S_READ: begin
+			next_state <= S_CAS;
+		end
+		
+		S_CAS: begin
+			if (timer >= T_CAS - 2)
+				next_state <= S_RP_RD;
+			else
+				next_state <= S_CAS;
+		end
+		
+		S_RP_RD: begin
+			if (timer >= T_RP_RD - 1)
+				next_state <= S_HALT;
+			else
+				next_state <= S_RP_RD;
+		end
+		
+		S_WRITE: begin
+			next_state <= S_WR_RP;
+		end
+		
+		S_WR_RP: begin
+			if (timer >= (T_WR + T_RP_WR - 3))
+				next_state <= S_HALT;
+			else
+				next_state <= S_WR_RP;
+		end
+		
+		S_REF: begin
+			next_state <= S_TRFC;
+		end
+		
+		S_TRFC: begin
+			if (timer >= T_RFC - 3)
+				next_state <= S_HALT;
+			else
+				next_state <= S_TRFC;
+		end
+		
+		default: begin
+			next_state <= S_HALT;
+		end
 	endcase
 end
 
-// SDRAM control signals
+// Geração de Sinais de Controle da SDRAM
 always @(*) begin
-	if(cur[4:0] == IMODE[4:0])
-		{CSn, RASn, CASn, WEn} <= 4'b0000; // MRS
-	else if(cur[4:0] == RACT[4:0] || cur[4:0] == WACT[4:0])
-		{CSn, RASn, CASn, WEn} <= 4'b0011; // ACT
-	else if(cur[4:0] == IPALL[4:0])
-		{CSn, RASn, CASn, WEn} <= 4'b0010; // Precharge all
-	else if(cur[4:0] == RDA[4:0])
-		{CSn, RASn, CASn, WEn} <= 4'b0101; // READ with auto-precharge
-	else if(cur[4:0] == WRA[4:0])
-		{CSn, RASn, CASn, WEn} <= 4'b0100; // WRITE with auto-precharge
-	else if(cur[4:0] == IREF[4:0] || cur[4:0] == FREF[4:0])
-		{CSn, RASn, CASn, WEn} <= 4'b0001; // Refresh operatoin
-	else
-		{CSn, RASn, CASn, WEn} <= 4'b1111;
+	case (state)
+		S_INIT_PALL: {CSn, RASn, CASn, WEn} <= 4'b0010; // Precharge All
+		S_INIT_REF : {CSn, RASn, CASn, WEn} <= 4'b0001; // Auto Refresh (Init)
+		S_INIT_MRS : {CSn, RASn, CASn, WEn} <= 4'b0000; // Mode Register Set (MRS)
+		S_ACT      : {CSn, RASn, CASn, WEn} <= 4'b0011; // Active (ACT)
+		S_READ     : {CSn, RASn, CASn, WEn} <= 4'b0101; // Read with Auto-Precharge
+		S_WRITE    : {CSn, RASn, CASn, WEn} <= 4'b0100; // Write with Auto-Precharge
+		S_REF      : {CSn, RASn, CASn, WEn} <= 4'b0001; // Periodic Auto Refresh
+		default    : {CSn, RASn, CASn, WEn} <= 4'b1111; // NOP / Device Deselect
+	endcase
 end
 
-// Addressing signals
+// Sinais de Endereço (addr)
 always @(*) begin
-	if(cur[4:0] == IMODE[4:0])
-		addr[12:0] <= 13'h0230; // MRS
-	else if(cur[4:0] == RACT[4:0] || cur[4:0] == WACT[4:0])
-		addr[12:0] <= address[23:11]; // Row Address
-	else if(cur[4:0] == IPALL[4:0])
-		addr[12:0] <= 13'b0100_0000_0000; // Precharge all
-	else if(cur[4:0] == RDA[4:0] || cur[4:0] == WRA[4:0])
-		addr[12:0] <= {1'b0, address[10] , 1'b0, address[9:0]}; // Column Address
-	else
-		addr[12:0] <= 13'h000; 	
+	case (state)
+		S_INIT_MRS : addr[12:0] <= MODE_REG;
+		S_INIT_PALL: addr[12:0] <= 13'b0100_0000_0000; // Precharge All (A10 = 1)
+		S_ACT      : addr[12:0] <= address[23:11];      // Row Address
+		S_READ     : addr[12:0] <= {1'b0, address[10], 1'b0, address[9:0]}; // Column Address (com Auto-Precharge)
+		S_WRITE    : addr[12:0] <= {1'b0, address[10], 1'b0, address[9:0]}; // Column Address (com Auto-Precharge)
+		default    : addr[12:0] <= 13'h000;
+	endcase
 end
 
-// Banking address signals
+// Sinais de Seleção de Banco (BA)
 always @(*) begin
-	if(cur[4:0] == IMODE[4:0]) 
-		BA[1:0] <= 2'b00; // MRS
-	else if(cur[4:0] == RACT[4:0] || cur[4:0] == WACT[4:0])
-		BA[1:0] <= address[25:24]; // Bank address
-	else if(cur[4:0] == RDA[4:0] || cur[4:0] == WRA[4:0])
-		BA[1:0] <= address[25:24]; // Bank address
-	else
-		BA[1:0] <= 2'b00;
+	case (state)
+		S_INIT_MRS : BA[1:0] <= 2'b00;
+		S_ACT      : BA[1:0] <= address[25:24]; // Bank Address
+		S_READ     : BA[1:0] <= address[25:24]; // Bank Address
+		S_WRITE    : BA[1:0] <= address[25:24]; // Bank Address
+		default    : BA[1:0] <= 2'b00;
+	endcase
 end
 
-// DQ, DQM, Datas
-assign DQ[15:0] = (cur[4:0] == WRA[4:0]) ? write_data[15:0] : 16'hzzzz;
-assign DQM[1:0] = 2'b10; 
+// Controle do Barramento de Dados (DQ) e do Sinal Ready
+// DQ deve ser tri-state para leitura e ativo para escrita
+assign DQ[15:0] = (state == S_WRITE || (state == S_WR_RP && timer < T_WR - 1)) ? write_data[15:0] : 16'hzzzz;
+
+// DQM habilitado (00) para permitir acesso de dados completo de 16 bits
+assign DQM[1:0] = 2'b00;
+
+// O dado de leitura é continuamente atribuído ao read_data
 assign read_data[15:0] = DQ[15:0];
-assign ready = (cur[4:0] == RDELAY3[4:0] || cur[4:0] == WDELAY2[4:0]) ? 1'b0 : 1'b1;
+
+// O sinal ready indica se o controlador está ocioso (HALT) ou pronto para receber o próximo comando
+// Ele também fica alto durante S_RP_RD para sinalizar que o dado lido está pronto para captura externa
+assign ready = (state == S_HALT || state == S_RP_RD) ? 1'b1 : 1'b0;
 
 endmodule
