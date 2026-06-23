@@ -70,7 +70,9 @@ module init (
             ba    <= 2'b00;
             a     <= 13'b0;
         end else begin
-            // Decodificação padrão (NOP) se não for enviar comando
+            // Decodificação padrão (NOP) se não for enviar comando.
+            // Assim, após Precharge e após cada Auto-Refresh, o ciclo seguinte
+            // permanece em NOP, como requerido pelo datasheet.
             {cs_n, ras_n, cas_n, we_n} <= CMD_NOP;
             
             case (state)
@@ -147,8 +149,6 @@ module init (
                     {cs_n, ras_n, cas_n, we_n} <= CMD_NOP;
                 end
                 
-                // REAVALIAR COMANDO ACTIVE NO FINAL!!
-
                 default: begin
                     state <= S_WAIT;
                     timer <= 15'd0;
