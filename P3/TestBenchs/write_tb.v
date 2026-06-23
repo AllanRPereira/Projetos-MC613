@@ -30,7 +30,7 @@ module write_tb;
     // Instância do DUT
     // ------------------------------------------------------------
 
-    dram_write dut (
+    write dut (
         .clk(clk),
         .rst(rst),
 

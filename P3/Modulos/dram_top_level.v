@@ -8,7 +8,7 @@ module dram_top_level (
 	output wire [6:0]  HEX3,
 	output wire [6:0]  HEX4,
 	output wire [6:0]  HEX5,
-	output wire [3:0]  LEDR,
+	output wire [9:0]  LEDR,
 
 	// SDRAM interface (DE1-SoC)
 	output wire        DRAM_CKE,
@@ -25,6 +25,18 @@ module dram_top_level (
 );
 
 	wire rst = ~KEY[0];
+
+	// Debounce para a tecla usada como comando de escrita/leitura.
+	// KEY[3] na placa é ativa em nível baixo, então convertemos para ativo-alto
+	// e exigimos estabilidade por um período antes de repassar ao dram_iface.
+	localparam integer KEY_DEBOUNCE_MAX = 500000; // ~10 ms @ 50 MHz
+
+	reg key3_meta;
+	reg key3_sync;
+	reg key3_stable;
+	reg [18:0] key3_counter;
+	wire key3_raw = ~KEY[3];
+	wire key3_debounced;
 
 	wire [7:0] user_data;
 	wire [25:0] address;
@@ -47,11 +59,34 @@ module dram_top_level (
 	wire [1:0] ctrl_ba;
 	wire [12:0] ctrl_a;
 
+	assign key3_debounced = key3_stable;
+
+	always @(posedge CLOCK_50) begin
+		if (rst) begin
+			key3_meta <= 1'b0;
+			key3_sync <= 1'b0;
+			key3_stable <= 1'b0;
+			key3_counter <= 19'd0;
+		end else begin
+			key3_meta <= key3_raw;
+			key3_sync <= key3_meta;
+
+			if (key3_sync == key3_stable) begin
+				key3_counter <= 19'd0;
+			end else if (key3_counter >= KEY_DEBOUNCE_MAX - 1) begin
+				key3_stable <= key3_sync;
+				key3_counter <= 19'd0;
+			end else begin
+				key3_counter <= key3_counter + 1'b1;
+			end
+		end
+	end
+
 	dram_iface u_dram_iface (
 		.clk(CLOCK_50),
 		.rst(rst),
 		.SW(SW),
-		.KEY(~KEY[3]),
+		.KEY(key3_debounced),
 		.ready(ready),
 		.data(user_data),
 		.HEX0(hex0_n),
@@ -60,7 +95,8 @@ module dram_top_level (
 		.HEX5(hex5_n),
 		.address(address),
 		.req(req),
-		.wEn(wEn)
+		.wEn(wEn),
+		.leds(LEDR[9:5])
 	);
 
 	dram_controller u_dram_controller (
@@ -73,6 +109,7 @@ module dram_top_level (
 		.ready(ready),
 		.data_out(ctrl_data_out),
 		.data_valid(ctrl_data_valid),
+		.leds(LEDR[9:5]),
 		.cke(ctrl_cke),
 		.cs_n(ctrl_cs_n),
 		.ras_n(ctrl_ras_n),

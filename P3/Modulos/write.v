@@ -61,7 +61,7 @@ module write (
 
     wire [1:0] bank;
     wire [12:0] row;
-    wire [8:0] col;
+    wire [10:0] col;
 
     assign bank = address[25:24];
     assign row  = address[23:11];

@@ -27,7 +27,13 @@ module dram_controller #(
 	output reg                      we_n,
 	output reg  [1:0]               ba,
 	output reg  [12:0]              a,
+
+	// Leds de Estados
+	output reg [4:0] 				leds,
+
+	
 	inout  wire [DATA_WIDTH-1:0]    dq
+
 );
 
 	localparam [3:0] CMD_NOP = 4'b0111;
@@ -41,7 +47,7 @@ module dram_controller #(
 	localparam [2:0] S_REFRESH_GRANT = 3'd6;
 	localparam [2:0] S_REFRESH_WAIT  = 3'd7;
 
-	reg [2:0] state;
+	reg [2:0] state = S_INIT;
 	reg [ADDR_WIDTH-1:0] addr_reg;
 	reg [DATA_WIDTH-1:0] write_data_reg;
 	reg [DATA_WIDTH-1:0] read_data_reg;
@@ -197,13 +203,17 @@ module dram_controller #(
 
 			case (state)
 				S_INIT: begin
+					// leds[0] <= 1;
 					if (init_ready) begin
 						state <= S_IDLE;
+						// leds[0] <= 0;
 					end
 				end
 
 				S_IDLE: begin
+					// leds[1] <= 1;
 					if (req) begin
+						// leds[1] <= 0;
 						if (wEn) begin
 							state <= S_WRITE_START;
 						end else begin
@@ -219,7 +229,9 @@ module dram_controller #(
 				end
 
 				S_READ_WAIT: begin
+					// leds[2] <= 1;
 					if (read_ready) begin
+						// leds[2] <= 0;
 						state <= S_IDLE;
 					end
 				end
@@ -229,7 +241,9 @@ module dram_controller #(
 				end
 
 				S_WRITE_WAIT: begin
+					// leds[3] <= 1;
 					if (write_done) begin
+						// leds[3] <= 0;
 						state <= S_IDLE;
 					end
 				end
@@ -239,7 +253,9 @@ module dram_controller #(
 				end
 
 				S_REFRESH_WAIT: begin
+					// leds[4] <= 1;
 					if (refresh_done) begin
+						// leds[4] <= 0;
 						state <= S_IDLE;
 					end
 				end
