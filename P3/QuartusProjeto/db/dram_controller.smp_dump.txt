@@ -1,8 +1,0 @@
-
-State Machine - |dram_top_level|dram_iface:u_dram_iface|estado
-Name estado.WAIT_WRITE estado.REQ_READ estado.REQ_WRITE estado.000 estado.WAIT_READ 
-estado.000 0 0 0 0 0 
-estado.REQ_WRITE 0 0 1 1 0 
-estado.REQ_READ 0 1 0 1 0 
-estado.WAIT_WRITE 1 0 0 1 0 
-estado.WAIT_READ 0 0 0 1 1 
