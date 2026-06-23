@@ -340,37 +340,37 @@ end
 // Geração de Sinais de Controle da SDRAM
 always @(*) begin
 	case (state)
-		S_INIT_PALL: {CSn, RASn, CASn, WEn} <= 4'b0010; // Precharge All
-		S_INIT_REF : {CSn, RASn, CASn, WEn} <= 4'b0001; // Auto Refresh (Init)
-		S_INIT_MRS : {CSn, RASn, CASn, WEn} <= 4'b0000; // Mode Register Set (MRS)
-		S_ACT      : {CSn, RASn, CASn, WEn} <= 4'b0011; // Active (ACT)
-		S_READ     : {CSn, RASn, CASn, WEn} <= 4'b0101; // Read with Auto-Precharge
-		S_WRITE    : {CSn, RASn, CASn, WEn} <= 4'b0100; // Write with Auto-Precharge
-		S_REF      : {CSn, RASn, CASn, WEn} <= 4'b0001; // Periodic Auto Refresh
-		default    : {CSn, RASn, CASn, WEn} <= 4'b1111; // NOP / Device Deselect
+		S_INIT_PALL: {CSn, RASn, CASn, WEn} = 4'b0010; // Precharge All
+		S_INIT_REF : {CSn, RASn, CASn, WEn} = 4'b0001; // Auto Refresh (Init)
+		S_INIT_MRS : {CSn, RASn, CASn, WEn} = 4'b0000; // Mode Register Set (MRS)
+		S_ACT      : {CSn, RASn, CASn, WEn} = 4'b0011; // Active (ACT)
+		S_READ     : {CSn, RASn, CASn, WEn} = 4'b0101; // Read with Auto-Precharge
+		S_WRITE    : {CSn, RASn, CASn, WEn} = 4'b0100; // Write with Auto-Precharge
+		S_REF      : {CSn, RASn, CASn, WEn} = 4'b0001; // Periodic Auto Refresh
+		default    : {CSn, RASn, CASn, WEn} = 4'b1111; // NOP / Device Deselect
 	endcase
 end
 
 // Sinais de Endereço (addr)
 always @(*) begin
 	case (state)
-		S_INIT_MRS : addr[12:0] <= MODE_REG;
-		S_INIT_PALL: addr[12:0] <= 13'b0100_0000_0000; // Precharge All (A10 = 1)
-		S_ACT      : addr[12:0] <= address[23:11];      // Row Address
-		S_READ     : addr[12:0] <= {1'b0, address[10], 1'b0, address[9:0]}; // Column Address (com Auto-Precharge)
-		S_WRITE    : addr[12:0] <= {1'b0, address[10], 1'b0, address[9:0]}; // Column Address (com Auto-Precharge)
-		default    : addr[12:0] <= 13'h000;
+		S_INIT_MRS : addr[12:0] = MODE_REG;
+		S_INIT_PALL: addr[12:0] = 13'b0100_0000_0000; // Precharge All (A10 = 1)
+		S_ACT      : addr[12:0] = address[23:11];      // Row Address
+		S_READ     : addr[12:0] = {1'b0, address[10], 1'b0, address[9:0]}; // Column Address (com Auto-Precharge)
+		S_WRITE    : addr[12:0] = {1'b0, address[10], 1'b0, address[9:0]}; // Column Address (com Auto-Precharge)
+		default    : addr[12:0] = 13'h000;
 	endcase
 end
 
 // Sinais de Seleção de Banco (BA)
 always @(*) begin
 	case (state)
-		S_INIT_MRS : BA[1:0] <= 2'b00;
-		S_ACT      : BA[1:0] <= address[25:24]; // Bank Address
-		S_READ     : BA[1:0] <= address[25:24]; // Bank Address
-		S_WRITE    : BA[1:0] <= address[25:24]; // Bank Address
-		default    : BA[1:0] <= 2'b00;
+		S_INIT_MRS : BA[1:0] = 2'b00;
+		S_ACT      : BA[1:0] = address[25:24]; // Bank Address
+		S_READ     : BA[1:0] = address[25:24]; // Bank Address
+		S_WRITE    : BA[1:0] = address[25:24]; // Bank Address
+		default    : BA[1:0] = 2'b00;
 	endcase
 end
 
