@@ -21,19 +21,19 @@ module sdram_controller (
 // Corrigidos para estarem em conformidade com as especificações físicas da SDRAM
 // e com as temporizações pretendidas nos submódulos (init, read, write, autorefresh)
 parameter integer T_200US   = 10000; // 200 us delay de inicialização
-parameter integer T_RP_INI  = 4;     // tRP para inicialização (conforme init.v: TRP = 4)
-parameter integer T_RC_INI  = 10;    // tRC para inicialização (conforme init.v: TRC = 10)
-parameter integer T_MRD     = 3;     // tMRD para inicialização (conforme init.v: TMRD = 3)
-parameter integer T_REF_NUM = 10;    // Número de auto-refreshes na inicialização (conforme init.v: 10)
+parameter integer T_RP_INI  = 2;     // tRP para inicialização (conforme init.v: TRP = 4)
+parameter integer T_RC_INI  = 4;    // tRC para inicialização (conforme init.v: TRC = 10)
+parameter integer T_MRD     = 1;     // tMRD para inicialização (conforme init.v: TMRD = 3)
+parameter integer T_REF_NUM = 4;    // Número de auto-refreshes na inicialização (conforme init.v: 10)
 
-parameter integer T_RCD     = 3;     // Active to Read/Write delay (conforme read.v/write.v: TRCD = 3)
-parameter integer T_CAS     = 3;     // CAS Latency (conforme read.v: TCAS_CYCLES = 3)
-parameter integer T_RP_RD   = 4;     // Delay de Precharge após Leitura (conforme read.v: TRP_CYCLES = 4)
+parameter integer T_RCD     = 1;     // Active to Read/Write delay (conforme read.v/write.v: TRCD = 3)
+parameter integer T_CAS     = 1;     // CAS Latency (conforme read.v: TCAS_CYCLES = 3)
+parameter integer T_RP_RD   = 2;     // Delay de Precharge após Leitura (conforme read.v: TRP_CYCLES = 4)
 
-parameter integer T_WR      = 4;     // Write Recovery Time (conforme write.v: TWR = 4)
-parameter integer T_RP_WR   = 3;     // Delay de Precharge após Escrita (conforme write.v: TRP = 3)
+parameter integer T_WR      = 2;     // Write Recovery Time (conforme write.v: TWR = 4)
+parameter integer T_RP_WR   = 1;     // Delay de Precharge após Escrita (conforme write.v: TRP = 3)
 
-parameter integer T_RFC     = 10;    // Refresh cycle time (conforme autorefresh.v: TRFC_CYCLES = 10)
+parameter integer T_RFC     = 4;    // Refresh cycle time (conforme autorefresh.v: TRFC_CYCLES = 10)
 parameter integer T_REFI    = 390;   // Intervalo de Refresh (390 ciclos ~ 7.8 us, correto para 50 MHz)
 
 // Registro de Modo (Mode Register)
