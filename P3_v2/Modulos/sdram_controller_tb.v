@@ -15,7 +15,7 @@ module sdram_controller_tb;
     // ------------------------------------------------------------------
     // Parametros de simulacao (sobrescrevem os do DUT para acelerar)
     // ------------------------------------------------------------------
-    localparam integer CLK_PERIOD = 10;     // 100 MHz na simulacao
+    localparam integer CLK_PERIOD = 20;     // 50 MHz na simulacao
     localparam integer T200US     = 50;     // espera de init reduzida
     localparam integer TREFI      = 60;     // intervalo de refresh reduzido
 

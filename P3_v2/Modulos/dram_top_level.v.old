@@ -78,28 +78,11 @@ module dram_top_level (
         end
     end
 
-    // Fios e instâncias de debounce/sincronização para os Switches (SW)
-    wire [9:0] sw_debounced;
-
-    genvar k;
-    generate
-        for (k = 0; k < 10; k = k + 1) begin : gen_sw_debounce
-            debounce_filter #(
-                .DEBOUNCE_LIMIT(500000) // ~10 ms @ 50 MHz
-            ) u_sw_debounce (
-                .clk(CLOCK_50),
-                .rstn(rstn),
-                .sig_in(SW[k]),
-                .sig_out(sw_debounced[k])
-            );
-        end
-    endgenerate
-
     // Instância da Interface de Controle Lógico
     dram_iface u_dram_iface (
         .clk(CLOCK_50),
         .rstn(rstn),
-        .SW(sw_debounced),
+        .SW(SW),
         .KEY(key3_debounced),
         .ready(w_ready),
         .read_data(w_read_data),
@@ -156,42 +139,5 @@ module dram_top_level (
     assign DRAM_CLK = CLOCK_50;     // Idealmente, deve vir de uma PLL com phase-shift
     assign DRAM_UDQM = w_dqm[1];    // Conectado ao pino gerado no controlador (1)
     assign DRAM_LDQM = w_dqm[0];    // Conectado ao pino gerado no controlador (0)
-
-endmodule
-
-// Filtro de Debounce e Sincronização Genérico de 1-bit
-module debounce_filter #(
-    parameter DEBOUNCE_LIMIT = 500000 // ~10 ms @ 50 MHz
-) (
-    input  wire clk,
-    input  wire rstn,
-    input  wire sig_in,
-    output reg  sig_out
-);
-
-    reg sig_meta;
-    reg sig_sync;
-    reg [18:0] counter;
-
-    always @(posedge clk) begin
-        if (!rstn) begin
-            sig_meta <= 1'b0;
-            sig_sync <= 1'b0;
-            sig_out  <= 1'b0;
-            counter  <= 19'd0;
-        end else begin
-            sig_meta <= sig_in;
-            sig_sync <= sig_meta;
-
-            if (sig_sync == sig_out) begin
-                counter <= 19'd0;
-            end else if (counter >= DEBOUNCE_LIMIT - 1) begin
-                sig_out <= sig_sync;
-                counter <= 19'd0;
-            end else begin
-                counter <= counter + 1'b1;
-            end
-        end
-    end
 
 endmodule
