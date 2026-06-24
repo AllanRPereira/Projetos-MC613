@@ -77,6 +77,50 @@ module sdram_controller_tb;
     wire [3:0]   cmd = {CSn, RASn, CASn, WEn};
 
     // ------------------------------------------------------------------
+    // Nomes legiveis para a forma de onda (aparecem como ASCII no GTKWave)
+    //   cmd_str   -> nome do comando SDRAM atual ({CSn,RASn,CASn,WEn})
+    //   state_str -> nome do estado atual da FSM (dut.state)
+    // ------------------------------------------------------------------
+    reg [8*9-1:0]  cmd_str;     // ate 9 caracteres
+    reg [8*12-1:0] state_str;   // ate 12 caracteres
+
+    always @(*) begin
+        case (cmd)
+            M_ACT:   cmd_str = "ACTIVATE";
+            M_RD:    cmd_str = "READ";
+            M_WR:    cmd_str = "WRITE";
+            M_PRE:   cmd_str = "PRECHARGE";
+            M_REF:   cmd_str = "AUTOREF";
+            M_MRS:   cmd_str = "LMR";
+            M_NOP:   cmd_str = "NOP";
+            default: cmd_str = "?";
+        endcase
+    end
+
+    always @(*) begin
+        case (dut.state)
+            S_INIT_WAIT: state_str = "INIT_WAIT";
+            S_INIT_PALL: state_str = "INIT_PALL";
+            S_INIT_TRP:  state_str = "INIT_TRP";
+            S_INIT_REF:  state_str = "INIT_REF";
+            S_INIT_TRC:  state_str = "INIT_TRC";
+            S_INIT_MRS:  state_str = "INIT_MRS";
+            S_INIT_TMRD: state_str = "INIT_TMRD";
+            S_HALT:      state_str = "HALT";
+            S_ACT:       state_str = "ACT";
+            S_TRCD:      state_str = "TRCD";
+            S_READ:      state_str = "READ";
+            S_CAS:       state_str = "CAS";
+            S_RP_RD:     state_str = "RP_RD";
+            S_WRITE:     state_str = "WRITE";
+            S_WR_RP:     state_str = "WR_RP";
+            S_REF:       state_str = "REF";
+            S_TRFC:      state_str = "TRFC";
+            default:     state_str = "?";
+        endcase
+    end
+
+    // ------------------------------------------------------------------
     // DUT
     // ------------------------------------------------------------------
     sdram_controller #(
